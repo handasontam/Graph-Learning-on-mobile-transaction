@@ -23,19 +23,20 @@ How to run
 Run with following:
 
 ```bash
-python train.py --dataset=cora --gpu=0
-```
 
-```bash
-python train.py --dataset=citeseer --gpu=0
-```
-
-```bash
-python train.py --dataset=pubmed --gpu=0 --num-out-heads=8 --weight-decay=0.001
-```
-
-```bash
-python train_ppi.py --gpu=0
+python train.py \
+--dataset=cora \
+--gpu=1 \
+--epochs 10000 \
+--num-heads 2 \
+--num-hidden 5 \
+--in-drop 0 \
+--attn-drop 0 \
+--lr 0.008 \
+--edges_path /home/handason/data/eth/adj.csv \
+--node_features_path /home/handason/data/eth/node_features.csv \
+--label_path /home/handason/data/eth/label.csv \
+--vertex_map_path /home/handason/data/eth/node_id_map.txt 
 ```
 
 Results

@@ -17,12 +17,11 @@ import torch
 import torch.nn.functional as F
 from dgl import DGLGraph
 from dgl.data import register_data_args, load_data
-from gat import GAT
+from edge_prop_gat import EdgePropGAT
 import sys
 sys.path.append('../../') 
 from examples.eth_data_loader import EthDataset
 from examples.metrics import accuracy
-
 
 def evaluate(model, features, labels, mask):
     model.eval()
@@ -34,20 +33,17 @@ def evaluate(model, features, labels, mask):
 
 def main(args):
     # load and preprocess dataset
-    data = EthDataset(args.node_features_path, args.edge_attr_directory, args.label_path)
+    # data = load_data(args)
+    data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
     features = torch.FloatTensor(data.features)
-    # values = data.features.data
-    # indices = np.vstack((data.features.row, data.features.col))
-
-    # i = torch.LongTensor(indices)
-    # v = torch.FloatTensor(values)
-    # shape = data.features.shape
-    # features = torch.sparse.FloatTensor(i, v, torch.Size(shape)).to_dense()
+    # edge_features = torch.FloatTensor(1)  # TODO
     labels = torch.LongTensor(data.labels)
     train_mask = torch.ByteTensor(data.train_mask)
     val_mask = torch.ByteTensor(data.val_mask)
     test_mask = torch.ByteTensor(data.test_mask)
     num_feats = features.shape[1]
+    # num_edge_feats = edge_features.shape[1]
+    num_edge_feats = data.num_edge_feats
     n_classes = data.num_labels
     n_edges = data.graph.number_of_edges()
     print("""----Data statistics------'
@@ -67,6 +63,8 @@ def main(args):
         cuda = True
         torch.cuda.set_device(args.gpu)
         features = features.cuda()
+        # edge_features = edge_features.cuda()
+        data.graph.edata['e'] = data.graph.edata['e'].cuda()
         labels = labels.cuda()
         train_mask = train_mask.cuda()
         val_mask = val_mask.cuda()
@@ -79,9 +77,10 @@ def main(args):
     g.add_edges(g.nodes(), g.nodes())
     # create model
     heads = ([args.num_heads] * args.num_layers) + [args.num_out_heads]
-    model = GAT(g,
+    model = EdgePropGAT(g,
                 args.num_layers,
                 num_feats,
+                num_edge_feats, 
                 args.num_hidden,
                 n_classes,
                 heads,
@@ -161,13 +160,14 @@ if __name__ == '__main__':
                         help="the negative slop of leaky relu")
     parser.add_argument('--fastmode', action="store_true", default=False,
                         help="skip re-evaluate the validation set")
-    parser.add_argument("--edge_attr_directory", type=str, 
-                        help="directory storing all edge attribute (.npz file) which stores the sparse adjacency matrix", required=True)
+    parser.add_argument("--edges_path", type=str, 
+                        help="edge features csv", required=True)
     parser.add_argument("--node_features_path", type=str, 
                         help="csv file path for the node features", required=True)
     parser.add_argument("--label_path", type=str, 
                         help="csv file path for the ground truth label", required=True)
-
+    parser.add_argument("--vertex_map_path", type=str, 
+                        help="csv file path for the vertex mapping", required=True)
     args = parser.parse_args()
     print(args)
 

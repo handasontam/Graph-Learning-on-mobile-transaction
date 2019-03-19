@@ -27,6 +27,7 @@ class GraphAttention(nn.Module):
         self.g = g
         self.num_heads = num_heads
         self.fc = nn.Linear(in_dim, num_heads * out_dim, bias=False)
+        self.fc_e = nn.Linear(edge_in_dim, num_heads * out_dim, bias=True)
         if feat_drop:
             self.feat_drop = nn.Dropout(feat_drop)
         else:
@@ -67,13 +68,16 @@ class GraphAttention(nn.Module):
         self.g.edata['a3'] = a3
         # 1. compute edge attention
         self.g.apply_edges(self.edge_attention)
+        self.g.apply_edges(self.edge_transform)
         # 2. compute softmax in two parts: exp(x - max(x)) and sum(exp(x - max(x)))
         self.edge_softmax()
         # 2. compute the aggregated node features scaled by the dropped,
         # unnormalized attention values.
         self.g.update_all(fn.src_mul_edge('ft', 'a_drop', 'ft'), fn.sum('ft', 'ft'))
+        self.g.update_all(fn.copy_edge(edge='e', out='eft'), fn.sum('eft', 'eft')) # aggregate edge features
         # 3. apply normalizer
         ret = self.g.ndata['ft'] / self.g.ndata['z']  # NxHxD'
+        ret = ret.flatten(1) + self.g.ndata['eft']  # merge edge features with aggregate node features
         # 4. residual
         if self.residual:
             if self.res_fc is not None:
@@ -82,6 +86,10 @@ class GraphAttention(nn.Module):
                 resval = torch.unsqueeze(h, 1)  # Nx1xD'
             ret = resval + ret
         return ret
+
+    def edge_transform(self, edges):
+        e = self.fc_e(edges.data['e'])
+        return {'e': e}
 
     def edge_attention(self, edges):
         # an edge UDF to compute unnormalized attention values from src and dst
@@ -95,7 +103,7 @@ class GraphAttention(nn.Module):
         # Dropout attention scores and save them
         self.g.edata['a_drop'] = self.attn_drop(scores)
 
-class GAT(nn.Module):
+class EdgePropGAT(nn.Module):
     def __init__(self,
                  g,
                  num_layers,
@@ -109,7 +117,7 @@ class GAT(nn.Module):
                  attn_drop,
                  alpha,
                  residual):
-        super(GAT, self).__init__()
+        super(EdgePropGAT, self).__init__()
         self.g = g
         self.num_layers = num_layers
         self.gat_layers = nn.ModuleList()
@@ -125,14 +133,15 @@ class GAT(nn.Module):
                 feat_drop, attn_drop, alpha, residual))
         # output projection
         self.gat_layers.append(GraphAttention(
-            g, num_hidden * heads[-2], edge_in_dim, num_classes, heads[-1],
+            g, num_hidden * heads[-2], num_hidden, num_classes, heads[-1],  # only nodes features have multi-head
             feat_drop, attn_drop, alpha, residual))
 
     def forward(self, inputs):
         h = inputs
         # e = edge_inputs
         for l in range(self.num_layers):
-            h = self.gat_layers[l](h).flatten(1)
+            # h = self.gat_layers[l](h).flatten(1)
+            h = self.gat_layers[l](h)
             h = self.activation(h)
         # output projection
         logits = self.gat_layers[-1](h).mean(1)
