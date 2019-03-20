@@ -39,29 +39,30 @@ class GraphAttention(nn.Module):
         self.attn_l = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_r = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_e = nn.Parameter(torch.Tensor(size=(edge_in_dim, num_heads))) # (K X H)
-        nn.init.xavier_normal_(self.fc.weight.data, gain=1.414)
-        nn.init.xavier_normal_(self.attn_l.data, gain=1.414)
-        nn.init.xavier_normal_(self.attn_r.data, gain=1.414)
-        nn.init.xavier_normal_(self.attn_e.data ,gain=1.414)
+        nn.init.xavier_normal_(self.fc.weight.data, gain=0.5)
+        nn.init.xavier_normal_(self.attn_l.data, gain=0.5)
+        nn.init.xavier_normal_(self.attn_r.data, gain=0.5)
+        nn.init.xavier_normal_(self.attn_e.data ,gain=0.5)
         self.leaky_relu = nn.LeakyReLU(alpha)
         self.softmax = EdgeSoftmax()
         self.residual = residual
         if residual:
             if in_dim != out_dim:
                 self.res_fc = nn.Linear(in_dim, num_heads * out_dim, bias=False)
-                nn.init.xavier_normal_(self.res_fc.weight.data, gain=1.414)
+                nn.init.xavier_normal_(self.res_fc.weight.data, gain=0.5)
             else:
                 self.res_fc = None
 
-    def forward(self, inputs):
+    def forward(self, inputs, edge_inputs):
         # prepare
         h = self.feat_drop(inputs)  # NxD
         ft = self.fc(h).reshape((h.shape[0], self.num_heads, -1))  # NxHxD'
+        self.g.edata['eft'] = edge_inputs
         # e = self.feat_drop(edge_inputs)  # EXK (K=num edge features)
         head_ft = ft.transpose(0, 1)  # HxNxD'
         a1 = torch.bmm(head_ft, self.attn_l).transpose(0, 1)  # NxHx1
         a2 = torch.bmm(head_ft, self.attn_r).transpose(0, 1)  # NxHx1
-        a3 = torch.mm(self.g.edata['e'], self.attn_e)  # EXH
+        a3 = torch.mm(edge_inputs, self.attn_e)  # EXH
         a3 = torch.unsqueeze(a3, -1)  # EXHX1
         # edge attention
         self.g.ndata.update({'ft' : ft, 'a1' : a1, 'a2' : a2})
@@ -74,10 +75,10 @@ class GraphAttention(nn.Module):
         # 2. compute the aggregated node features scaled by the dropped,
         # unnormalized attention values.
         self.g.update_all(fn.src_mul_edge('ft', 'a_drop', 'ft'), fn.sum('ft', 'ft'))
-        self.g.update_all(fn.copy_edge(edge='e', out='eft'), fn.sum('eft', 'eft')) # aggregate edge features
+        self.g.update_all(fn.copy_edge(edge='eft', out='sum_eft'), fn.sum('sum_eft', 'sum_eft')) # aggregate edge features
         # 3. apply normalizer
         ret = self.g.ndata['ft'] / self.g.ndata['z']  # NxHxD'
-        ret = ret.flatten(1) + self.g.ndata['eft']  # merge edge features with aggregate node features
+        ret = ret + self.g.ndata['sum_eft'].reshape((self.g.ndata['sum_eft'].shape[0], self.num_heads, -1))  # EXHXK'  # merge edge features with aggregate node features
         # 4. residual
         if self.residual:
             if self.res_fc is not None:
@@ -88,8 +89,10 @@ class GraphAttention(nn.Module):
         return ret
 
     def edge_transform(self, edges):
-        e = self.fc_e(edges.data['e'])
-        return {'e': e}
+        eft = self.fc_e(edges.data['eft'])
+        # head_eft = e.transpose(0, 1)  # HXEXK'
+        # a1 = torch.bmm(head_ft, self.attn_l).transpose(0, 1)  # NxHx1
+        return {'eft': eft}
 
     def edge_attention(self, edges):
         # an edge UDF to compute unnormalized attention values from src and dst
@@ -129,20 +132,29 @@ class EdgePropGAT(nn.Module):
         for l in range(1, num_layers):
             # due to multi-head, the in_dim = num_hidden * num_heads
             self.gat_layers.append(GraphAttention(
-                g, num_hidden * heads[l-1], edge_in_dim, num_hidden, heads[l],
+                g, num_hidden * heads[l-1], num_hidden * heads[l-1], num_hidden, heads[l],
                 feat_drop, attn_drop, alpha, residual))
         # output projection
         self.gat_layers.append(GraphAttention(
-            g, num_hidden * heads[-2], num_hidden, num_classes, heads[-1],  # only nodes features have multi-head
+            g, num_hidden * heads[-2], num_hidden * heads[-2], num_classes, heads[-1],  # only nodes features have multi-head
             feat_drop, attn_drop, alpha, residual))
 
     def forward(self, inputs):
         h = inputs
         # e = edge_inputs
         for l in range(self.num_layers):
-            # h = self.gat_layers[l](h).flatten(1)
-            h = self.gat_layers[l](h)
+            if l == 0:
+                e = self.g.edata['e']
+            else:
+                e = self.g.edata['eft']
+            h = self.gat_layers[l](h, e).flatten(1)
+            # h = self.gat_layers[l](h)
             h = self.activation(h)
+            self.g.apply_edges(self.edge_nonlinearity)
         # output projection
-        logits = self.gat_layers[-1](h).mean(1)
+        logits = self.gat_layers[-1](h, self.g.edata['eft']).mean(1)
         return logits
+
+    def edge_nonlinearity(self, edges):
+        eft = self.activation(edges.data['eft'])
+        return {'eft': eft}

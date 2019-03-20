@@ -41,15 +41,4 @@ python train.py \
 
 Results
 -------
-
-| Dataset | Test Accuracy | Time(s) | Baseline#1 times(s) | Baseline#2 times(s) |
-| ------- | ------------- | ------- | ------------------- | ------------------- |
-| Cora | 84.0% | 0.0127 | 0.0982 (**7.7x**) | 0.0424 (**3.3x**) |
-| Citeseer | 70.7% | 0.0123 | n/a | n/a |
-| Pubmed | 78.1% | 0.0302 | n/a | n/a |
-
-* All the accuracy numbers are obtained after 300 epochs.
-* The time measures how long it takes to train one epoch.
-* All time is measured on EC2 p3.2xlarge instance w/ V100 GPU.
-* Baseline#1: [https://github.com/PetarV-/GAT](https://github.com/PetarV-/GAT).
-* Baseline#2: [https://github.com/Diego999/pyGAT](https://github.com/Diego999/pyGAT).
+max test accuracy: 0.8602

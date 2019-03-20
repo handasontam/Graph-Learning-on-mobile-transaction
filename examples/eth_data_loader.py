@@ -129,6 +129,7 @@ class EthDataset(object):
             self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
         # concatenate edge attrs
         self.graph.edata['e'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
+        print(self.graph.edge_attr_schemes())
         # self.graph.from_scipy_sparse_matrix(spmat=self.adj)
         self.labels = y
         self.num_labels = one_hot_labels.shape[1]

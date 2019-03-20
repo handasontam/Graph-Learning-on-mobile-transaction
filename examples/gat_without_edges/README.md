@@ -33,3 +33,7 @@ python train.py \
 --node_features_path ../../data/eth/node_features.csv \
 --label_path ../../data/eth/label.csv
 ```
+
+Results
+-----------
+Max Test accuract: 0.8602
