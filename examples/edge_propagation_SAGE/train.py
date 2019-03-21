@@ -17,7 +17,7 @@ import torch
 import torch.nn.functional as F
 from dgl import DGLGraph
 from dgl.data import register_data_args, load_data
-from edge_prop_gat import EdgePropGAT
+from edge_prop_sage import EdgePropSAGE
 import sys
 sys.path.append('../../') 
 from examples.eth_data_loader import EthDataset
@@ -36,13 +36,11 @@ def main(args):
     # data = load_data(args)
     data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
     features = torch.FloatTensor(data.features)
-    # edge_features = torch.FloatTensor(1)  # TODO
     labels = torch.LongTensor(data.labels)
     train_mask = torch.ByteTensor(data.train_mask)
     val_mask = torch.ByteTensor(data.val_mask)
     test_mask = torch.ByteTensor(data.test_mask)
     num_feats = features.shape[1]
-    # num_edge_feats = edge_features.shape[1]
     num_edge_feats = data.num_edge_feats
     n_classes = data.num_labels
     n_edges = data.graph.number_of_edges()
@@ -63,7 +61,6 @@ def main(args):
         cuda = True
         torch.cuda.set_device(args.gpu)
         features = features.cuda()
-        # edge_features = edge_features.cuda()
         data.graph.edata['e'] = data.graph.edata['e'].cuda()
         labels = labels.cuda()
         train_mask = train_mask.cuda()
@@ -73,22 +70,18 @@ def main(args):
     # create DGL graph
     g = data.graph
     n_edges = g.number_of_edges()
-    # add self loop
-    g.add_edges(g.nodes(), g.nodes())
+
     # create model
-    heads = ([args.num_heads] * args.num_layers) + [args.num_out_heads]
-    model = EdgePropGAT(g,
-                args.num_layers,
-                num_feats,
-                num_edge_feats, 
-                args.num_hidden,
-                n_classes,
-                heads,
-                F.elu,
-                args.in_drop,
-                args.attn_drop,
-                args.alpha,
-                args.residual)
+    model = EdgePropSAGE(g=g,
+                n_layers=args.num_layers,
+                in_feats=num_feats,
+                in_e_feats=num_edge_feats, 
+                n_hidden=args.num_hidden,
+                n_classes=n_classes,
+                activation=F.elu,
+                dropout=args.dropout,
+                aggregator_type=args.aggregator
+                )
     print(model)
     if cuda:
         model.cuda()
@@ -138,32 +131,24 @@ if __name__ == '__main__':
                         help="which GPU to use. Set -1 to use CPU.")
     parser.add_argument("--epochs", type=int, default=200,
                         help="number of training epochs")
-    parser.add_argument("--num-heads", type=int, default=8,
-                        help="number of hidden attention heads")
-    parser.add_argument("--num-out-heads", type=int, default=1,
-                        help="number of output attention heads")
     parser.add_argument("--num-layers", type=int, default=1,
                         help="number of hidden layers")
     parser.add_argument("--num-hidden", type=int, default=8,
                         help="number of hidden units")
-    parser.add_argument("--residual", action="store_true", default=False,
-                        help="use residual connection")
-    parser.add_argument("--in-drop", type=float, default=.6,
-                        help="input feature dropout")
-    parser.add_argument("--attn-drop", type=float, default=.6,
-                        help="attention dropout")
+    parser.add_argument("--dropout", type=float, default=.6,
+                        help="dropout probability")
     parser.add_argument("--lr", type=float, default=0.005,
                         help="learning rate")
     parser.add_argument('--weight-decay', type=float, default=5e-4,
                         help="weight decay")
-    parser.add_argument('--alpha', type=float, default=0.2,
-                        help="the negative slop of leaky relu")
+    parser.add_argument("--aggregator", type=str, 
+                        help="aggregator type, 'pooling' or 'mean'", required=False)
     parser.add_argument('--fastmode', action="store_true", default=False,
                         help="skip re-evaluate the validation set")
     parser.add_argument("--edges_path", type=str, 
                         help="edge features csv", required=True)
     parser.add_argument("--node_features_path", type=str, 
-                        help="csv file path for the node features", required=True)
+                        help="csv file path for the node features", required=False)
     parser.add_argument("--label_path", type=str, 
                         help="csv file path for the ground truth label", required=True)
     parser.add_argument("--vertex_map_path", type=str, 

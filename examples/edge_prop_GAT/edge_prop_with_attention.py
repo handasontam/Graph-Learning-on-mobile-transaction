@@ -39,17 +39,17 @@ class GraphAttention(nn.Module):
         self.attn_l = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_r = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_e = nn.Parameter(torch.Tensor(size=(edge_in_dim, num_heads))) # (K X H)
-        nn.init.xavier_normal_(self.fc.weight.data, gain=0.5)
-        nn.init.xavier_normal_(self.attn_l.data, gain=0.5)
-        nn.init.xavier_normal_(self.attn_r.data, gain=0.5)
-        nn.init.xavier_normal_(self.attn_e.data ,gain=0.5)
+        nn.init.xavier_normal_(self.fc.weight.data, gain=0.3)
+        nn.init.xavier_normal_(self.attn_l.data, gain=0.3)
+        nn.init.xavier_normal_(self.attn_r.data, gain=0.3)
+        nn.init.xavier_normal_(self.attn_e.data ,gain=0.3)
         self.leaky_relu = nn.LeakyReLU(alpha)
         self.softmax = EdgeSoftmax()
         self.residual = residual
         if residual:
             if in_dim != out_dim:
                 self.res_fc = nn.Linear(in_dim, num_heads * out_dim, bias=False)
-                nn.init.xavier_normal_(self.res_fc.weight.data, gain=0.5)
+                nn.init.xavier_normal_(self.res_fc.weight.data, gain=0.3)
             else:
                 self.res_fc = None
 

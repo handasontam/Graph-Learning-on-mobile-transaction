@@ -2,4 +2,4 @@
 
 
 learning both edge embedding and node embeddings  
-max test accuracy = 0.8817
+max test accuracy = 

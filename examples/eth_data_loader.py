@@ -51,7 +51,13 @@ class EthDataset(object):
 
         print('number of connected components: ', nx.algorithms.components.number_weakly_connected_components(g))
         # Node Features
-        features = pd.read_csv(self.node_features_path, delimiter=',').values
+        if self.node_features_path is None:
+            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print('!!! No node features is given, use dummy featuers!!!')
+            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            features = np.ones((g.number_of_nodes(), 10))
+        else:
+            features = pd.read_csv(self.node_features_path, delimiter=',').values
 
         # Ground Truth label
         labels = pd.read_csv(self.label_path, delimiter=',')
