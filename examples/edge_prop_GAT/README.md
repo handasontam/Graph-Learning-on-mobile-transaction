@@ -38,4 +38,4 @@ learning both edge embedding and node embeddings
 ## node features + edge features
 max test accuracy = 0.9261 over 2000 epochs
 ## edge features (dummy node features: [1,1,1,1,1,1,1,1,1,1] for all nodes)
-max test accuracy = 0.5914 over 2000 epochs
+max test accuracy = 0.6774 over 3000 epochs

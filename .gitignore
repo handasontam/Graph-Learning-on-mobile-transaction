@@ -1,6 +1,7 @@
 notes
 
-notebook/.ipynb_checkpoints
+notebook/*
+# notebook/.ipynb_checkpoints
 
 .vscode
 
