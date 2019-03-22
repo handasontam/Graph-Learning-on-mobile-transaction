@@ -8,3 +8,5 @@ notebook/*
 __pycache__
 
 .DS_Store
+
+examples/rgcn

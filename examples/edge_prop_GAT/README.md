@@ -32,6 +32,7 @@ python train.py \
 --vertex_map_path ../data/eth/node_id_map.txt
 ```
 
+python train.py --gpu=-1 --epochs 10000 --num-heads 2 --num-hidden 5 --in-drop 0 --attn-drop 0 --lr 0.0003 --edges_path /home/handason/data/eth/adj.csv --label_path /home/handason/data/eth/label.csv --vertex_map_path /home/handason/data/eth/node_id_map.txt --node_features_path /home/handason/data/eth/node_features.csv
 
 # Resutls
 learning both edge embedding and node embeddings  

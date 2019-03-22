@@ -35,8 +35,8 @@ def evaluate(model, features, labels, mask):
 def main(args):
     # load and preprocess dataset
     # data = load_data(args)
-    # data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
-    data = DrugDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
+    data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
+    # data = DrugDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
     features = torch.FloatTensor(data.features)
     # edge_features = torch.FloatTensor(1)  # TODO
     labels = torch.LongTensor(data.labels)

@@ -21,8 +21,8 @@ tar -zxvf eth.tar.gz
 
 | model           | node attr.     | edge attr.  |  ETH accuracy | Drugs accuracy |
 | -------------   |:--------------:| -----------:| -------------: | -------------: |
-| Edge prop + GAT | yes            |  yes        | 0.9261| - |
-| Edge prop + GAT | no            |  yes        | 0.6774| 0.9743|
+| Edge prop + GAT | yes            |  yes        | **0.9261**| - |
+| Edge prop + GAT | no            |  yes        | 0.6774| **0.9743**|
 | Edge prop + GIN (originally used for graph isomorphism testing) | yes            |  yes        | ||
 | Edge prop + SAGE| yes            |  yes        | ||
 | GAT Edge attention | yes         |  yes(only used for attention)        | 0.8602||

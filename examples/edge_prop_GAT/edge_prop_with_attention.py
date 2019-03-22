@@ -125,19 +125,24 @@ class EdgePropGAT(nn.Module):
         self.num_layers = num_layers
         self.gat_layers = nn.ModuleList()
         self.activation = activation
+        self.bn = nn.ModuleList()
         # input projection (no residual)
         self.gat_layers.append(GraphAttention(
             g, in_dim, edge_in_dim, num_hidden, heads[0], feat_drop, attn_drop, alpha, False))
+        self.bn.append(nn.BatchNorm1d(num_hidden * heads[0]))
         # hidden layers
         for l in range(1, num_layers):
             # due to multi-head, the in_dim = num_hidden * num_heads
             self.gat_layers.append(GraphAttention(
                 g, num_hidden * heads[l-1], num_hidden * heads[l-1], num_hidden, heads[l],
                 feat_drop, attn_drop, alpha, residual))
+            self.bn.append(nn.BatchNorm1d(num_hidden * heads[l]))
         # output projection
         self.gat_layers.append(GraphAttention(
             g, num_hidden * heads[-2], num_hidden * heads[-2], num_classes, heads[-1],  # only nodes features have multi-head
             feat_drop, attn_drop, alpha, residual))
+        self.bn.append(nn.BatchNorm1d(num_hidden * heads[-1]))
+
 
     def forward(self, inputs):
         h = inputs
@@ -148,6 +153,7 @@ class EdgePropGAT(nn.Module):
             else:
                 e = self.g.edata['eft']
             h = self.gat_layers[l](h, e).flatten(1)
+            h = self.bn[l](h)
             # h = self.gat_layers[l](h)
             h = self.activation(h)
             self.g.apply_edges(self.edge_nonlinearity)

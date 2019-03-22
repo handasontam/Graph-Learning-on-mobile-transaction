@@ -58,6 +58,13 @@ class EthDataset(object):
             features = np.ones((g.number_of_nodes(), 10))
         else:
             features = pd.read_csv(self.node_features_path, delimiter=',').values
+            # Log transform
+            # features = np.log(features)
+            print('variance of the features: ', np.var(features, axis=0))
+            # cubic root transform
+            # features = np.cbrt(features)
+            features = np.power(features, 1/4)
+            print('variance of the features after transformation: ', np.var(features, axis=0))
 
         # Ground Truth label
         labels = pd.read_csv(self.label_path, delimiter=',')
@@ -98,11 +105,6 @@ class EthDataset(object):
         y_val[val_mask, :] = one_hot_labels.loc[sorted(test_id)]
         y_test[test_mask, :] = one_hot_labels.loc[sorted(test_id)]
 
-        # Log transform
-        # features = np.log(features)
-
-        # cubic root transform
-        features = np.cbrt(features)
 
 
         # # standardize node features and convert it to sparse matrix
@@ -132,7 +134,8 @@ class EthDataset(object):
         self.num_edge_feats = len(self.graph.edge_attr_schemes())
         # standardize edge attrs
         for attr in self.graph.edge_attr_schemes().keys():
-            self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
+            # self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
+            self.graph.edata[attr] = torch.pow(self.graph.edata[attr], 1/4)
         # concatenate edge attrs
         self.graph.edata['e'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
         print(self.graph.edge_attr_schemes())
