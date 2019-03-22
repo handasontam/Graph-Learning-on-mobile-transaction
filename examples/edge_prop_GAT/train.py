@@ -23,6 +23,9 @@ sys.path.append('../../')
 from examples.eth_data_loader import EthDataset
 from examples.drug_data_loader import DrugDataset
 from examples.metrics import accuracy
+from tensorboardX import SummaryWriter
+
+writer = SummaryWriter('/tmp/tensorboardx')
 
 def evaluate(model, features, labels, mask):
     model.eval()
@@ -102,6 +105,8 @@ def main(args):
     # initialize graph
     dur = []
     for epoch in range(args.epochs):
+        for i, (name, param) in enumerate(model.named_parameters()):
+            writer.add_histogram(name, param, epoch)
         model.train()
         if epoch >= 3:
             t0 = time.time()

@@ -11,6 +11,9 @@ import torch
 import torch.nn as nn
 import dgl.function as fn
 from dgl.nn.pytorch import EdgeSoftmax
+from tensorboardX import SummaryWriter
+
+writer = SummaryWriter('/tmp/tensorboardx')
 
 class GraphAttention(nn.Module):
     def __init__(self,
@@ -159,6 +162,8 @@ class EdgePropGAT(nn.Module):
             self.g.apply_edges(self.edge_nonlinearity)
         # output projection
         logits = self.gat_layers[-1](h, self.g.edata['eft']).mean(1)
+
+
         return logits
 
     def edge_nonlinearity(self, edges):
