@@ -19,14 +19,18 @@ tar -zxvf eth.tar.gz
 
 
 
-| model           | node attr.     | edge attr.  |  Result (max test accuracy |
-| -------------   |:--------------:| -----------:| -------------: |
-| Edge prop + GAT | yes            |  yes        | 0.9261|
-| Edge prop + GAT | no            |  yes        | 0.6774|
-| Edge prop + GIN (originally used for graph isomorphism testing) | yes            |  yes        | |
-| Edge prop + SAGE| yes            |  yes        | |
-| GAT Edge attention | yes         |  yes(only used for attention)        | 0.8602|
-| GAT Edge attention | no         |  yes(only used for attention)        | 0.4370|
-| GAT             | yes            |  no         | 0.8302|
-| Deep Graph Infomax| yes            |  no         | |
-
+| model           | node attr.     | edge attr.  |  ETH accuracy | Drugs accuracy |
+| -------------   |:--------------:| -----------:| -------------: | -------------: |
+| Edge prop + GAT | yes            |  yes        | 0.9261| - |
+| Edge prop + GAT | no            |  yes        | 0.6774| 0.9743|
+| Edge prop + GIN (originally used for graph isomorphism testing) | yes            |  yes        | ||
+| Edge prop + SAGE| yes            |  yes        | ||
+| GAT Edge attention | yes         |  yes(only used for attention)        | 0.8602||
+| GAT Edge attention | no         |  yes(only used for attention)        | 0.4370| -|
+| GAT             | yes            |  no         | 0.8302||
+| Deep Graph Infomax| yes            |  no         | ||
+| Edge2Vec | no | yes | | 0.7554 |
+|Logistic regression|yes|no|0.8495||
+|Random Forest|yes|no|0.9247||
+|SVM (rbf)|yes|no|0.8172||
+|KNN|yes|no|0.8495||
