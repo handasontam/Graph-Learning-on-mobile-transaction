@@ -11,9 +11,6 @@ import torch
 import torch.nn as nn
 import dgl.function as fn
 from dgl.nn.pytorch import EdgeSoftmax
-from tensorboardX import SummaryWriter
-
-writer = SummaryWriter('/tmp/tensorboardx')
 
 class GraphAttention(nn.Module):
     def __init__(self,
