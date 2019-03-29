@@ -15,6 +15,7 @@ python train.py \
 --label_path ../data/eth/label.csv \
 --vertex_map_path ../data/eth/node_id_map.txt
 ```
+<!-- python train.py --gpu=1 --epochs 10000 --num-heads 1 --num-hidden 5 --in-drop 0 --attn-drop 0 --lr 0.005 --edges_path /home/handason/data/eth/adj.csv --label_path /home/handason/data/eth/label.csv --vertex_map_path /home/handason/data/eth/node_id_map.txt --node_features_path /home/handason/data/eth/node_features.csv -->
 
 ## without node features
 
@@ -37,6 +38,6 @@ python train.py --gpu=-1 --epochs 10000 --num-heads 2 --num-hidden 5 --in-drop 0
 # Resutls
 learning both edge embedding and node embeddings  
 ## node features + edge features
-max test accuracy = 0.9261 over 2000 epochs
+max test accuracy = 0.9355 over 3000 epochs
 ## edge features (dummy node features: [1,1,1,1,1,1,1,1,1,1] for all nodes)
-max test accuracy = 0.6774 over 3000 epochs
+max test accuracy = 0.8065 over 3000 epochs

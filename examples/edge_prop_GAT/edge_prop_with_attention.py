@@ -141,7 +141,6 @@ class EdgePropGAT(nn.Module):
         self.gat_layers.append(GraphAttention(
             g, num_hidden * heads[-2], num_hidden * heads[-2], num_classes, heads[-1],  # only nodes features have multi-head
             feat_drop, attn_drop, alpha, residual))
-        self.bn.append(nn.BatchNorm1d(num_hidden * heads[-1]))
 
 
     def forward(self, inputs):

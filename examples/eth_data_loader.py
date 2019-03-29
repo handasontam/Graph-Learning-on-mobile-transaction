@@ -63,7 +63,7 @@ class EthDataset(object):
             print('variance of the features: ', np.var(features, axis=0))
             # cubic root transform
             # features = np.cbrt(features)
-            features = np.power(features, 1/4)
+            features = np.power(features, 1/3)
             print('variance of the features after transformation: ', np.var(features, axis=0))
 
         # Ground Truth label
@@ -135,7 +135,7 @@ class EthDataset(object):
         # standardize edge attrs
         for attr in self.graph.edge_attr_schemes().keys():
             # self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
-            self.graph.edata[attr] = torch.pow(self.graph.edata[attr], 1/4)
+            self.graph.edata[attr] = torch.pow(self.graph.edata[attr], 1/3)
         # concatenate edge attrs
         self.graph.edata['e'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
         print(self.graph.edge_attr_schemes())
