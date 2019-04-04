@@ -21,20 +21,17 @@ from gat import GAT
 import sys
 sys.path.append('../../') 
 from examples.eth_data_loader import EthDataset
+from examples.drug_data_loader import DrugDataset
 from examples.metrics import accuracy
-
-def evaluate(model, features, labels, mask):
-    model.eval()
-    with torch.no_grad():
-        logits = model(features)
-        logits = logits[mask]
-        labels = labels[mask]
-        return accuracy(logits, labels)
+from examples.trainer import Trainer
 
 def main(args):
     # load and preprocess dataset
     # data = load_data(args)
-    data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
+    if args.dataset == 'eth':
+        data = EthDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
+    elif args.dataset == 'drug':
+        data = DrugDataset(args.node_features_path, args.edges_path, args.label_path, args.vertex_map_path)
     features = torch.FloatTensor(data.features)
     # edge_features = torch.FloatTensor(1)  # TODO
     labels = torch.LongTensor(data.labels)
@@ -97,43 +94,14 @@ def main(args):
     # use optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
-    # initialize graph
-    dur = []
-    for epoch in range(args.epochs):
-        model.train()
-        if epoch >= 3:
-            t0 = time.time()
-        # forward
-        logits = model(features)
-        loss = loss_fcn(logits[train_mask], labels[train_mask])
-
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        if epoch >= 3:
-            dur.append(time.time() - t0)
-
-        train_acc = accuracy(logits[train_mask], labels[train_mask])
-
-        if args.fastmode:
-            val_acc = accuracy(logits[val_mask], labels[val_mask])
-        else:
-            val_acc = evaluate(model, features, labels, val_mask)
-
-        print("Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | TrainAcc {:.4f} |"
-              " ValAcc {:.4f} | ETputs(KTEPS) {:.2f}".
-              format(epoch, np.mean(dur), loss.item(), train_acc,
-                     val_acc, n_edges / np.mean(dur) / 1000))
-
-    print()
-    acc = evaluate(model, features, labels, test_mask)
-    print("Test Accuracy {:.4f}".format(acc))
+    trainer = Trainer(model, loss_fcn, optimizer, args.epochs, features, 
+                    labels, train_mask, val_mask, test_mask, args.fastmode, n_edges)
+    trainer.train()
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='GAT')
-    register_data_args(parser)
+    # register_data_args(parser)
     parser.add_argument("--gpu", type=int, default=-1,
                         help="which GPU to use. Set -1 to use CPU.")
     parser.add_argument("--epochs", type=int, default=200,
@@ -160,10 +128,12 @@ if __name__ == '__main__':
                         help="the negative slop of leaky relu")
     parser.add_argument('--fastmode', action="store_true", default=False,
                         help="skip re-evaluate the validation set")
+    parser.add_argument('--dataset', type=str, 
+                        help="The dataset: eth / drug")
     parser.add_argument("--edges_path", type=str, 
                         help="edge features csv", required=True)
     parser.add_argument("--node_features_path", type=str, 
-                        help="csv file path for the node features", required=True)
+                        help="csv file path for the node features", required=False)
     parser.add_argument("--label_path", type=str, 
                         help="csv file path for the ground truth label", required=True)
     parser.add_argument("--vertex_map_path", type=str, 

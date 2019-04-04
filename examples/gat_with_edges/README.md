@@ -20,7 +20,8 @@ python train.py \
 --edges_path ../data/eth/adj.csv \
 --node_features_path ../data/eth/node_features.csv \
 --label_path ../data/eth/label.csv \
---vertex_map_path ../data/eth/node_id_map.txt 
+--vertex_map_path ../data/eth/node_id_map.txt \
+--dataset drug
 ```
 
 Results

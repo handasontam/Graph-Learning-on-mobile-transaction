@@ -22,6 +22,11 @@ import sys
 sys.path.append('../../') 
 from examples.eth_data_loader import EthDataset
 from examples.metrics import accuracy
+import sys
+sys.path.append('../../') 
+from examples.eth_data_loader import EthDataset
+from examples.drug_data_loader import DrugDataset
+from examples.train import Trainer
 
 def evaluate(model, features, labels, mask):
     model.eval()
@@ -91,37 +96,9 @@ def main(args):
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     # initialize graph
-    dur = []
-    for epoch in range(args.epochs):
-        model.train()
-        if epoch >= 3:
-            t0 = time.time()
-        # forward
-        logits = model(features)
-        loss = loss_fcn(logits[train_mask], labels[train_mask])
-
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        if epoch >= 3:
-            dur.append(time.time() - t0)
-
-        train_acc = accuracy(logits[train_mask], labels[train_mask])
-
-        if args.fastmode:
-            val_acc = accuracy(logits[val_mask], labels[val_mask])
-        else:
-            val_acc = evaluate(model, features, labels, val_mask)
-
-        print("Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | TrainAcc {:.4f} |"
-              " ValAcc {:.4f} | ETputs(KTEPS) {:.2f}".
-              format(epoch, np.mean(dur), loss.item(), train_acc,
-                     val_acc, n_edges / np.mean(dur) / 1000))
-
-    print()
-    acc = evaluate(model, features, labels, test_mask)
-    print("Test Accuracy {:.4f}".format(acc))
+    trainer = Trainer(model, loss_fcn, optimizer, args.epochs, features, 
+                    labels, train_mask, val_mask, test_mask, args.fast_mode, n_edges)
+    trainer.train()
 
 if __name__ == '__main__':
 
@@ -145,6 +122,8 @@ if __name__ == '__main__':
                         help="aggregator type, 'pooling' or 'mean'", required=False)
     parser.add_argument('--fastmode', action="store_true", default=False,
                         help="skip re-evaluate the validation set")
+    parser.add_argument('--dataset', type=str, 
+                        help="The dataset: eth / drug")
     parser.add_argument("--edges_path", type=str, 
                         help="edge features csv", required=True)
     parser.add_argument("--node_features_path", type=str, 

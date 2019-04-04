@@ -22,6 +22,7 @@ import sys
 sys.path.append('../../') 
 from examples.eth_data_loader import EthDataset
 from examples.metrics import accuracy
+from examples.trainer import Trainer
 
 
 def evaluate(model, features, labels, mask):
@@ -34,7 +35,7 @@ def evaluate(model, features, labels, mask):
 
 def main(args):
     # load and preprocess dataset
-    data = EthDataset(args.node_features_path, args.edge_attr_directory, args.label_path)
+    data = EthDataset(args.node_features_path, args.edge_attr_directory, args.label_path, args.vertex_map_path)
     features = torch.FloatTensor(data.features)
     # values = data.features.data
     # indices = np.vstack((data.features.row, data.features.col))
@@ -98,39 +99,8 @@ def main(args):
     # use optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
-    # initialize graph
-    dur = []
-    for epoch in range(args.epochs):
-        model.train()
-        if epoch >= 3:
-            t0 = time.time()
-        # forward
-        logits = model(features)
-        loss = loss_fcn(logits[train_mask], labels[train_mask])
-
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        if epoch >= 3:
-            dur.append(time.time() - t0)
-
-        train_acc = accuracy(logits[train_mask], labels[train_mask])
-
-        if args.fastmode:
-            val_acc = accuracy(logits[val_mask], labels[val_mask])
-        else:
-            val_acc = evaluate(model, features, labels, val_mask)
-
-        print("Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | TrainAcc {:.4f} |"
-              " ValAcc {:.4f} | ETputs(KTEPS) {:.2f}".
-              format(epoch, np.mean(dur), loss.item(), train_acc,
-                     val_acc, n_edges / np.mean(dur) / 1000))
-
-    print()
-    acc = evaluate(model, features, labels, test_mask)
-    print("Test Accuracy {:.4f}".format(acc))
-
+    trainer = Trainer(model, loss_fcn, optimizer, args.epochs, features, 
+                    labels, train_mask, val_mask, test_mask, args.fastmode, n_edges)
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='GAT')
@@ -167,6 +137,8 @@ if __name__ == '__main__':
                         help="csv file path for the node features", required=True)
     parser.add_argument("--label_path", type=str, 
                         help="csv file path for the ground truth label", required=True)
+    parser.add_argument("--vertex_map_path", type=str, 
+                        help="csv file path for the vertex mapping", required=True)
 
     args = parser.parse_args()
     print(args)
