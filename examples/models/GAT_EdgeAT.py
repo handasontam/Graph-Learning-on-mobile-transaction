@@ -95,7 +95,7 @@ class GraphAttention(nn.Module):
         # Dropout attention scores and save them
         self.g.edata['a_drop'] = self.attn_drop(scores)
 
-class GAT(nn.Module):
+class GAT_EdgeAT(nn.Module):
     def __init__(self,
                  g,
                  num_layers,
@@ -109,7 +109,7 @@ class GAT(nn.Module):
                  attn_drop,
                  alpha,
                  residual):
-        super(GAT, self).__init__()
+        super(GAT_EdgeAT, self).__init__()
         self.g = g
         self.num_layers = num_layers
         self.gat_layers = nn.ModuleList()

@@ -8,32 +8,22 @@ import networkx as nx
 import torch
 
 class EthDataset(object):
-    def __init__(self, node_features_path, edges_dir, label_path, vertex_map_path):
-        self.node_features_path = node_features_path
-        self.edges_dir = edges_dir
-        self.label_path = label_path
-        self.vertex_map_path = vertex_map_path
+    def __init__(self):
+        eth_data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'eth')
+        self.node_features_path = os.path.join(eth_data_path, 'features.csv')
+        self.edges_dir = os.path.join(eth_data_path, 'adj.csv' )
+        self.label_path = os.path.join(eth_data_path, 'label.csv')
+        self.vertex_map_path = os.path.join(eth_data_path, 'node_id_map.txt' )
         self.load()
-    
+
     def load(self):
         print('loading data')
         # Edge features
-        # adjs = []
         edge_attr_name = []
-        # for edge_attr_file in os.listdir(self.edges_dir):
-        #     edge_name = os.path.split(edge_attr_file)[1]
-        #     edge_attr_name.append(edge_name)  # use the file name as edge attr name
-        #     adj = sp.load_npz(os.path.join(self.edges_dir, edge_attr_file))
-        #     variance = np.var(adj.data)
-        #     print('variance of edge {}: {}'.format(edge_name, str(variance)))
-        #     adj.data = adj.data/variance
-        #     adjs.append(adj)
 
-            
         g = nx.readwrite.edgelist.read_edgelist(self.edges_dir, 
                                             delimiter=',', 
                                             data=[
-        #                                               (x
                                                     ('sum_value', float), 
                                                     ('avg_value', float), 
                                                     ('var_value', float), 

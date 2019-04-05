@@ -1,6 +1,10 @@
-from examples.metrics import accuracy
+from utils.metrics import accuracy
 import torch
-from tensorboardX import SummaryWriter
+try:
+    from tensorboardX import SummaryWriter
+    use_tensorboardx = True
+except:
+    use_tensorboardx = False
 import numpy as np
 import time
 
@@ -15,7 +19,8 @@ class Trainer(object):
         self.train_mask = train_mask
         self.val_mask = val_mask
         self.test_mask = test_mask
-        self.writer = SummaryWriter('/tmp/tensorboardx')
+        if use_tensorboardx:
+            self.writer = SummaryWriter('/tmp/tensorboardx')
         self.fast_mode = fast_mode
         self.n_edges = n_edges
 
@@ -30,8 +35,9 @@ class Trainer(object):
     def train(self):
         dur = []
         for epoch in range(self.epochs):
-            for i, (name, param) in enumerate(self.model.named_parameters()):
-                self.writer.add_histogram(name, param, epoch)
+            if use_tensorboardx:
+                for i, (name, param) in enumerate(self.model.named_parameters()):
+                    self.writer.add_histogram(name, param, epoch)
             self.model.train()
             if epoch >= 3:
                 t0 = time.time()
