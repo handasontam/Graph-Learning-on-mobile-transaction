@@ -44,7 +44,9 @@ class Trainer(object):
     def train(self):
         dur = []
         train_losses = []
+        train_accuracies = []
         val_losses = []
+        val_accuracies = []
 
         for epoch in range(self.epochs):
             if use_tensorboardx:
@@ -66,11 +68,14 @@ class Trainer(object):
                 dur.append(time.time() - t0)
 
             train_acc = accuracy(logits[self.train_mask], self.labels[self.train_mask])
+            train_accuracies.append(train_acc)
 
             if self.fast_mode:
                 val_acc = accuracy(logits[self.val_mask], self.labels[self.val_mask])
+                val_accuracies.append(val_acc)
             else:
                 val_acc = self.evaluate(self.features, self.labels, self.val_mask)
+                val_accuracies.append(val_acc)
             val_loss = self.loss_fn(logits[self.val_mask], self.labels[self.val_mask])
             val_losses.append(val_loss.item())
             
@@ -93,6 +98,9 @@ class Trainer(object):
         logging.info("Test Accuracy {:.4f}".format(acc))
 
 
+        #####################################################################
+        ##################### PLOT ##########################################
+        #####################################################################
         # visualize the loss as the network trained
         fig = plt.figure(figsize=(10,8))
         plt.plot(range(1,len(train_losses)+1),train_losses, label='Training Loss')
@@ -103,11 +111,29 @@ class Trainer(object):
         plt.axvline(minposs, linestyle='--', color='r',label='Early Stopping Checkpoint')
 
         plt.xlabel('epochs')
-        plt.ylabel('loss')
-        plt.ylim(0, 0.5) # consistent scale
+        plt.ylabel('cross entropy loss')
         plt.xlim(0, len(train_losses)+1) # consistent scale
         plt.grid(True)
         plt.legend()
         plt.tight_layout()
-        plt.show()
+        # plt.show()
         fig.savefig(os.path.join(self.model_dir, 'loss_plot.png'), bbox_inches='tight')
+
+
+        # accuracy plot
+        fig = plt.figure(figsize=(10,8))
+        plt.plot(range(1,len(train_accuracies)+1),train_accuracies, label='Training accuracies')
+        plt.plot(range(1,len(val_accuracies)+1),val_accuracies,label='Validation accuracies')
+
+        # find position of lowest validation loss
+        minposs = val_losses.index(min(val_losses))+1 
+        plt.axvline(minposs, linestyle='--', color='r',label='Early Stopping Checkpoint')
+
+        plt.xlabel('epochs')
+        plt.ylabel('accuracies')
+        plt.xlim(0, len(train_accuracies)+1) # consistent scale
+        plt.grid(True)
+        plt.legend()
+        plt.tight_layout()
+        # plt.show()
+        fig.savefig(os.path.join(self.model_dir, 'accuracies_plot.png'), bbox_inches='tight')
