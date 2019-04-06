@@ -103,7 +103,7 @@ def main(params):
     optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
     trainer = Trainer(model, loss_fcn, optimizer, params.epochs, features, 
-                    labels, train_mask, val_mask, test_mask, params.fastmode, n_edges)
+                    labels, train_mask, val_mask, test_mask, params.fastmode, n_edges, params.patience, params.model_dir)
     trainer.train()
 
 if __name__ == '__main__':
@@ -126,6 +126,8 @@ if __name__ == '__main__':
     json_path = os.path.join(args.model_dir, 'params.json')
     assert os.path.isfile(json_path), "No json configuration file found at {}".format(json_path)
     params = Params(json_path)
+
+    params.model_dir = args.model_dir
 
     # models asssertions
     current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT'}

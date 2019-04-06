@@ -13,5 +13,6 @@
     "lr": 0.001, 
     "weight_decay": 0.0005,
     "alpha": 0.2, 
-    "fastmode": false 
+    "fastmode": false,
+    "patience": 8
 }

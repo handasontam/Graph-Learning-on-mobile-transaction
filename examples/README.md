@@ -48,6 +48,7 @@ tar -zxvf eth.tar.gz
 ![equation](./img/EdgePropAT.png)
 
 JSON configuration file:
+
 | parameter     | description                         | type    |
 |---------------|-------------------------------------|---------|
 | gpu           | which GPU to use. Set -1 to use CPU | int     |
