@@ -12,6 +12,9 @@ import torch.nn as nn
 import dgl.function as fn
 from dgl.nn.pytorch import EdgeSoftmax
 
+def div(a, b):
+    b = torch.where(b == 0, torch.ones_like(b), b) # prevent division by zero
+    return a / b
 class GraphAttention(nn.Module):
     def __init__(self,
                  g,
@@ -22,11 +25,12 @@ class GraphAttention(nn.Module):
                  feat_drop,
                  attn_drop,
                  alpha,
-                 residual=False):
+                 residual=False,
+                 use_batch_norm=False):
         super(GraphAttention, self).__init__()
         self.g = g
         self.num_heads = num_heads
-        self.fc = nn.Linear(in_dim, num_heads * out_dim, bias=False)
+        self.fc = nn.Linear(in_dim, num_heads * out_dim, bias=True)
         self.fc_e = nn.Linear(edge_in_dim, num_heads * out_dim, bias=True)
         if feat_drop:
             self.feat_drop = nn.Dropout(feat_drop)
@@ -39,19 +43,22 @@ class GraphAttention(nn.Module):
         self.attn_l = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_r = nn.Parameter(torch.Tensor(size=(num_heads, out_dim, 1)))
         self.attn_e = nn.Parameter(torch.Tensor(size=(edge_in_dim, num_heads))) # (K X H)
-        nn.init.xavier_normal_(self.fc.weight.data, gain=0.3)
-        nn.init.xavier_normal_(self.attn_l.data, gain=0.3)
-        nn.init.xavier_normal_(self.attn_r.data, gain=0.3)
-        nn.init.xavier_normal_(self.attn_e.data ,gain=0.3)
+        nn.init.xavier_normal_(self.fc.weight.data, gain=0.1)
+        nn.init.xavier_normal_(self.attn_l.data, gain=0.1)
+        nn.init.xavier_normal_(self.attn_r.data, gain=0.1)
+        nn.init.xavier_normal_(self.attn_e.data ,gain=0.1)
         self.leaky_relu = nn.LeakyReLU(alpha)
         self.softmax = EdgeSoftmax()
         self.residual = residual
         if residual:
             if in_dim != out_dim:
                 self.res_fc = nn.Linear(in_dim, num_heads * out_dim, bias=False)
-                nn.init.xavier_normal_(self.res_fc.weight.data, gain=0.3)
+                nn.init.xavier_normal_(self.res_fc.weight.data, gain=0.1)
             else:
                 self.res_fc = None
+        self.use_batch_norm = use_batch_norm
+        if self.use_batch_norm:
+            self.bn = nn.BatchNorm1d(self.out_dim * self.num_heads)
 
     def forward(self, inputs, edge_inputs):
         # prepare
@@ -86,6 +93,11 @@ class GraphAttention(nn.Module):
             else:
                 resval = torch.unsqueeze(h, 1)  # Nx1xD'
             ret = resval + ret
+        # 5. flatten
+        ret = ret.flatten(1) # NXD'
+        # 6. Batch normalization
+        if self.use_batch_norm:
+            ret = self.bn(ret)
         return ret
 
     def edge_transform(self, edges):
@@ -119,28 +131,29 @@ class EdgePropGAT(nn.Module):
                  feat_drop,
                  attn_drop,
                  alpha,
-                 residual):
+                 residual, 
+                 use_batch_norm):
         super(EdgePropGAT, self).__init__()
         self.g = g
         self.num_layers = num_layers
         self.gat_layers = nn.ModuleList()
         self.activation = activation
-        self.bn = nn.ModuleList()
         # input projection (no residual)
         self.gat_layers.append(GraphAttention(
-            g, in_dim, edge_in_dim, num_hidden, heads[0], feat_drop, attn_drop, alpha, False))
-        self.bn.append(nn.BatchNorm1d(num_hidden * heads[0]))
+            g, in_dim, edge_in_dim, num_hidden, heads[0], feat_drop, attn_drop, alpha, 
+            False, use_batch_norm))
         # hidden layers
         for l in range(1, num_layers):
             # due to multi-head, the in_dim = num_hidden * num_heads
             self.gat_layers.append(GraphAttention(
                 g, num_hidden * heads[l-1], num_hidden * heads[l-1], num_hidden, heads[l],
-                feat_drop, attn_drop, alpha, residual))
-            self.bn.append(nn.BatchNorm1d(num_hidden * heads[l]))
+                feat_drop, attn_drop, alpha, residual, use_batch_norm))
         # output projection
-        self.gat_layers.append(GraphAttention(
-            g, num_hidden * heads[-2], num_hidden * heads[-2], num_classes, heads[-1],  # only nodes features have multi-head
-            feat_drop, attn_drop, alpha, residual))
+        self.fc = nn.Linear(num_hidden * heads[-1], num_classes, bias=True)
+        nn.init.xavier_normal_(self.fc.weight.data, gain=0.1)
+        # self.gat_layers.append(GraphAttention(
+        #     g, num_hidden * heads[-2], num_hidden * heads[-2], num_classes, heads[-1],  # only nodes features have multi-head
+        #     feat_drop, attn_drop, alpha, residual, False))
 
 
     def forward(self, inputs):
@@ -151,15 +164,12 @@ class EdgePropGAT(nn.Module):
                 e = self.g.edata['e']
             else:
                 e = self.g.edata['eft']
-            h = self.gat_layers[l](h, e).flatten(1)
-            h = self.bn[l](h)
-            # h = self.gat_layers[l](h)
+            h = self.gat_layers[l](h, e)
             h = self.activation(h)
             self.g.apply_edges(self.edge_nonlinearity)
         # output projection
-        logits = self.gat_layers[-1](h, self.g.edata['eft']).mean(1)
-
-
+        # logits = self.gat_layers[-1](h, self.g.edata['eft'])
+        logits = self.fc(h)
         return logits
 
     def edge_nonlinearity(self, edges):

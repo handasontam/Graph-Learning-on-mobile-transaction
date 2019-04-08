@@ -1,8 +1,8 @@
 {
-    "model": "EdgePropAT", 
+    "model": "GAT", 
     "gpu": -1,
-    "dataset": "simple" , 
-    "epochs": 1000, 
+    "dataset": "eth" , 
+    "epochs": 10000, 
     "num_heads": 2,
     "num_out_heads": 1,
     "num_layers": 2, 

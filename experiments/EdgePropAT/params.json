@@ -1,0 +1,19 @@
+{
+    "model": "EdgePropAT", 
+    "gpu": 1,
+    "dataset": "eth" , 
+    "epochs": 10000, 
+    "num_heads": 2,
+    "num_out_heads": 1,
+    "num_layers": 1, 
+    "num_hidden": 5, 
+    "residual": true, 
+    "in_drop": 0.0, 
+    "attn_drop": 0.0, 
+    "lr": 0.0001, 
+    "weight_decay": 0.0005,
+    "use_batch_norm": false,
+    "alpha": 0.2, 
+    "fastmode": false,
+    "patience": 100
+}

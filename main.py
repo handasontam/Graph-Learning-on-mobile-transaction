@@ -5,10 +5,11 @@ import sys
 import os
 import logging
 from dgl import DGLGraph
-from models import EdgePropGAT, GAT, GAT_EdgeAT
-from trainer import Trainer
-from data import register_data_args, load_data
-from utils import Params, set_logger
+from examples.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgePropAT
+from examples.trainer import Trainer
+# from examples.mini_batch_trainer import MiniBatchTrainer
+from examples.data import register_data_args, load_data
+from examples.utils import Params, set_logger
 
 # logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # include timestamp
@@ -54,7 +55,7 @@ def main(params):
     # add self loop
     g.add_edges(g.nodes(), g.nodes())
     # create model
-    heads = ([params.num_heads] * params.num_layers) + [params.num_out_heads]
+    heads = [params.num_heads] * params.num_layers
     if params.model == "EdgePropAT":
         model = EdgePropGAT(g,
                     params.num_layers,
@@ -67,7 +68,8 @@ def main(params):
                     params.in_drop,
                     params.attn_drop,
                     params.alpha,
-                    params.residual)
+                    params.residual, 
+                    params.use_batch_norm)
     elif params.model == "GAT":
         model = GAT(g,
                     params.num_layers,
@@ -93,7 +95,20 @@ def main(params):
                     params.attn_drop,
                     params.alpha,
                     params.residual) 
-
+    # elif params.model == "MiniBatchEdgePropAT":
+    #     model = MiniBatchEdgePropAT(
+    #                 params.num_layers,
+    #                 num_feats,
+    #                 num_edge_feats, 
+    #                 params.num_hidden,
+    #                 n_classes,
+    #                 heads,
+    #                 F.elu,
+    #                 params.in_drop,
+    #                 params.attn_drop,
+    #                 params.alpha,
+    #                 params.residual, 
+    #                 params.use_batch_norm)
     logging.info(model)
     if cuda:
         model.cuda()
@@ -102,14 +117,52 @@ def main(params):
     # use optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
-    trainer = Trainer(model, loss_fcn, optimizer, params.epochs, features, 
-                    labels, train_mask, val_mask, test_mask, params.fastmode, n_edges, params.patience, params.model_dir)
+    if "minibatch" in params.model.lower():
+        # initialize the history for control variate
+        # see control variate in https://arxiv.org/abs/1710.10568
+        for i in range(params.num_layers):
+            g.ndata['h_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden * params.num_heads)).cuda()
+        g.ndata['features'] = features
+        trainer = MiniBatchTrainer(
+                        g=g, 
+                        model=model, 
+                        loss_fn=loss_fcn, 
+                        optimizer=optimizer, 
+                        epochs=params.epochs, 
+                        features=features, 
+                        labels=labels, 
+                        train_mask=train_mask, 
+                        val_mask=val_mask, 
+                        test_mask=test_mask, 
+                        fast_mode=params.fast_mode, 
+                        n_edges=n_edges, 
+                        patience=params.patience, 
+                        batch_size=params.batch_size, 
+                        test_batch_size=params.test_batch_size, 
+                        num_neighbors=params.num_neighbors, 
+                        n_layers=params.num_layers, 
+                        model_dir=params.model_dir)
+    else:
+        trainer = Trainer(
+                        model=model, 
+                        loss_fn=loss_fcn, 
+                        optimizer=optimizer, 
+                        epochs=params.epochs, 
+                        features=features, 
+                        labels=labels, 
+                        train_mask=train_mask, 
+                        val_mask=val_mask, 
+                        test_mask=test_mask, 
+                        fast_mode=params.fast_mode, 
+                        n_edges=n_edges, 
+                        patience=params.patience, 
+                        model_dir=params.model_dir)
     trainer.train()
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Examples')
-    register_data_args(parser)
+    # register_data_args(parser)
     parser.add_argument("--model-dir", type=str, required=True, 
                         help="Directory containing params.json")
     parser.add_argument('--restore_file', default=None,

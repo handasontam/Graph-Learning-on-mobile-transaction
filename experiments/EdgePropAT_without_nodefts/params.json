@@ -2,7 +2,7 @@
     "model": "EdgePropAT", 
     "node_features": false, 
     "gpu": -1,
-    "dataset": "simple" , 
+    "dataset": "eth" , 
     "epochs": 10000, 
     "num_heads": 2,
     "num_out_heads": 1,

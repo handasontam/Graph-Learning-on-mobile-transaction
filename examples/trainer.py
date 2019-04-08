@@ -1,5 +1,5 @@
-from utils.metrics import accuracy
-from utils.torch_utils import EarlyStopping
+from .utils.metrics import accuracy
+from .utils.torch_utils import EarlyStopping
 import torch
 try:
     from tensorboardX import SummaryWriter
@@ -9,7 +9,7 @@ except:
 import numpy as np
 import time
 import logging
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import os
 
 class Trainer(object):
@@ -17,6 +17,12 @@ class Trainer(object):
         self.model = model
         self.loss_fn = loss_fn
         self.optimizer = optimizer
+        # self.sched_lambda = {
+        #         'none': lambda epoch: 1,
+        #         'decay': lambda epoch: max(0.98 ** epoch, 1e-4),
+        #         }
+        # self.sched = torch.optim.lr_scheduler.LambdaLR(self.optimizer, 
+        #                                         self.sched_lambda['none'])
         self.epochs = epochs
         self.features = features
         self.labels = labels
@@ -85,6 +91,14 @@ class Trainer(object):
                 logging.info("Early stopping")
                 break
 
+            # if epoch == 25:
+            #     # switch to sgd with large learning rate
+            #     # https://arxiv.org/abs/1706.02677
+            #     self.optimizer = torch.optim.SGD(self.model.parameters(), lr=0.001)
+            #     self.sched = torch.optim.lr_scheduler.LambdaLR(self.optimizer, self.sched_lambda['decay'])
+            # elif epoch < 25:
+            #     self.sched.step()
+
             logging.info("Epoch {:05d} | Time(s) {:.4f} | TrainLoss {:.4f} | TrainAcc {:.4f} |"
                 " ValAcc {:.4f} | ValLoss {:.4f} | ETputs(KTEPS) {:.2f}".
                 format(epoch, np.mean(dur), train_loss.item(), train_acc,
@@ -97,21 +111,23 @@ class Trainer(object):
         acc = self.evaluate(self.features, self.labels, self.test_mask)
         logging.info("Test Accuracy {:.4f}".format(acc))
 
+        self.plot(train_losses, val_losses, train_accuracies, val_accuracies)
 
+    def plot(self, train_losses, val_losses, train_accuracies, val_accuracies):
         #####################################################################
         ##################### PLOT ##########################################
         #####################################################################
         # visualize the loss as the network trained
         fig = plt.figure(figsize=(10,8))
-        plt.plot(range(1,len(train_losses)+1),train_losses, label='Training Loss')
-        plt.plot(range(1,len(val_losses)+1),val_losses,label='Validation Loss')
+        plt.plot(range(1,len(train_losses)+1),np.log(train_losses), label='Training Loss')
+        plt.plot(range(1,len(val_losses)+1),np.log(val_losses),label='Validation Loss')
 
         # find position of lowest validation loss
         minposs = val_losses.index(min(val_losses))+1 
         plt.axvline(minposs, linestyle='--', color='r',label='Early Stopping Checkpoint')
 
         plt.xlabel('epochs')
-        plt.ylabel('cross entropy loss')
+        plt.ylabel('log cross entropy loss')
         plt.xlim(0, len(train_losses)+1) # consistent scale
         plt.grid(True)
         plt.legend()
