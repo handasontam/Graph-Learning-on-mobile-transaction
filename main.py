@@ -117,46 +117,46 @@ def main(params):
     # use optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
-    if "minibatch" in params.model.lower():
-        # initialize the history for control variate
-        # see control variate in https://arxiv.org/abs/1710.10568
-        for i in range(params.num_layers):
-            g.ndata['h_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden * params.num_heads)).cuda()
-        g.ndata['features'] = features
-        trainer = MiniBatchTrainer(
-                        g=g, 
-                        model=model, 
-                        loss_fn=loss_fcn, 
-                        optimizer=optimizer, 
-                        epochs=params.epochs, 
-                        features=features, 
-                        labels=labels, 
-                        train_mask=train_mask, 
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
-                        fast_mode=params.fast_mode, 
-                        n_edges=n_edges, 
-                        patience=params.patience, 
-                        batch_size=params.batch_size, 
-                        test_batch_size=params.test_batch_size, 
-                        num_neighbors=params.num_neighbors, 
-                        n_layers=params.num_layers, 
-                        model_dir=params.model_dir)
-    else:
-        trainer = Trainer(
-                        model=model, 
-                        loss_fn=loss_fcn, 
-                        optimizer=optimizer, 
-                        epochs=params.epochs, 
-                        features=features, 
-                        labels=labels, 
-                        train_mask=train_mask, 
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
-                        fast_mode=params.fast_mode, 
-                        n_edges=n_edges, 
-                        patience=params.patience, 
-                        model_dir=params.model_dir)
+    # if "minibatch" in params.model.lower():
+    #     # initialize the history for control variate
+    #     # see control variate in https://arxiv.org/abs/1710.10568
+    #     for i in range(params.num_layers):
+    #         g.ndata['h_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden * params.num_heads)).cuda()
+    #     g.ndata['features'] = features
+    #     trainer = MiniBatchTrainer(
+    #                     g=g, 
+    #                     model=model, 
+    #                     loss_fn=loss_fcn, 
+    #                     optimizer=optimizer, 
+    #                     epochs=params.epochs, 
+    #                     features=features, 
+    #                     labels=labels, 
+    #                     train_mask=train_mask, 
+    #                     val_mask=val_mask, 
+    #                     test_mask=test_mask, 
+    #                     fast_mode=params.fast_mode, 
+    #                     n_edges=n_edges, 
+    #                     patience=params.patience, 
+    #                     batch_size=params.batch_size, 
+    #                     test_batch_size=params.test_batch_size, 
+    #                     num_neighbors=params.num_neighbors, 
+    #                     n_layers=params.num_layers, 
+    #                     model_dir=params.model_dir)
+    # else:
+    trainer = Trainer(
+                    model=model, 
+                    loss_fn=loss_fcn, 
+                    optimizer=optimizer, 
+                    epochs=params.epochs, 
+                    features=features, 
+                    labels=labels, 
+                    train_mask=train_mask, 
+                    val_mask=val_mask, 
+                    test_mask=test_mask, 
+                    fast_mode=params.fast_mode, 
+                    n_edges=n_edges, 
+                    patience=params.patience, 
+                    model_dir=params.model_dir)
     trainer.train()
 
 if __name__ == '__main__':
