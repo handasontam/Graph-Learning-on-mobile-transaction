@@ -15,7 +15,7 @@ from dgl.contrib.sampling import NeighborSampler
 import dgl.function as fn
 
 class MiniBatchTrainer(object):
-    def __init__(self, g, model, model_infer, loss_fn, optimizer, epochs, features, labels, train_mask, val_mask, test_mask, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, model_dir='./'):
+    def __init__(self, g, model, model_infer, loss_fn, optimizer, epochs, features, labels, train_mask, val_mask, test_mask, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, num_cpu, model_dir='./'):
         self.g = g
         self.model = model
         self.model_infer = model_infer
@@ -47,6 +47,7 @@ class MiniBatchTrainer(object):
         self.num_neighbors = num_neighbors
         self.n_layers = n_layers
         self.model_dir = model_dir
+        self.num_cpu = num_cpu
         
         # initialize early stopping object
         self.early_stopping = EarlyStopping(patience=patience, log_dir=model_dir, verbose=True)
@@ -78,6 +79,8 @@ class MiniBatchTrainer(object):
             # minibatch train
             train_num_correct = 0  # number of correct prediction in validation set
             train_total_losses = 0  # total cross entropy loss
+            if epoch >= 2:
+                t0 = time.time()
             for nf in NeighborSampler(self.g, 
                                         batch_size=self.batch_size,
                                         expand_factor=self.num_neighbors,
@@ -103,8 +106,6 @@ class MiniBatchTrainer(object):
 
                 # Forward Pass, Calculate Loss and Accuracy
                 self.model.train() # set to train mode
-                if epoch >= 2:
-                    t0 = time.time()
                 logits = self.model(nf)
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
@@ -144,7 +145,8 @@ class MiniBatchTrainer(object):
                                         neighbor_type='in',
                                         num_hops=self.n_layers,
                                         seed_nodes=self.val_id,
-                                        add_self_loop=False):
+                                        add_self_loop=False, 
+                                        num_workers=self.num_cpu):
                 # in testing/validation, no need to update the history
                 node_embed_names = [['features']]
                 edge_embed_names = [['edge_features']]

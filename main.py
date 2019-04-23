@@ -54,7 +54,7 @@ def main(params):
     n_edges = g.number_of_edges()
     # add self loop
     print(g.edata)
-    g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros(n_nodes, num_edge_feats)}, )
+    g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros(n_nodes, num_edge_feats)})
 
     # create model
     if params.model == "EdgePropAT":
@@ -125,6 +125,7 @@ def main(params):
     logging.info(model)
     if cuda:
         model.cuda()
+        model_infer.cuda()
     loss_fcn = torch.nn.CrossEntropyLoss()
 
     # use optimizer
@@ -139,10 +140,10 @@ def main(params):
                 g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden)).cuda()
             g.ndata['features'] = features.cuda()
             g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
-            norm = 1./g.in_degrees().unsqueeze(1)
+            norm = 1./g.in_degrees().unsqueeze(1).float()
             g.ndata['norm'] = norm.cuda()
 
-            degs = g.in_degrees().unsqueeze(1).float()
+            degs = g.in_degrees().numpy()
             degs[degs > params.num_neighbors] = params.num_neighbors
             g.ndata['subg_norm'] = torch.FloatTensor(1./degs).cuda().unsqueeze(1)  # for calculating P_hat
 
@@ -177,7 +178,8 @@ def main(params):
                         test_batch_size=params.test_batch_size, 
                         num_neighbors=params.num_neighbors, 
                         n_layers=params.num_layers, 
-                        model_dir=params.model_dir)
+                        model_dir=params.model_dir, 
+                        num_cpu=params.num_cpu)
     else:
         g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
         trainer = Trainer(
