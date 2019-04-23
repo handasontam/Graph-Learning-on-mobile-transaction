@@ -72,6 +72,8 @@ def main(params):
                     params.alpha,
                     params.residual, 
                     params.use_batch_norm)
+        if cuda:
+            model.cuda()
     elif params.model == "GAT":
         heads = [params.num_heads] * params.num_layers
         model = GAT(g,
@@ -85,6 +87,8 @@ def main(params):
                     params.attn_drop,
                     params.alpha,
                     params.residual)
+        if cuda:
+            model.cuda()
     elif params.model == "GAT_EdgeAT":
         heads = [params.num_heads] * params.num_layers
         model = GAT_EdgeAT(g,
@@ -98,7 +102,9 @@ def main(params):
                     params.in_drop,
                     params.attn_drop,
                     params.alpha,
-                    params.residual) 
+                    params.residual)
+        if cuda:
+            model.cuda()
     elif params.model == "MiniBatchEdgeProp":
         model = MiniBatchEdgeProp(
                     g, 
@@ -122,10 +128,10 @@ def main(params):
                     params.in_drop,
                     params.residual, 
                     params.use_batch_norm)
+        if cuda:
+            model.cuda()
+            model_infer.cuda()
     logging.info(model)
-    if cuda:
-        model.cuda()
-        model_infer.cuda()
     loss_fcn = torch.nn.CrossEntropyLoss()
 
     # use optimizer
@@ -181,7 +187,8 @@ def main(params):
                         model_dir=params.model_dir, 
                         num_cpu=params.num_cpu)
     else:
-        g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
+        if cuda:
+            g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
         trainer = Trainer(
                         model=model, 
                         loss_fn=loss_fcn, 
