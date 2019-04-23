@@ -60,7 +60,7 @@ class GraphAttention(nn.Module):
         head_ft = ft.transpose(0, 1)  # HxNxD'
         a1 = torch.bmm(head_ft, self.attn_l).transpose(0, 1)  # NxHx1
         a2 = torch.bmm(head_ft, self.attn_r).transpose(0, 1)  # NxHx1
-        a3 = torch.mm(self.g.edata['e'], self.attn_e)  # EXH
+        a3 = torch.mm(self.g.edata['edge_features'], self.attn_e)  # EXH
         a3 = torch.unsqueeze(a3, -1)  # EXHX1
         # edge attention
         self.g.ndata.update({'ft' : ft, 'a1' : a1, 'a2' : a2})

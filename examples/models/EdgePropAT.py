@@ -161,7 +161,7 @@ class EdgePropGAT(nn.Module):
         # e = edge_inputs
         for l in range(self.num_layers):
             if l == 0:
-                e = self.g.edata['e']
+                e = self.g.edata['edge_features']
             else:
                 e = self.g.edata['eft']
             h = self.gat_layers[l](h, e)

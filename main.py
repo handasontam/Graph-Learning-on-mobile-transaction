@@ -5,9 +5,9 @@ import sys
 import os
 import logging
 from dgl import DGLGraph
-from examples.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgePropAT
+from examples.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgeProp, MiniBatchEdgePropInfer
 from examples.trainer import Trainer
-# from examples.mini_batch_trainer import MiniBatchTrainer
+from examples.mini_batch_trainer import MiniBatchTrainer
 from examples.data import register_data_args, load_data
 from examples.utils import Params, set_logger
 
@@ -27,6 +27,7 @@ def main(params):
     num_edge_feats = data.num_edge_feats
     n_classes = data.num_labels
     n_edges = data.graph.number_of_edges()
+    n_nodes = data.graph.number_of_nodes()
     logging.info("""----Data statistics------'
       #Edges %d
       #Classes %d
@@ -43,7 +44,6 @@ def main(params):
         cuda = True
         torch.cuda.set_device(params.gpu)
         features = features.cuda()
-        data.graph.edata['e'] = data.graph.edata['e'].cuda()
         labels = labels.cuda()
         train_mask = train_mask.cuda()
         val_mask = val_mask.cuda()
@@ -53,10 +53,12 @@ def main(params):
     g = data.graph
     n_edges = g.number_of_edges()
     # add self loop
-    g.add_edges(g.nodes(), g.nodes())
+    print(g.edata)
+    g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros(n_nodes, num_edge_feats)}, )
+
     # create model
-    heads = [params.num_heads] * params.num_layers
     if params.model == "EdgePropAT":
+        heads = [params.num_heads] * params.num_layers
         model = EdgePropGAT(g,
                     params.num_layers,
                     num_feats,
@@ -71,6 +73,7 @@ def main(params):
                     params.residual, 
                     params.use_batch_norm)
     elif params.model == "GAT":
+        heads = [params.num_heads] * params.num_layers
         model = GAT(g,
                     params.num_layers,
                     num_feats,
@@ -83,7 +86,8 @@ def main(params):
                     params.alpha,
                     params.residual)
     elif params.model == "GAT_EdgeAT":
-       model = GAT_EdgeAT(g,
+        heads = [params.num_heads] * params.num_layers
+        model = GAT_EdgeAT(g,
                     params.num_layers,
                     num_feats,
                     num_edge_feats, 
@@ -95,20 +99,29 @@ def main(params):
                     params.attn_drop,
                     params.alpha,
                     params.residual) 
-    # elif params.model == "MiniBatchEdgePropAT":
-    #     model = MiniBatchEdgePropAT(
-    #                 params.num_layers,
-    #                 num_feats,
-    #                 num_edge_feats, 
-    #                 params.num_hidden,
-    #                 n_classes,
-    #                 heads,
-    #                 F.elu,
-    #                 params.in_drop,
-    #                 params.attn_drop,
-    #                 params.alpha,
-    #                 params.residual, 
-    #                 params.use_batch_norm)
+    elif params.model == "MiniBatchEdgeProp":
+        model = MiniBatchEdgeProp(
+                    g, 
+                    params.num_layers,
+                    num_feats,
+                    num_edge_feats, 
+                    params.num_hidden,
+                    n_classes,
+                    F.elu,
+                    params.in_drop,
+                    params.residual, 
+                    params.use_batch_norm)
+        model_infer = MiniBatchEdgePropInfer(
+                    g, 
+                    params.num_layers,
+                    num_feats,
+                    num_edge_feats, 
+                    params.num_hidden,
+                    n_classes,
+                    F.elu,
+                    params.in_drop,
+                    params.residual, 
+                    params.use_batch_norm)
     logging.info(model)
     if cuda:
         model.cuda()
@@ -117,46 +130,70 @@ def main(params):
     # use optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
-    # if "minibatch" in params.model.lower():
-    #     # initialize the history for control variate
-    #     # see control variate in https://arxiv.org/abs/1710.10568
-    #     for i in range(params.num_layers):
-    #         g.ndata['h_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden * params.num_heads)).cuda()
-    #     g.ndata['features'] = features
-    #     trainer = MiniBatchTrainer(
-    #                     g=g, 
-    #                     model=model, 
-    #                     loss_fn=loss_fcn, 
-    #                     optimizer=optimizer, 
-    #                     epochs=params.epochs, 
-    #                     features=features, 
-    #                     labels=labels, 
-    #                     train_mask=train_mask, 
-    #                     val_mask=val_mask, 
-    #                     test_mask=test_mask, 
-    #                     fast_mode=params.fast_mode, 
-    #                     n_edges=n_edges, 
-    #                     patience=params.patience, 
-    #                     batch_size=params.batch_size, 
-    #                     test_batch_size=params.test_batch_size, 
-    #                     num_neighbors=params.num_neighbors, 
-    #                     n_layers=params.num_layers, 
-    #                     model_dir=params.model_dir)
-    # else:
-    trainer = Trainer(
-                    model=model, 
-                    loss_fn=loss_fcn, 
-                    optimizer=optimizer, 
-                    epochs=params.epochs, 
-                    features=features, 
-                    labels=labels, 
-                    train_mask=train_mask, 
-                    val_mask=val_mask, 
-                    test_mask=test_mask, 
-                    fast_mode=params.fast_mode, 
-                    n_edges=n_edges, 
-                    patience=params.patience, 
-                    model_dir=params.model_dir)
+    if "minibatch" in params.model.lower():
+        g.readonly()
+        # initialize the history for control variate
+        # see control variate in https://arxiv.org/abs/1710.10568
+        if cuda:
+            for i in range(params.num_layers):
+                g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden)).cuda()
+            g.ndata['features'] = features.cuda()
+            g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
+            norm = 1./g.in_degrees().unsqueeze(1)
+            g.ndata['norm'] = norm.cuda()
+
+            degs = g.in_degrees().unsqueeze(1).float()
+            degs[degs > params.num_neighbors] = params.num_neighbors
+            g.ndata['subg_norm'] = torch.FloatTensor(1./degs).cuda().unsqueeze(1)  # for calculating P_hat
+
+        else:
+            for i in range(params.num_layers):
+                g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden))
+            g.ndata['features'] = features
+            g.edata['edge_features'] = data.graph.edata['edge_features']
+            norm = 1./g.in_degrees().unsqueeze(1).float()
+            g.ndata['norm'] = norm
+
+            degs = g.in_degrees().numpy()
+            degs[degs > params.num_neighbors] = params.num_neighbors
+            g.ndata['subg_norm'] = torch.FloatTensor(1./degs).unsqueeze(1)  # for calculating P_hat
+
+        trainer = MiniBatchTrainer(
+                        g=g, 
+                        model=model, 
+                        model_infer=model_infer,
+                        loss_fn=loss_fcn, 
+                        optimizer=optimizer, 
+                        epochs=params.epochs, 
+                        features=features, 
+                        labels=labels, 
+                        train_mask=train_mask, 
+                        val_mask=val_mask, 
+                        test_mask=test_mask, 
+                        fast_mode=params.fastmode, 
+                        n_edges=n_edges, 
+                        patience=params.patience, 
+                        batch_size=params.batch_size, 
+                        test_batch_size=params.test_batch_size, 
+                        num_neighbors=params.num_neighbors, 
+                        n_layers=params.num_layers, 
+                        model_dir=params.model_dir)
+    else:
+        g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
+        trainer = Trainer(
+                        model=model, 
+                        loss_fn=loss_fcn, 
+                        optimizer=optimizer, 
+                        epochs=params.epochs, 
+                        features=features, 
+                        labels=labels, 
+                        train_mask=train_mask, 
+                        val_mask=val_mask, 
+                        test_mask=test_mask, 
+                        fast_mode=params.fast_mode, 
+                        n_edges=n_edges, 
+                        patience=params.patience, 
+                        model_dir=params.model_dir)
     trainer.train()
 
 if __name__ == '__main__':
@@ -183,7 +220,7 @@ if __name__ == '__main__':
     params.model_dir = args.model_dir
 
     # models asssertions
-    current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT'}
+    current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp'}
     assert params.model in current_models, "The model \"{}\" is not implemented, please chose from {}".format(params.model, current_models)
 
 
