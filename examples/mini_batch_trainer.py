@@ -155,7 +155,7 @@ class MiniBatchTrainer(object):
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
                                     edge_embed_names=edge_embed_names)
                 self.model_infer.load_state_dict(self.model.state_dict())
-                logits = self.model_infer(nf)
+                logits, embeddings = self.model_infer(nf)
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
                 batch_labels = self.labels[batch_node_ids]
@@ -187,6 +187,10 @@ class MiniBatchTrainer(object):
                 " ValLoss {:.4f} | ValAcc {:.4f} | ETputs(KTEPS) {:.2f}".
                 format(epoch, np.mean(dur), train_average_loss, train_accuracy,
                         val_average_loss, val_accuracy, self.n_edges / np.mean(dur) / 1000))
+
+        # embeddings visualization
+        if use_tensorboardx:
+            self.writer.add_embedding(embeddings, global_step=epoch, metadata=batch_labels)
 
         # load the last checkpoint with the best model
         self.model.load_state_dict(torch.load(os.path.join(self.model_dir, 'checkpoint.pt')))
