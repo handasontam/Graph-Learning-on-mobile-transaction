@@ -4,19 +4,22 @@ Dependencies
 - requests
 - sklearn
 - tensorflow (for tensorboard)
+```bash
+$ pip install -r requirements.txt
+```
 
 ```bash
-pip install torch==1.0.0 requests
-pip install dgl
-pip install tensorboardX
+$ pip install torch==1.0.0 requests
+$ pip install dgl
+$ pip install tensorboardX
 ```
 
 ```bash
 # download eth dataset
-mkdir data
-cd data
-curl https://transfer.sh/c9ZKx/eth.tar.gz -o eth.tar.gz  # md5: 674f5875c8d2271fcd5f36607194762e
-tar -zxvf eth.tar.gz
+$ mkdir data
+$ cd data
+$ curl https://transfer.sh/c9ZKx/eth.tar.gz -o eth.tar.gz  # md5: 674f5875c8d2271fcd5f36607194762e
+$ tar -zxvf eth.tar.gz
 ```
 
 
