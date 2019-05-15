@@ -5,11 +5,11 @@ import sys
 import os
 import logging
 from dgl import DGLGraph
-from examples.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgeProp, MiniBatchEdgePropInfer
-from examples.trainer import Trainer
-from examples.mini_batch_trainer import MiniBatchTrainer
-from examples.data import register_data_args, load_data
-from examples.utils import Params, set_logger
+from dmt.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgeProp, MiniBatchEdgePropInfer
+from dmt.trainer import Trainer
+from dmt.mini_batch_trainer import MiniBatchTrainer
+from dmt.data import register_data_args, load_data
+from dmt.utils import Params, set_logger
 
 # logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # include timestamp

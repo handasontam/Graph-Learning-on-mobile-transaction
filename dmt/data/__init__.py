@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from .drug_data_loader import DrugDataset
 from .eth_data_loader import EthDataset
 from .simple_data_loader import SimpleDataset
+from .wechat_data_loader import WeChatDataset
 
 def register_data_args(parser):
     parser.add_argument("--dataset", type=str, required=True,
@@ -16,5 +17,7 @@ def load_data(dataset):
         return DrugDataset()
     elif dataset == 'simple':
         return SimpleDataset()
+    elif dataset == 'wechat':
+        return WeChatDataset()
     else:
         raise ValueError('Unknown dataset: {}'.format(dataset))
