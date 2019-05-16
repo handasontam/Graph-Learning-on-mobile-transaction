@@ -32,7 +32,7 @@ def convert_node_labels_to_integers(G, first_label=0):
     H.name = "("+G.name+")_with_int_labels"
     return H
 
-def get_vertex_mapping_dict(G, first_label=0):
-    N = G.number_of_nodes()+first_label
-    mapping = dict(zip(G.nodes(), range(first_label, N)))
+def get_vertex_mapping_dict(nodes, first_label=0):
+    N = len(nodes)+first_label
+    mapping = dict(zip(list(nodes), range(first_label, N)))
     return mapping

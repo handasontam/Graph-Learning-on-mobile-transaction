@@ -53,7 +53,7 @@ def main(params):
     g = data.graph
     n_edges = g.number_of_edges()
     # add self loop
-    print(g.edata)
+    # print(g.edata)
     g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros(n_nodes, num_edge_feats)})
 
     # create model
