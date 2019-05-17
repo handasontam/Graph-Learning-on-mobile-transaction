@@ -101,6 +101,8 @@ class MiniBatchTrainer(object):
                     node_embed_names.append(['history_{}'.format(i), 'agg_history_{}'.format(i-1), 'subg_norm', 'norm'])
                 node_embed_names.append(['agg_history_{}'.format(self.n_layers-1), 'subg_norm', 'norm'])
                 edge_embed_names = [['edge_features']]
+                for i in range(1, self.n_layers):
+                    edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
                                     edge_embed_names=edge_embed_names)
 
@@ -152,6 +154,8 @@ class MiniBatchTrainer(object):
                 edge_embed_names = [['edge_features']]
                 for i in range(self.n_layers):
                     node_embed_names.append(['norm', 'subg_norm'])
+                for i in range(1, self.n_layers):
+                    edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
                                     edge_embed_names=edge_embed_names)
                 self.model_infer.load_state_dict(self.model.state_dict())
