@@ -125,7 +125,7 @@ def main(params):
                     params.num_hidden,
                     n_classes,
                     F.elu,
-                    params.in_drop,
+                    0, #params.in_drop,
                     params.residual, 
                     params.use_batch_norm)
         if cuda:

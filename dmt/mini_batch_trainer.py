@@ -142,11 +142,11 @@ class MiniBatchTrainer(object):
             val_num_correct = 0  # number of correct prediction in validation set
             val_total_losses = 0  # total cross entropy loss
             for nf in NeighborSampler(self.g, 
-                                        batch_size=len(self.val_id),
+                                        batch_size=len(self.test_id),
                                         expand_factor=self.g.number_of_nodes(),
                                         neighbor_type='in',
                                         num_hops=self.n_layers,
-                                        seed_nodes=self.val_id,
+                                        seed_nodes=self.test_id,
                                         add_self_loop=False, 
                                         num_workers=self.num_cpu):
                 # in testing/validation, no need to update the history
@@ -169,9 +169,9 @@ class MiniBatchTrainer(object):
                 val_total_losses += (mini_batch_val_loss.item() * batch_size)
 
             # loss and accuracy of this epoch
-            val_average_loss = val_total_losses / len(self.val_id)
+            val_average_loss = val_total_losses / len(self.test_id)
             val_losses.append(val_average_loss)
-            val_accuracy = val_num_correct / len(self.val_id)
+            val_accuracy = val_num_correct / len(self.test_id)
             val_accuracies.append(val_accuracy)
 
             # early stopping
