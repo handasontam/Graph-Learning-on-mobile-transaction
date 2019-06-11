@@ -14,7 +14,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # incl
 class DrugDataset(object):
     def __init__(self):
         drug_data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'drug')
-        self.node_features_path = os.path.join(drug_data_path, 'features.csv')
+        # self.node_features_path = os.path.join(drug_data_path, 'features.csv')
+        self.node_features_path = None
         self.edges_dir = os.path.join(drug_data_path, 'adj.csv' )
         self.label_path = os.path.join(drug_data_path, 'label.csv')
         self.vertex_map_path = os.path.join(drug_data_path, 'node_id_map.txt' )
@@ -120,7 +121,7 @@ class DrugDataset(object):
         for attr in self.graph.edge_attr_schemes().keys():
             self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
         # concatenate edge attrs
-        self.graph.edata['e'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
+        self.graph.edata['ede_features'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
         print(self.graph.edge_attr_schemes())
         # self.graph.from_scipy_sparse_matrix(spmat=self.adj)
         self.labels = y

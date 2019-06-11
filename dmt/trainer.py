@@ -102,9 +102,9 @@ class Trainer(object):
             #     self.sched.step()
 
             logging.info("Epoch {:05d} | Time(s) {:.4f} | TrainLoss {:.4f} | TrainAcc {:.4f} |"
-                " ValAcc {:.4f} | ValLoss {:.4f} | ETputs(KTEPS) {:.2f}".
+                "ValLoss {:.4f} | ValAcc {:.4f} |  ETputs(KTEPS) {:.2f}".
                 format(epoch, np.mean(dur), train_loss.item(), train_acc,
-                        val_acc, val_loss.item(), self.n_edges / np.mean(dur) / 1000))
+                        val_loss.item(), val_acc, self.n_edges / np.mean(dur) / 1000))
 
         # load the last checkpoint with the best model
         self.model.load_state_dict(torch.load(os.path.join(self.model_dir, 'checkpoint.pt')))

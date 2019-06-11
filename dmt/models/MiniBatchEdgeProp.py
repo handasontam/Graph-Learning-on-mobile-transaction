@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import dgl.function as fn
-from dgl.nn.pytorch import EdgeSoftmax
+from dgl.nn.pytorch.softmax import EdgeSoftmax
 # from ..utils.randomwalk import random_walk_nodeflow
 from dgl.contrib.sampling.sampler import NeighborSampler
 import dgl
@@ -53,13 +53,7 @@ class NodeUpdate(nn.Module):
         self.name = name
 
     def forward(self, node):
-        if self.name == 'node':
-            h = node.data['h']  # sum of previous layer's delta_h
-        elif self.name == 'edge':
-            h = node.data['e']
-        else:
-            print('name must be node/ edge')
-            raise ValueError
+        h = node.data['h']  # sum of previous layer's delta_h
         norm = node.data['norm']
         # activation from previous layer of myself
         self_h = node.data['self_h']
@@ -169,10 +163,9 @@ class MiniBatchEdgeProp(nn.Module):
             e = self.feat_drop(e)
             e = self.input_layer_e(e)
             nf.blocks[i].data['e'] = e
-            
 
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
-            layer_nid = nf.map_from_parent_nid(i, parent_nid)
+            layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
             self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
             self_h = phi_layer(self_h)
             nf.layers[i+1].data['self_h'] = self_h # ((#nodes in layer_i+1) X D)
@@ -312,13 +305,12 @@ class MiniBatchEdgePropInfer(nn.Module):
             nf.blocks[i].data['e'] = e
             
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
-            layer_nid = nf.map_from_parent_nid(i, parent_nid)
+            layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
             self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
             self_h = phi_layer(self_h)
             nf.layers[i+1].data['self_h'] = self_h # ((#nodes in layer_i+1) X D)
 
-            if i == 0:
-                nf.layers[i].data['h'] = h
+            nf.layers[i].data['h'] = h
             def message_func(edges):
                 temp = torch.cat((edges.data['e'],edges.src['h']), 1)
                 temp = phi_layer(temp)

@@ -10,7 +10,7 @@ Pytorch implementation: https://github.com/Diego999/pyGAT
 import torch
 import torch.nn as nn
 import dgl.function as fn
-from dgl.nn.pytorch import EdgeSoftmax
+from dgl.nn.pytorch.softmax import EdgeSoftmax
 
 def div(a, b):
     b = torch.where(b == 0, torch.ones_like(b), b) # prevent division by zero
