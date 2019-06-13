@@ -6,6 +6,7 @@ import os
 import logging
 from dgl import DGLGraph
 from dmt.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgeProp, MiniBatchEdgePropInfer, MiniBatchGCNInfer, MiniBatchGCNSampling, MiniBatchGraphSAGEInfer, MiniBatchGraphSAGESampling
+from dmt.models import MiniBatchEdgePropPlus, MiniBatchEdgePropPlusInfer
 from dmt.trainer import Trainer
 from dmt.mini_batch_trainer import MiniBatchTrainer
 from dmt.data import register_data_args, load_data
@@ -14,7 +15,7 @@ from dmt.utils import Params, set_logger
 # logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # include timestamp
 
-def main(params):
+def main(parserrams):
     # load and preprocess dataset
     data = load_data(params.dataset)
     features = torch.FloatTensor(data.features)
@@ -56,7 +57,7 @@ def main(params):
     n_edges = g.number_of_edges()
     # add self loop
     # print(g.edata)
-    g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros((n_nodes, num_edge_feats))})
+    #g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros((n_nodes, num_edge_feats))})
 
     # create model
     if params.model == "EdgePropAT":
@@ -74,8 +75,7 @@ def main(params):
                     params.alpha,
                     params.residual, 
                     params.use_batch_norm)
-        if cuda:
-            model.cuda()
+        
     elif params.model == "GAT":
         heads = [params.num_heads] * params.num_layers
         model = GAT(g,
@@ -89,8 +89,7 @@ def main(params):
                     params.attn_drop,
                     params.alpha,
                     params.residual)
-        if cuda:
-            model.cuda()
+        
     elif params.model == "GAT_EdgeAT":
         heads = [params.num_heads] * params.num_layers
         model = GAT_EdgeAT(g,
@@ -105,8 +104,7 @@ def main(params):
                     params.attn_drop,
                     params.alpha,
                     params.residual)
-        if cuda:
-            model.cuda()
+        
     elif params.model == "MiniBatchEdgeProp":
         model = MiniBatchEdgeProp(
                     g, 
@@ -130,9 +128,7 @@ def main(params):
                     0, #params.in_drop,
                     params.residual, 
                     params.use_batch_norm)
-        if cuda:
-            model.cuda()
-            model_infer.cuda()
+        
     elif params.model == 'MiniBatchGCN':
         model = MiniBatchGCNSampling(
                     in_feats=num_feats,
@@ -149,9 +145,7 @@ def main(params):
                     n_layers=params.num_layers,
                     activation=F.relu
         )
-        if cuda:
-            model.cuda()
-            model_infer.cuda()
+        
     elif params.model == 'MiniBatchGraphSAGE':
         model = MiniBatchGraphSAGESampling(
                     in_feats=num_feats,
@@ -168,9 +162,42 @@ def main(params):
                     n_layers=params.num_layers,
                     activation=F.relu
         )
-        if cuda:
-            model.cuda()
+        
+    elif params.model == 'MiniBatchEdgePropPlus':
+        model = MiniBatchEdgePropPlus(
+                    g, 
+                    params.num_layers,
+                    num_feats,
+                    num_edge_feats, 
+                    params.node_hidden_dim,
+                    params.edge_hidden_dim,
+                    params.fc_hidden_dim,
+                    n_classes,
+                    F.elu,
+                    params.in_drop,
+                    params.residual, 
+                    params.use_batch_norm)        
+
+        model_infer = MiniBatchEdgePropPlusInfer(
+                    g, 
+                    params.num_layers,
+                    num_feats,
+                    num_edge_feats, 
+                    params.node_hidden_dim,
+                    params.edge_hidden_dim,
+                    params.fc_hidden_dim,
+                    n_classes,
+                    F.elu,
+                    0, #params.in_drop,
+                    params.residual, 
+                    params.use_batch_norm)
+
+
+    if cuda:
+        model.cuda()   
+        if 'model_infer' in locals():
             model_infer.cuda()
+
     logging.info(model)
     loss_fcn = torch.nn.CrossEntropyLoss()
 
@@ -182,11 +209,13 @@ def main(params):
         # initialize the history for control variate
         # see control variate in https://arxiv.org/abs/1710.10568
         for i in range(params.num_layers):
-            g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden))
-        g.ndata['features'] = features
-        g.edata['edge_features'] = data.graph.edata['edge_features']
+            g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.node_hidden_dim))
+        g.ndata['node_features'] = features
+        #g.edata['edge_features'] = data.graph.edata['edge_features']
         norm = 1./g.in_degrees().unsqueeze(1).float()
         g.ndata['norm'] = norm
+        print('graph node features', g.ndata['node_features'].shape)
+        print('graph edge features', g.edata['edge_features'].shape)
 
         degs = g.in_degrees().numpy()
         degs[degs > params.num_neighbors] = params.num_neighbors
@@ -257,7 +286,7 @@ if __name__ == '__main__':
     params.model_dir = args.model_dir
 
     # models asssertions
-    current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp', 'MiniBatchGCN', 'MiniBatchGraphSAGE'}
+    current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp', 'MiniBatchGCN', 'MiniBatchGraphSAGE', 'MiniBatchEdgePropPlus'}
     assert params.model in current_models, "The model \"{}\" is not implemented, please chose from {}".format(params.model, current_models)
 
 

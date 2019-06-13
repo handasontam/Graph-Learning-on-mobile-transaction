@@ -1,0 +1,22 @@
+{
+    "model": "MiniBatchEdgePropPlus", 
+    "gpu": -1,
+    "dataset": "test" , 
+    "epochs": 10000, 
+    "num_layers": 1, 
+    "node_hidden_dim": 20,
+    "edge_hidden_dim": 20,
+    "fc_hidden_dim": 40, 
+    "residual": true, 
+    "in_drop": 0.0, 
+    "lr": 0.0002, 
+    "batch_size": 8, 
+    "test_batch_size": 1, 
+    "num_neighbors": 3, 
+    "weight_decay": 0.01,
+    "use_batch_norm": false,
+    "alpha": 0.2, 
+    "fastmode": false,
+    "patience": 100,
+    "num_cpu": 10
+}
