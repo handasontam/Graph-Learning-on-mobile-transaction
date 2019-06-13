@@ -153,7 +153,7 @@ class MiniBatchEdgeProp(nn.Module):
         return: new node embeddings (num_nodes, out_features)
         '''
         nf = nodeflow
-        h = nf.layers[0].data['features']
+        h = nf.layers[0].data['node_features']
         # h = self.feat_drop(h)
         # h = self.input_layer(h)  # ((#nodes in layer_i) X D)
 
@@ -177,18 +177,22 @@ class MiniBatchEdgeProp(nn.Module):
                 history = nf.layers[i].data[history_str]  # ((#nodes in layer_i) X D)
 
                 # delta_h used in control variate
-                delta_h = h - history  # ((#nodes in layer_i) X D)
+                #delta_h = h - history  # ((#nodes in layer_i) X D)
                 # delta_h from previous layer of the nodes in (i+1)-th layer, used in control variate
-                nf.layers[i+1].data['self_delta_h'] = delta_h[layer_nid]
+                #nf.layers[i+1].data['self_delta_h'] = delta_h[layer_nid]
+                nf.layers[i+1].data['self_delta_h'] = self_h - history[layer_nid]
 
-                nf.layers[i].data['h'] = delta_h
+                #nf.layers[i].data['h'] = delta_h
 
 
             def message_func(edges):
                 temp = torch.cat((edges.data['e'],edges.src['h']), 1)
                 temp = phi_layer(temp)
-                temp = self.activation(temp)
-                return {'m': temp}
+                #temp = self.activation(temp)
+                history = edges.src['history_{}'.format(i)]
+                delta_nb = temp - history
+                delta_nb = self.activation(delta_nb)
+                return {'m': delta_nb}
     
             nf.block_compute(i,
                             message_func,
@@ -293,7 +297,7 @@ class MiniBatchEdgePropInfer(nn.Module):
         return: new node embeddings (num_nodes, out_features)
         '''
         nf = nodeflow
-        h = nf.layers[0].data['features']
+        h = nf.layers[0].data['node_features']
         # h = self.feat_drop(h)
         # h = self.input_layer(h)  # ((#nodes in layer_i) X D)
 

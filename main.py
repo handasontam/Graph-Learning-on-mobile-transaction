@@ -209,7 +209,8 @@ def main(parserrams):
         # initialize the history for control variate
         # see control variate in https://arxiv.org/abs/1710.10568
         for i in range(params.num_layers):
-            g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.node_hidden_dim))
+            #g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.node_hidden_dim))
+            g.ndata['history_{}'.format(i)] = torch.zeros((features.shape[0], params.num_hidden))
         g.ndata['node_features'] = features
         #g.edata['edge_features'] = data.graph.edata['edge_features']
         norm = 1./g.in_degrees().unsqueeze(1).float()

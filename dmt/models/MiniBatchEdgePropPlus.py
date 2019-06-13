@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import dgl.function as fn
-from dgl.nn.pytorch import EdgeSoftmax
+from dgl.nn.pytorch.softmax import EdgeSoftmax
 from dgl.contrib.sampling.sampler import NeighborSampler
 import dgl
 

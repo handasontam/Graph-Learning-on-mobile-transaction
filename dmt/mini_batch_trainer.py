@@ -176,8 +176,8 @@ class MiniBatchTrainer(object):
                 for i in range(1, self.n_layers):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
-                                    edge_embed_names=edge_embed_names) 
-                                    #ctx=self.cuda_context)
+                                    edge_embed_names=edge_embed_names,
+                                    ctx=self.cuda_context)
                 self.model_infer.load_state_dict(self.model.state_dict())
                 logits, embeddings = self.model_infer(nf)
                 batch_node_ids = nf.layer_parent_nid(-1)

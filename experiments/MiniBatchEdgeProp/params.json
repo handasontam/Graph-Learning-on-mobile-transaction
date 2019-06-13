@@ -1,7 +1,7 @@
 {
     "model": "MiniBatchEdgeProp", 
-    "gpu": 0,
-    "dataset": "eth" , 
+    "gpu": -1,
+    "dataset": "wechat" , 
     "epochs": 10000, 
     "num_layers": 1, 
     "num_hidden": 5, 
