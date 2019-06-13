@@ -45,7 +45,6 @@ def main(params):
         cuda = True
         torch.cuda.set_device(params.gpu)
         cuda_context = torch.device('cuda:{}'.format(params.gpu))
-        # features = features.cuda()
         labels = labels.cuda()
         train_mask = train_mask.cuda()
         val_mask = val_mask.cuda()
@@ -55,7 +54,6 @@ def main(params):
     g = data.graph
     n_edges = g.number_of_edges()
     # add self loop
-    # print(g.edata)
     g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros((n_nodes, num_edge_feats))})
 
     # create model

@@ -260,24 +260,6 @@ class MiniBatchEdgePropInfer(nn.Module):
                                         test=True))
             self.phi.append(OneLayerNN(in_dim=2*num_hidden,
                                        out_dim=num_hidden))
-        # self.input_layer_e = OneLayerNN(in_dim=edge_in_dim, 
-        #                               out_dim=num_hidden)
-        # self.node_layers = nn.ModuleList()
-        # self.phi = nn.ModuleList()
-        # # hidden layers
-        # for i in range(num_layers):
-        #     self.node_layers.append(NodeUpdate(layer_id=i, 
-        #                                 in_dim=2*num_hidden, 
-        #                                 out_dim=num_hidden, 
-        #                                 feat_drop=feat_drop, 
-        #                                 name='node', 
-        #                                 test=True))
-        # self.phi.append(OneLayerNN(in_dim=in_dim+num_hidden,
-        #                            out_dim=num_hidden))
-        # for i in range(1, num_layers):
-        #     self.phi.append(OneLayerNN(in_dim=2*num_hidden,
-        #                                out_dim=num_hidden))
-
         
         # output projection
         self.fc = nn.Linear(num_hidden, num_classes, bias=True)

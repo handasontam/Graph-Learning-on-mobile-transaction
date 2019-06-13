@@ -139,7 +139,8 @@ class MiniBatchTrainer(object):
                     for name in names:
                         nf.layers[i].data[name] = nf.layers[i].data[name].cpu()
                 # Copy the udpated features from the nodeflow graph to the original graph
-                nf.copy_to_parent(node_embed_names=node_embed_names, edge_embed_name=None)
+                nf.copy_to_parent(node_embed_names=node_embed_names, edge_embed_names=None)
+                torch.cuda.empty_cache() 
 
             # loss and accuracy of this epoch
             train_average_loss = train_total_losses / len(self.train_id)
@@ -161,7 +162,7 @@ class MiniBatchTrainer(object):
             val_num_correct = 0  # number of correct prediction in validation set
             val_total_losses = 0  # total cross entropy loss
             for nf in NeighborSampler(self.g, 
-                                        batch_size=len(self.test_id),
+                                        batch_size=self.batch_size,
                                         expand_factor=self.g.number_of_nodes(),
                                         neighbor_type='in',
                                         num_hops=self.n_layers,
