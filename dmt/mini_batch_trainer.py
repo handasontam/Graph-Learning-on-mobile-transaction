@@ -100,7 +100,7 @@ class MiniBatchTrainer(object):
                                 fn.sum(msg='m', out=agg_history_str))
 
                 # Copy the features from the original graph to the nodeflow graph
-                node_embed_names = [['features', 'history_0', 'subg_norm', 'norm']]
+                node_embed_names = [['node_features', 'history_0', 'subg_norm', 'norm']]
                 for i in range(1, self.n_layers):
                     node_embed_names.append(['history_{}'.format(i), 'agg_history_{}'.format(i-1), 'subg_norm', 'norm'])
                 node_embed_names.append(['agg_history_{}'.format(self.n_layers-1), 'subg_norm', 'norm'])
@@ -108,8 +108,8 @@ class MiniBatchTrainer(object):
                 for i in range(1, self.n_layers):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
-                                    edge_embed_names=edge_embed_names, 
-                                    ctx=self.cuda_context)
+                                    edge_embed_names=edge_embed_names) 
+                                    #ctx=self.cuda_context)
 
                 # Forward Pass, Calculate Loss and Accuracy
                 self.model.train() # set to train mode
@@ -170,14 +170,14 @@ class MiniBatchTrainer(object):
                                         add_self_loop=False, 
                                         num_workers=self.num_cpu):
                 # in testing/validation, no need to update the history
-                node_embed_names = [['features']]
+                node_embed_names = [['node_features']]
                 edge_embed_names = [['edge_features']]
                 for i in range(self.n_layers):
                     node_embed_names.append(['norm', 'subg_norm'])
                 for i in range(1, self.n_layers):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
-                                    edge_embed_names=edge_embed_names, 
+                                    edge_embed_names=edge_embed_names,
                                     ctx=self.cuda_context)
                 self.model_infer.load_state_dict(self.model.state_dict())
                 logits, embeddings = self.model_infer(nf)

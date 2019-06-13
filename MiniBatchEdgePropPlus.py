@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import dgl.function as fn
-from dgl.nn.pytorch.softmax import EdgeSoftmax
+from dgl.nn.pytorch import EdgeSoftmax
 # from ..utils.randomwalk import random_walk_nodeflow
 from dgl.contrib.sampling.sampler import NeighborSampler
 import dgl
@@ -53,7 +53,11 @@ class NodeUpdate(nn.Module):
         self.name = name
 
     def forward(self, node):
-        h = node.data['h']  # sum of previous layer's delta_h
+        if self.name == 'node':
+            h = node.data['h']  # sum of previous layer's delta_h        
+        else:
+            print('name must be node')
+            raise ValueError
         norm = node.data['norm']
         # activation from previous layer of myself
         self_h = node.data['self_h']
@@ -85,64 +89,97 @@ class NodeUpdate(nn.Module):
         # return {'activation_{}'.format(self.name): h}
         return {'activation': h}
 
-class MiniBatchEdgeProp(nn.Module):
+class EdgeSeq(nn.Module):
+    def __init__(self, in_dim, hidden_dim):
+        super(EdgeSeq, self).__init__()
+        self.in_dim = in_dim
+        self.hidden_dim = hidden_dim
+
+        self.gru = nn.GRU(in_dim, hidden_dim, batch_first=True)
+
+    def forward(self, input, hidden):
+        #print('in edge seq')
+        print(input.size())
+        #print(hidden.size())
+        #input.view()
+        #hidden = torch.zeros(1, input.size()[0], self.edge_hidden_dim)
+        #hidden = hidden.reshape(-1, 1, hidden.size()[1])
+        output, hidden = self.gru(input, hidden)
+
+        #print('output!!!!!!!!!!!!!!!!!!!!', output.size())
+
+
+        return output, hidden
+
+
+
+class MiniBatchEdgePropPlus(nn.Module):
     def __init__(self,
                  g,
                  num_layers,
-                 in_dim,
-                 edge_in_dim, 
-                 num_hidden,
+                 node_in_dim,
+                 edge_in_dim,
+                 node_hidden_dim,
+                 edge_hidden_dim
+                 fc_hidden_dim,
                  num_classes,
                  activation,
                  feat_drop,
                  residual, 
                  use_batch_norm):
-        super(MiniBatchEdgeProp, self).__init__()
-        # self.h = create_embeddings(num_nodes, self.in_features)
+        super(MiniBatchEdgePropPlus, self).__init__()
+        
         self.num_layers = num_layers
         self.activation = activation
         if feat_drop:
             self.feat_drop = nn.Dropout(feat_drop)
         else:
             self.feat_drop = lambda x : x
-        self.in_dim = in_dim
+        self.node_in_dim = node_in_dim
         self.edge_in_dim = edge_in_dim
-        self.num_hidden = num_hidden
+        self.node_hidden_dim = node_hidden_dim
 
-        # self.input_layer = OneLayerNN(in_dim=in_dim, 
+        self.edge_hidden_dim = edge_hidden_dim  
+
+        # self.input_layer_e = OneLayerNN(node_in_dim=edge_in_dim, 
         #                               out_dim=num_hidden)
+        self.edgeseq_layers = nn.ModuleList()
+        self.edgeseq_layers.append(EdgeSeq(in_dim=edge_in_dim, 
+                                            hidden_dim=self.edge_hidden_dim))
 
-        # self.phi = OneLayerNN(in_dim=2*num_hidden,
-        #                       out_dim=num_hidden)
 
-        self.input_layer_e = OneLayerNN(in_dim=edge_in_dim, 
-                                      out_dim=num_hidden)
         self.node_layers = nn.ModuleList()
         self.node_layers.append(NodeUpdate(layer_id=0, 
-                                        in_dim=2*num_hidden, 
-                                        out_dim=num_hidden, 
+                                        in_dim=2*node_hidden_dim, 
+                                        out_dim=node_hidden_dim, 
                                         feat_drop=feat_drop, 
                                         name='node', 
                                         test=False))
 
         self.phi = nn.ModuleList()
-        self.phi.append(OneLayerNN(in_dim=in_dim+num_hidden,
-                                   out_dim=num_hidden))
+        self.phi.append(OneLayerNN(in_dim=node_in_dim + edge_hidden_dim,
+                                   out_dim=node_hidden_dim))
+        # self.phi.append(OneLayerNN(node_in_dim=2 * num_hidden,
+        #                            out_dim=num_hidden))
         for i in range(1, num_layers):
+            self.edgeseq_layers.append(EdgeSeq(in_dim=self.edge_hidden_dim, 
+                                            hidden_dim=self.edge_hidden_dim))
+
             self.node_layers.append(NodeUpdate(layer_id=i, 
-                                        in_dim=2*num_hidden, 
-                                        out_dim=num_hidden, 
+                                        in_dim=2*node_hidden_dim, 
+                                        out_dim=node_hidden_dim, 
                                         feat_drop=feat_drop, 
                                         name='node', 
                                         test=False))
-            self.phi.append(OneLayerNN(in_dim=2*num_hidden,
-                                       out_dim=num_hidden))
+            self.phi.append(OneLayerNN(in_dim=node_hidden_dim + edge_hidden_dim,
+                                       out_dim=node_hidden_dim))
 
         
         # output projection
-        self.fc = nn.Linear(num_hidden, num_classes, bias=True)
-        nn.init.xavier_normal_(self.fc.weight.data, gain=0.1)
-
+        self.fc1 = nn.Linear(node_hidden_dim, fc_hidden_dim, bias=True)
+        self.fc2 = nn.Linear(fc_hidden_dim, num_classes, bias=True)
+        nn.init.xavier_normal_(self.fc1.weight.data, gain=0.1)
+        nn.init.xavier_normal_(self.fc2.weight.data, gain=0.1)
 
     def forward(self, nodeflow):
         '''
@@ -153,46 +190,55 @@ class MiniBatchEdgeProp(nn.Module):
         return: new node embeddings (num_nodes, out_features)
         '''
         nf = nodeflow
-        h = nf.layers[0].data['node_features']
-        # h = self.feat_drop(h)
+        h = nf.layers[0].data['features']
+        #print('assign h', h.size())
         # h = self.input_layer(h)  # ((#nodes in layer_i) X D)
 
-        for i, (node_layer, phi_layer) in enumerate(zip(self.node_layers, self.phi)):
+        for i, (edgeseq_layer, node_layer, phi_layer) in enumerate(zip(self.edgeseq_layers, self.node_layers, self.phi)):
             # compute edge embeddings
             e = nf.blocks[i].data['edge_features']
+            #print('assign edges!!!!!!!!!!!!!!!!!!!', e.size())
             e = self.feat_drop(e)
-            e = self.input_layer_e(e)
+            #e = self.input_layer_e(e)
             nf.blocks[i].data['e'] = e
+            #print('assign edges!!!!!!!!!!!!!!!!!!!', e.size())
 
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
-            layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
-            self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
+            layer_nid = nf.map_from_parent_nid(i, parent_nid)
+            self_h = torch.cat((torch.zeros(len(layer_nid), self.node_hidden_dim), h[layer_nid]), 1)
             self_h = phi_layer(self_h)
             nf.layers[i+1].data['self_h'] = self_h # ((#nodes in layer_i+1) X D)
             if i == 0:
                 nf.layers[i].data['h'] = h
+                print('assign h', h.size())
             else:
                 new_history = h.detach()
                 history_str = 'history_{}'.format(i)
                 history = nf.layers[i].data[history_str]  # ((#nodes in layer_i) X D)
 
                 # delta_h used in control variate
-                #delta_h = h - history  # ((#nodes in layer_i) X D)
+                delta_h = h - history  # ((#nodes in layer_i) X D)
                 # delta_h from previous layer of the nodes in (i+1)-th layer, used in control variate
-                #nf.layers[i+1].data['self_delta_h'] = delta_h[layer_nid]
-                nf.layers[i+1].data['self_delta_h'] = self_h - history[layer_nid]
+                nf.layers[i+1].data['self_delta_h'] = delta_h[layer_nid]
 
-                #nf.layers[i].data['h'] = delta_h
-
+                nf.layers[i].data['h'] = delta_h
+                
 
             def message_func(edges):
-                temp = torch.cat((edges.data['e'],edges.src['h']), 1)
-                temp = phi_layer(temp)
-                #temp = self.activation(temp)
-                history = edges.src['history_{}'.format(i)]
-                delta_nb = temp - history
-                delta_nb = self.activation(delta_nb)
-                return {'m': delta_nb}
+                #print(edges.dst.keys())
+                #print('hidden!!!!!!!!!!', edges.src['h'].size())
+                #hidden = torch.cat((edges.src['h'], edges.src.['h']), 1)
+                hidden = torch.zeros(input.size()[0], 1, self.edge_hidden_dim)                
+                edges_seq = edges.data['e']
+                output, _ = edgeseq_layer(edges_seq, hidden)
+                #print(output[-1].size())
+                edge_emb = torch.mean(output, dim=1)
+                #print('!!!!!!!!!!!!!!!!!!!!!', output.size())
+                neigh = torch.cat((edges.src['h'], edge_emb))
+                output = phi_layer(output)
+                output = self.activation(output)
+
+                return {'m': output}
     
             nf.block_compute(i,
                             message_func,
@@ -206,16 +252,14 @@ class MiniBatchEdgeProp(nn.Module):
         h = self.fc(h)
         return h
 
-    def edge_nonlinearity(self, edges):
-        eft = self.activation(edges.data['eft'])
-        return {'eft': eft}
 
 
-class MiniBatchEdgePropInfer(nn.Module):
+
+class MiniBatchEdgePropPlusInfer(nn.Module):
     def __init__(self,
                  g,
                  num_layers,
-                 in_dim,
+                 node_in_dim,
                  edge_in_dim, 
                  num_hidden,
                  num_classes,
@@ -224,7 +268,7 @@ class MiniBatchEdgePropInfer(nn.Module):
                  residual, 
                  use_batch_norm, 
                  ):
-        super(MiniBatchEdgePropInfer, self).__init__()
+        super(MiniBatchEdgePropPlusInfer, self).__init__()
         # self.h = create_embeddings(num_nodes, self.in_features)
         self.num_layers = num_layers
         self.activation = activation
@@ -232,39 +276,37 @@ class MiniBatchEdgePropInfer(nn.Module):
             self.feat_drop = nn.Dropout(feat_drop)
         else:
             self.feat_drop = lambda x : x
-        self.in_dim = in_dim
+        self.node_in_dim = node_in_dim
         self.edge_in_dim = edge_in_dim
         self.num_hidden = num_hidden
-        # self.input_layer = OneLayerNN(in_dim=in_dim, 
-        #                               out_dim=num_hidden)
+        self.edge_hidden_dim = num_hidden
 
 
-        # self.phi = OneLayerNN(in_dim=2*num_hidden,
-        #                       out_dim=num_hidden)
+        self.edgeseq_layer = EdgeSeq(edge_in_dim=edge_in_dim, edge_hidden_dim=self.edge_hidden_dim)
 
-        self.input_layer_e = OneLayerNN(in_dim=edge_in_dim, 
+        self.input_layer_e = OneLayerNN(node_in_dim=edge_in_dim, 
                                       out_dim=num_hidden)
         self.node_layers = nn.ModuleList()
         self.node_layers.append(NodeUpdate(layer_id=0, 
-                                        in_dim=2*num_hidden, 
+                                        node_in_dim=2*num_hidden, 
                                         out_dim=num_hidden, 
                                         feat_drop=feat_drop, 
                                         name='node', 
                                         test=True))
 
         self.phi = nn.ModuleList()
-        self.phi.append(OneLayerNN(in_dim=in_dim+num_hidden,
+        self.phi.append(OneLayerNN(node_in_dim=node_in_dim+num_hidden,
                                    out_dim=num_hidden))
         for i in range(1, num_layers):
             self.node_layers.append(NodeUpdate(layer_id=i, 
-                                        in_dim=2*num_hidden, 
+                                        node_in_dim=2*num_hidden, 
                                         out_dim=num_hidden, 
                                         feat_drop=feat_drop, 
                                         name='node', 
                                         test=True))
-            self.phi.append(OneLayerNN(in_dim=2*num_hidden,
+            self.phi.append(OneLayerNN(node_in_dim=2*num_hidden,
                                        out_dim=num_hidden))
-        
+   
         # output projection
         self.fc = nn.Linear(num_hidden, num_classes, bias=True)
         nn.init.xavier_normal_(self.fc.weight.data, gain=0.1)
@@ -279,9 +321,8 @@ class MiniBatchEdgePropInfer(nn.Module):
         return: new node embeddings (num_nodes, out_features)
         '''
         nf = nodeflow
-        h = nf.layers[0].data['node_features']
-        # h = self.feat_drop(h)
-        # h = self.input_layer(h)  # ((#nodes in layer_i) X D)
+        h = nf.layers[0].data['features']
+     
 
         for i, (node_layer, phi_layer) in enumerate(zip(self.node_layers, self.phi)):
             # compute edge embeddings
@@ -291,17 +332,24 @@ class MiniBatchEdgePropInfer(nn.Module):
             nf.blocks[i].data['e'] = e
             
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
-            layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
+            layer_nid = nf.map_from_parent_nid(i, parent_nid)
             self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
             self_h = phi_layer(self_h)
             nf.layers[i+1].data['self_h'] = self_h # ((#nodes in layer_i+1) X D)
 
-            nf.layers[i].data['h'] = h
+            if i == 0:
+                nf.layers[i].data['h'] = h      
+
             def message_func(edges):
-                temp = torch.cat((edges.data['e'],edges.src['h']), 1)
-                temp = phi_layer(temp)
-                temp = self.activation(temp)
-                return {'m': temp}
+
+                hidden = torch.cat((edges.src['h'], edges.src['h']), 1)
+                edges_seq = edges.data['e']
+                output, _ = self.edgeseq_layer(edges_seq)
+
+                output = phi_layer(output)
+                output = self.activation(output)
+
+                return {'m': output}
 
             nf.block_compute(i,
                             message_func,
@@ -312,6 +360,3 @@ class MiniBatchEdgePropInfer(nn.Module):
         embeddings = h
         return self.fc(h), embeddings
 
-    def edge_nonlinearity(self, edges):
-        eft = self.activation(edges.data['eft'])
-        return {'eft': eft}
