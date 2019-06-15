@@ -90,7 +90,7 @@ class MiniBatchTrainer(object):
                                         neighbor_type='in',
                                         shuffle=True,
                                         num_hops=self.n_layers,
-                                        add_self_loop=False,
+                                        add_self_loop=True,
                                         seed_nodes=self.train_id):
                 # update the aggregate history of all nodes in each layer
                 for i in range(self.n_layers):
@@ -108,8 +108,8 @@ class MiniBatchTrainer(object):
                 for i in range(1, self.n_layers):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names, 
-                                    edge_embed_names=edge_embed_names) 
-                                    #ctx=self.cuda_context)
+                                    edge_embed_names=edge_embed_names, 
+                                    ctx=self.cuda_context)
 
                 # Forward Pass, Calculate Loss and Accuracy
                 self.model.train() # set to train mode
@@ -167,7 +167,7 @@ class MiniBatchTrainer(object):
                                         neighbor_type='in',
                                         num_hops=self.n_layers,
                                         seed_nodes=self.test_id,
-                                        add_self_loop=False, 
+                                        add_self_loop=True, 
                                         num_workers=self.num_cpu):
                 # in testing/validation, no need to update the history
                 node_embed_names = [['node_features']]

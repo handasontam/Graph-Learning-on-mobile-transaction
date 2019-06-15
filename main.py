@@ -15,7 +15,7 @@ from dmt.utils import Params, set_logger
 # logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # include timestamp
 
-def main(parserrams):
+def main(params):
     # load and preprocess dataset
     data = load_data(params.dataset)
     features = torch.FloatTensor(data.features)
@@ -55,12 +55,8 @@ def main(parserrams):
     g = data.graph
     n_edges = g.number_of_edges()
     # add self loop
-<<<<<<< HEAD
-    g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros((n_nodes, num_edge_feats))})
-=======
     # print(g.edata)
     #g.add_edges(g.nodes(), g.nodes(), data={'edge_features': torch.zeros((n_nodes, num_edge_feats))})
->>>>>>> 420dade24af95d6443929a481e8726808476ae84
 
     # create model
     if params.model == "EdgePropAT":
