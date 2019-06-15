@@ -191,7 +191,7 @@ class MiniBatchEdgeProp(nn.Module):
                 #temp = self.activation(temp)
                 history = edges.src['history_{}'.format(i)]
                 delta_nb = temp - history
-                delta_nb = self.activation(delta_nb)
+                # delta_nb = self.activation(delta_nb)
                 return {'m': delta_nb}
     
             nf.block_compute(i,
@@ -300,7 +300,7 @@ class MiniBatchEdgePropInfer(nn.Module):
             def message_func(edges):
                 temp = torch.cat((edges.data['e'],edges.src['h']), 1)
                 temp = phi_layer(temp)
-                temp = self.activation(temp)
+                # temp = self.activation(temp)
                 return {'m': temp}
 
             nf.block_compute(i,
