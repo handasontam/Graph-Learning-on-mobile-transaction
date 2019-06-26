@@ -115,7 +115,8 @@ def main(params):
                     F.elu,
                     params.in_drop,
                     params.residual, 
-                    params.use_batch_norm)
+                    params.use_batch_norm,
+                    cuda)
         model_infer = MiniBatchEdgePropInfer(
                     g, 
                     params.num_layers,
@@ -126,7 +127,8 @@ def main(params):
                     F.elu,
                     0, #params.in_drop,
                     params.residual, 
-                    params.use_batch_norm)
+                    params.use_batch_norm,
+                    cuda)
         
     elif params.model == 'MiniBatchGCN':
         model = MiniBatchGCNSampling(
