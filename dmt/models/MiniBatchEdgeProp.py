@@ -28,12 +28,14 @@ class OneLayerNN(nn.Module):
         super(OneLayerNN, self).__init__(**kwargs)
         self.last = last
         self.fc = nn.Linear(in_dim, out_dim, bias=True)
-        self.layer_norm1 = nn.LayerNorm(normalized_shape=out_dim)
+        self.fc2 = nn.Linear(out_dim, out_dim, bias=True)
+        # self.layer_norm1 = nn.LayerNorm(normalized_shape=out_dim)
 
     def forward(self, h):
         h = self.fc(h)
-        h = self.layer_norm1(h)
+        # h = self.layer_norm1(h)
         h = F.relu(h)
+        h = self.fc2(h)
         return h
 
 class NodeUpdate(nn.Module):
@@ -280,8 +282,6 @@ class MiniBatchEdgePropInfer(nn.Module):
         '''
         nf = nodeflow
         h = nf.layers[0].data['node_features']
-        # h = self.feat_drop(h)
-        # h = self.input_layer(h)  # ((#nodes in layer_i) X D)
 
         for i, (node_layer, phi_layer) in enumerate(zip(self.node_layers, self.phi)):
             # compute edge embeddings

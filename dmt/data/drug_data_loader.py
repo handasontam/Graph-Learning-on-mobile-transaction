@@ -58,7 +58,7 @@ class DrugDataset(object):
             print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             print('!!! No node features is given, use dummy featuers!!!')
             print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            features = np.ones((g.number_of_nodes(), 10))
+            features = np.zeros((g.number_of_nodes(), 1))
         else:
             features = pd.read_csv(self.node_features_path, delimiter=',').values
 
@@ -78,7 +78,7 @@ class DrugDataset(object):
         val_mask = np.zeros((size,)).astype(bool)
         test_mask = np.zeros((size,)).astype(bool)
 
-        train_ratio = 0.8
+        train_ratio = 0.5
         np.random.seed(1)
         for column in one_hot_labels.columns:
             set_of_key = set(one_hot_labels[(one_hot_labels[column] == 1)].index)
@@ -121,7 +121,7 @@ class DrugDataset(object):
         for attr in self.graph.edge_attr_schemes().keys():
             self.graph.edata[attr] = (self.graph.edata[attr] - torch.mean(self.graph.edata[attr])) / torch.var(self.graph.edata[attr])
         # concatenate edge attrs
-        self.graph.edata['ede_features'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
+        self.graph.edata['edge_features'] = torch.cat([self.graph.edata[attr][:,None] for attr in self.graph.edge_attr_schemes().keys()], dim=1)
         print(self.graph.edge_attr_schemes())
         # self.graph.from_scipy_sparse_matrix(spmat=self.adj)
         self.labels = y
