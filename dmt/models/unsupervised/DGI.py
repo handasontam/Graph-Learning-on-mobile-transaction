@@ -10,12 +10,31 @@ import torch
 import torch.nn as nn
 import math
 from .gcn import GCN
+from ..GAT import GAT
+import logging
 
 class Encoder(nn.Module):
-    def __init__(self, g, in_feats, n_hidden, n_layers, activation, dropout):
+    def __init__(self, g, conv_model, in_feats, n_hidden, n_layers, activation, dropout):
         super(Encoder, self).__init__()
         self.g = g
-        self.conv = GCN(g, in_feats, n_hidden, n_hidden, n_layers, activation, dropout)
+        if conv_model.upper() == 'GCN':
+            self.conv = GCN(g, in_feats, n_hidden, n_hidden, n_layers, activation, dropout)
+        elif conv_model.upper() == 'GAT':
+            num_heads = 4
+            heads=([num_heads] * n_layers) + [num_heads]
+            self.conv = GAT(g=g, 
+                            num_layers=n_layers, 
+                            in_dim=in_feats, 
+                            num_hidden=n_hidden, 
+                            num_classes=n_hidden, 
+                            heads=heads,
+                            activation=activation,
+                            feat_drop=dropout,
+                            attn_drop=dropout, 
+                            alpha=0.2,
+                            residual=True)
+        else:
+            logging.info('The encoder model - {} is not implemented in DGI'.format(conv_model))
 
     def forward(self, features, corrupt=False):
         if corrupt:
@@ -46,16 +65,16 @@ class Discriminator(nn.Module):
 
 
 class DGI(nn.Module):
-    def __init__(self, g, in_feats, n_hidden, n_layers, activation, dropout):
+    def __init__(self, g, conv_model, in_feats, n_hidden, n_layers, activation, dropout):
         super(DGI, self).__init__()
-        self.encoder = Encoder(g, in_feats, n_hidden, n_layers, activation, dropout)
+        self.encoder = Encoder(g, conv_model, in_feats, n_hidden, n_layers, activation, dropout)
         self.discriminator = Discriminator(n_hidden)
         self.loss = nn.BCEWithLogitsLoss()
 
     def forward(self, features):
         positive = self.encoder(features, corrupt=False)
         negative = self.encoder(features, corrupt=True)
-        summary = torch.sigmoid(positive.mean(dim=0))
+        summary = positive.mean(dim=0)
 
         positive = self.discriminator(positive, summary)
         negative = self.discriminator(negative, summary)

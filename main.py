@@ -200,15 +200,20 @@ def main(params):
         print(g.ndata)
         unsupervised_model = DGI.DGI(
                     g=g, 
+                    conv_model=params.conv_model, 
                     in_feats=num_feats, 
                     n_hidden=params.node_hidden_dim, 
                     n_layers=params.num_layers, 
                     activation=F.relu, 
                     dropout=params.in_drop)
         encoder = unsupervised_model.encoder
-        decoder = DGI.Classifier(
-                    params.node_hidden_dim, 
-                    n_classes)
+        # decoder = DGI.Classifier(
+        #             params.node_hidden_dim, 
+        #             n_classes)
+    else:
+        logging.info('The model \"{}\" is not implemented'.format(params.model))
+        import sys
+        sys.exis(0)
 
     if cuda:
         model.cuda()   
@@ -217,7 +222,7 @@ def main(params):
 
     if params.model.lower() in ['dgi']:
         logging.info(unsupervised_model)
-        logging.info(decoder)
+        # logging.info(decoder)
     else:
         logging.info(model)
     loss_fcn = torch.nn.CrossEntropyLoss()
@@ -225,7 +230,7 @@ def main(params):
     # use optimizer
     if params.model.lower() in ['dgi']:
         unsupervised_optimizer = torch.optim.Adam(unsupervised_model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
-        decoder_optimizer = torch.optim.Adam(decoder.parameters(), lr=params.lr, weight_decay=params.weight_decay)
+        # decoder_optimizer = torch.optim.Adam(decoder.parameters(), lr=params.lr, weight_decay=params.weight_decay)
     else:
         optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
@@ -274,10 +279,10 @@ def main(params):
                         g=g, 
                         unsupervised_model=unsupervised_model,
                         encoder=encoder,
-                        decoder=decoder,
+                        decoder=None,
                         loss_fn=loss_fcn, 
                         unsupervised_optimizer=unsupervised_optimizer,
-                        decoder_optimizer=decoder_optimizer, 
+                        decoder_optimizer=None, 
                         epochs=params.epochs,
                         features=features,
                         labels=labels,
@@ -287,7 +292,6 @@ def main(params):
                         fast_mode=params.fastmode, 
                         n_edges=n_edges, 
                         patience=params.patience, 
-                        num_neighbors=params.num_neighbors, 
                         n_layers=params.num_layers, 
                         model_dir=params.model_dir, 
                         num_cpu=params.num_cpu, 
@@ -335,8 +339,8 @@ if __name__ == '__main__':
     params.model_dir = args.model_dir
 
     # models asssertions
-    current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp', 'MiniBatchGCN', 'MiniBatchGraphSAGE', 'MiniBatchEdgePropPlus', 'DGI'}
-    assert params.model in current_models, "The model \"{}\" is not implemented, please chose from {}".format(params.model, current_models)
+    # current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp', 'MiniBatchGCN', 'MiniBatchGraphSAGE', 'MiniBatchEdgePropPlus', 'DGI'}
+    # assert params.model in current_models, "The model \"{}\" is not implemented, please chose from {}".format(params.model, current_models)
 
 
     # params.cuda = torch.cuda.is_available()

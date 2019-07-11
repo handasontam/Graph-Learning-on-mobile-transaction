@@ -1,0 +1,916 @@
+2019-07-10 15:50:16,936:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 15:50:47,749:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 15:50:47,828:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 15:50:47,829:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 15:52:30,400:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 15:52:30,484:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 15:52:30,486:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 15:56:29,146:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 15:56:29,231:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 15:56:29,232:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 15:57:54,626:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 15:57:54,708:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 15:57:54,709:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:00:02,887:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:00:02,976:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:00:02,977:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:10:06,260:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:10:06,352:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:10:06,353:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:10:37,827:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:10:37,912:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:10:37,914:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:11:28,620:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:11:28,694:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:11:28,695:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:11:58,646:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:11:58,724:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:11:58,725:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:12:44,307:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:12:44,381:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:12:44,382:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:12:58,237:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:12:58,317:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:12:58,318:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:13:37,152:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:13:37,243:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:13:37,245:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:14:04,905:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:14:04,981:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:14:04,982:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:26:27,646:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:26:27,734:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:26:27,735:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:32:27,031:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:32:27,114:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:32:27,116:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:32:56,788:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:32:56,873:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:32:56,875:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:50:21,970:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:50:22,053:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:50:22,055:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:52:39,544:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:52:39,637:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:52:39,638:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:54:57,064:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:54:57,141:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:54:57,142:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:55:24,080:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:55:24,155:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:55:24,157:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:58:45,471:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:58:45,565:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:58:45,567:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:59:02,308:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:59:02,385:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:59:02,387:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 16:59:48,052:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 16:59:48,147:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 16:59:48,148:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:00:11,169:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:00:11,248:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:00:11,249:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:01:12,674:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:01:12,750:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:01:12,751:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:01:48,692:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:01:48,769:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:01:48,770:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:02:27,762:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:02:27,851:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:02:27,852:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:02:47,735:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:02:47,816:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:02:47,817:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:03:11,112:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:03:11,192:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:03:11,193:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:03:11,222:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3348 | TrainAcc 0.6667 |ValLoss 2.1645 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:03:11,240:INFO: Epoch 00001 | Time(s) nan | TrainLoss 0.9780 | TrainAcc 0.6667 |ValLoss 2.5504 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:03:11,256:INFO: Epoch 00002 | Time(s) nan | TrainLoss 0.7051 | TrainAcc 0.6667 |ValLoss 2.5707 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:03:11,271:INFO: Epoch 00003 | Time(s) 0.0088 | TrainLoss 0.4953 | TrainAcc 0.6667 |ValLoss 2.4279 | ValAcc 0.0000 |  ETputs(KTEPS) 1.58
+2019-07-10 17:03:11,287:INFO: Epoch 00004 | Time(s) 0.0087 | TrainLoss 0.4677 | TrainAcc 0.6667 |ValLoss 2.3857 | ValAcc 0.0000 |  ETputs(KTEPS) 1.62
+2019-07-10 17:03:11,302:INFO: Epoch 00005 | Time(s) 0.0086 | TrainLoss 0.5242 | TrainAcc 0.6667 |ValLoss 2.5114 | ValAcc 0.0000 |  ETputs(KTEPS) 1.63
+2019-07-10 17:03:11,317:INFO: Epoch 00006 | Time(s) 0.0085 | TrainLoss 0.5401 | TrainAcc 0.6667 |ValLoss 2.7480 | ValAcc 0.0000 |  ETputs(KTEPS) 1.65
+2019-07-10 17:03:11,333:INFO: Epoch 00007 | Time(s) 0.0086 | TrainLoss 0.5033 | TrainAcc 0.6667 |ValLoss 3.0642 | ValAcc 0.0000 |  ETputs(KTEPS) 1.63
+2019-07-10 17:03:11,348:INFO: Early stopping
+2019-07-10 17:23:26,715:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:23:26,798:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:23:26,799:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:23:26,833:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3601 | TrainAcc 0.3333 |ValLoss 0.6145 | ValAcc 1.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:26,851:INFO: Epoch 00001 | Time(s) nan | TrainLoss 0.8710 | TrainAcc 0.3333 |ValLoss 0.9794 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:26,865:INFO: Epoch 00002 | Time(s) nan | TrainLoss 0.6395 | TrainAcc 0.6667 |ValLoss 1.4810 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:26,881:INFO: Epoch 00003 | Time(s) 0.0090 | TrainLoss 0.6097 | TrainAcc 0.6667 |ValLoss 2.0042 | ValAcc 0.0000 |  ETputs(KTEPS) 1.56
+2019-07-10 17:23:26,895:INFO: Epoch 00004 | Time(s) 0.0088 | TrainLoss 0.6307 | TrainAcc 0.6667 |ValLoss 2.4716 | ValAcc 0.0000 |  ETputs(KTEPS) 1.59
+2019-07-10 17:23:26,910:INFO: Epoch 00005 | Time(s) 0.0089 | TrainLoss 0.6312 | TrainAcc 0.6667 |ValLoss 2.8598 | ValAcc 0.0000 |  ETputs(KTEPS) 1.58
+2019-07-10 17:23:26,926:INFO: Epoch 00006 | Time(s) 0.0089 | TrainLoss 0.6010 | TrainAcc 0.6667 |ValLoss 3.1709 | ValAcc 0.0000 |  ETputs(KTEPS) 1.58
+2019-07-10 17:23:26,942:INFO: Epoch 00007 | Time(s) 0.0090 | TrainLoss 0.5530 | TrainAcc 0.6667 |ValLoss 3.4202 | ValAcc 0.0000 |  ETputs(KTEPS) 1.55
+2019-07-10 17:23:26,957:INFO: Early stopping
+2019-07-10 17:23:41,559:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:23:41,640:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:23:41,641:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:23:41,667:INFO: Epoch 00000 | Time(s) nan | TrainLoss 0.8312 | TrainAcc 0.6667 |ValLoss 2.0316 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:41,683:INFO: Epoch 00001 | Time(s) nan | TrainLoss 0.6254 | TrainAcc 0.6667 |ValLoss 2.1605 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:41,699:INFO: Epoch 00002 | Time(s) nan | TrainLoss 0.5080 | TrainAcc 0.6667 |ValLoss 2.3533 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:23:41,714:INFO: Epoch 00003 | Time(s) 0.0089 | TrainLoss 0.4978 | TrainAcc 0.6667 |ValLoss 2.6472 | ValAcc 0.0000 |  ETputs(KTEPS) 1.57
+2019-07-10 17:23:41,730:INFO: Epoch 00004 | Time(s) 0.0091 | TrainLoss 0.5364 | TrainAcc 0.6667 |ValLoss 3.0130 | ValAcc 0.0000 |  ETputs(KTEPS) 1.54
+2019-07-10 17:23:41,746:INFO: Epoch 00005 | Time(s) 0.0090 | TrainLoss 0.5359 | TrainAcc 0.6667 |ValLoss 3.3989 | ValAcc 0.0000 |  ETputs(KTEPS) 1.55
+2019-07-10 17:23:41,760:INFO: Epoch 00006 | Time(s) 0.0089 | TrainLoss 0.5077 | TrainAcc 0.6667 |ValLoss 3.7680 | ValAcc 0.0000 |  ETputs(KTEPS) 1.57
+2019-07-10 17:23:41,775:INFO: Epoch 00007 | Time(s) 0.0088 | TrainLoss 0.4785 | TrainAcc 0.6667 |ValLoss 4.1100 | ValAcc 0.0000 |  ETputs(KTEPS) 1.58
+2019-07-10 17:23:41,790:INFO: Early stopping
+2019-07-10 17:23:41,797:INFO: Test Accuracy 0.0000
+2019-07-10 17:24:14,852:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:24:14,927:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:24:14,928:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:24:14,953:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.1319 | TrainAcc 0.3333 |ValLoss 1.0127 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:24:14,969:INFO: Epoch 00001 | Time(s) nan | TrainLoss 0.6549 | TrainAcc 0.6667 |ValLoss 1.9542 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:24:14,985:INFO: Epoch 00002 | Time(s) nan | TrainLoss 0.5132 | TrainAcc 0.6667 |ValLoss 2.7283 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:24:14,999:INFO: Epoch 00003 | Time(s) 0.0091 | TrainLoss 0.5440 | TrainAcc 0.6667 |ValLoss 3.2285 | ValAcc 0.0000 |  ETputs(KTEPS) 1.53
+2019-07-10 17:24:15,016:INFO: Epoch 00004 | Time(s) 0.0099 | TrainLoss 0.5709 | TrainAcc 0.6667 |ValLoss 3.5515 | ValAcc 0.0000 |  ETputs(KTEPS) 1.42
+2019-07-10 17:24:15,031:INFO: Epoch 00005 | Time(s) 0.0100 | TrainLoss 0.5556 | TrainAcc 0.6667 |ValLoss 3.7675 | ValAcc 0.0000 |  ETputs(KTEPS) 1.40
+2019-07-10 17:24:15,046:INFO: Epoch 00006 | Time(s) 0.0098 | TrainLoss 0.5185 | TrainAcc 0.6667 |ValLoss 3.9199 | ValAcc 0.0000 |  ETputs(KTEPS) 1.42
+2019-07-10 17:24:15,062:INFO: Epoch 00007 | Time(s) 0.0097 | TrainLoss 0.4870 | TrainAcc 0.6667 |ValLoss 4.0372 | ValAcc 0.0000 |  ETputs(KTEPS) 1.45
+2019-07-10 17:24:15,077:INFO: Early stopping
+2019-07-10 17:24:15,084:INFO: Test Accuracy 0.0000
+2019-07-10 17:31:35,351:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:31:35,429:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 17:31:35,430:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 17:31:35,466:INFO: Epoch 00000 | Time(s) nan | TrainLoss 5.6154 | TrainAcc 0.3333 |ValLoss 0.0002 | ValAcc 1.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:31:35,482:INFO: Epoch 00001 | Time(s) nan | TrainLoss 3.5961 | TrainAcc 0.3333 |ValLoss 0.0111 | ValAcc 1.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:31:35,497:INFO: Epoch 00002 | Time(s) nan | TrainLoss 1.9669 | TrainAcc 0.6667 |ValLoss 0.3965 | ValAcc 1.0000 |  ETputs(KTEPS) nan
+2019-07-10 17:31:35,513:INFO: Epoch 00003 | Time(s) 0.0104 | TrainLoss 1.1361 | TrainAcc 0.3333 |ValLoss 1.3765 | ValAcc 0.0000 |  ETputs(KTEPS) 1.34
+2019-07-10 17:31:35,529:INFO: Epoch 00004 | Time(s) 0.0102 | TrainLoss 1.0519 | TrainAcc 0.6667 |ValLoss 2.2099 | ValAcc 0.0000 |  ETputs(KTEPS) 1.37
+2019-07-10 17:31:35,545:INFO: Epoch 00005 | Time(s) 0.0100 | TrainLoss 0.8776 | TrainAcc 0.6667 |ValLoss 2.7930 | ValAcc 0.0000 |  ETputs(KTEPS) 1.40
+2019-07-10 17:31:35,561:INFO: Epoch 00006 | Time(s) 0.0097 | TrainLoss 0.5831 | TrainAcc 0.6667 |ValLoss 3.2088 | ValAcc 0.0000 |  ETputs(KTEPS) 1.45
+2019-07-10 17:31:35,575:INFO: Epoch 00007 | Time(s) 0.0095 | TrainLoss 0.3584 | TrainAcc 0.6667 |ValLoss 3.4961 | ValAcc 0.0000 |  ETputs(KTEPS) 1.47
+2019-07-10 17:31:35,591:INFO: Early stopping
+2019-07-10 17:31:35,598:INFO: Test Accuracy 0.0000
+2019-07-10 17:55:38,445:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 17:55:38,523:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 18:49:43,673:INFO: Namespace(model_dir='experiments/GAT', restore_file=None)
+2019-07-10 18:49:43,756:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-10 18:49:43,757:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=323, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-07-10 18:49:43,792:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.5144 | TrainAcc 0.6667 |ValLoss 2.8821 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 18:49:43,808:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.0296 | TrainAcc 0.6667 |ValLoss 3.3482 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 18:49:43,823:INFO: Epoch 00002 | Time(s) nan | TrainLoss 0.6306 | TrainAcc 0.6667 |ValLoss 3.7864 | ValAcc 0.0000 |  ETputs(KTEPS) nan
+2019-07-10 18:49:43,838:INFO: Epoch 00003 | Time(s) 0.0094 | TrainLoss 0.4605 | TrainAcc 1.0000 |ValLoss 4.1896 | ValAcc 0.0000 |  ETputs(KTEPS) 1.49
+2019-07-10 18:49:43,854:INFO: Epoch 00004 | Time(s) 0.0099 | TrainLoss 0.5848 | TrainAcc 0.6667 |ValLoss 4.4901 | ValAcc 0.0000 |  ETputs(KTEPS) 1.42
+2019-07-10 18:49:43,870:INFO: Epoch 00005 | Time(s) 0.0098 | TrainLoss 0.6874 | TrainAcc 0.6667 |ValLoss 4.6846 | ValAcc 0.0000 |  ETputs(KTEPS) 1.42
+2019-07-10 18:49:43,885:INFO: Epoch 00006 | Time(s) 0.0096 | TrainLoss 0.6912 | TrainAcc 0.6667 |ValLoss 4.7981 | ValAcc 0.0000 |  ETputs(KTEPS) 1.46
+2019-07-10 18:49:43,900:INFO: Epoch 00007 | Time(s) 0.0095 | TrainLoss 0.6332 | TrainAcc 0.6667 |ValLoss 4.8576 | ValAcc 0.0000 |  ETputs(KTEPS) 1.47
+2019-07-10 18:49:43,914:INFO: Early stopping
+2019-07-10 18:49:43,921:INFO: Test Accuracy 1.0000

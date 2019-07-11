@@ -58,7 +58,7 @@ class MiniBatchGraphSAGESampling(nn.Module):
         self.fc = nn.Linear(2*n_hidden, n_classes, bias=True)
 
     def forward(self, nf):
-        nf.layers[0].data['activation'] = nf.layers[0].data['features']
+        nf.layers[0].data['activation'] = nf.layers[0].data['node_features']
 
         for i, layer in enumerate(self.layers):
             h = nf.layers[i].data.pop('activation')
@@ -97,7 +97,7 @@ class MiniBatchGraphSAGEInfer(nn.Module):
         self.fc = nn.Linear(2*n_hidden, n_classes, bias=True)
 
     def forward(self, nf):
-        nf.layers[0].data['activation'] = nf.layers[0].data['features']
+        nf.layers[0].data['activation'] = nf.layers[0].data['node_features']
 
         for i, layer in enumerate(self.layers):
             h = nf.layers[i].data.pop('activation')

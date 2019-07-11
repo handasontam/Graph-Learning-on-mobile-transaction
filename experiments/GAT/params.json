@@ -1,7 +1,7 @@
 {
     "model": "GAT", 
     "gpu": -1,
-    "dataset": "eth" , 
+    "dataset": "wechat" , 
     "epochs": 10000, 
     "num_heads": 2,
     "num_out_heads": 1,
@@ -13,6 +13,6 @@
     "lr": 0.001, 
     "weight_decay": 0.0005,
     "alpha": 0.2, 
-    "fastmode": false,
+    "fast_mode": false,
     "patience": 8
 }

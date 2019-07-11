@@ -25,6 +25,9 @@ class Trainer(object):
         #         }
         # self.sched = torch.optim.lr_scheduler.LambdaLR(self.optimizer, 
         #                                         self.sched_lambda['none'])
+        self.train_id = train_mask.nonzero().view(-1).to(torch.int64).cpu().detach().numpy()
+        self.val_id = val_mask.nonzero().view(-1).to(torch.int64).cpu().detach().numpy()
+        self.test_id = test_mask.nonzero().view(-1).to(torch.int64).cpu().detach().numpy()
         self.epochs = epochs
         self.features = features
         self.labels = labels
@@ -74,16 +77,23 @@ class Trainer(object):
 
             if epoch >= 3:
                 dur.append(time.time() - t0)
-
-            train_acc = accuracy(logits[self.train_mask], self.labels[self.train_mask])
+            
+            _, indicies = torch.max(logits, dim=1)
+            pred = indicies.cpu().detach().numpy()
+            train_acc = accuracy(pred[self.train_id], self.labels[self.train_id])
             train_accuracies.append(train_acc)
 
             if self.fast_mode:
-                val_acc = accuracy(logits[self.val_mask], self.labels[self.val_mask])
+                val_acc = accuracy(pred[self.val_id], self.labels[self.val_id])
                 val_accuracies.append(val_acc)
             else:
-                val_acc = self.evaluate(self.features, self.labels, self.val_mask)
-                val_accuracies.append(val_acc)
+                self.model.eval()
+                with torch.no_grad():
+                    logits = self.model(self.features)
+                    _, indicies = torch.max(logits, dim=1)
+                    pred = indicies.cpu().detach().numpy()
+                    val_acc = accuracy(pred[self.val_id], self.labels[self.val_id])
+                    val_accuracies.append(val_acc)
             val_loss = self.loss_fn(logits[self.val_mask], self.labels[self.val_mask])
             val_losses.append(val_loss.item())
             
@@ -109,9 +119,14 @@ class Trainer(object):
         # load the last checkpoint with the best model
         self.model.load_state_dict(torch.load(os.path.join(self.model_dir, 'checkpoint.pt')))
 
-        # logging.info()
-        acc = self.evaluate(self.features, self.labels, self.test_mask)
-        logging.info("Test Accuracy {:.4f}".format(acc))
+
+        self.model.eval()
+        with torch.no_grad():
+            logits = self.model(self.features)
+            _, indicies = torch.max(logits, dim=1)
+            pred = indicies.cpu().detach().numpy()
+            test_acc = accuracy(pred[self.test_id], self.labels[self.test_id])
+            logging.info("Test Accuracy {:.4f}".format(test_acc))
 
         self.plot(train_losses, val_losses, train_accuracies, val_accuracies)
 
