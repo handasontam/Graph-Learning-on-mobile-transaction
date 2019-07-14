@@ -28,13 +28,6 @@ class UnsupervisedTrainer(object):
         self.loss_fn = loss_fn
         self.unsupervised_optimizer = unsupervised_optimizer 
         self.decoder_optimizer = decoder_optimizer
-        # self.sched_lambda = {
-        #         'none': lambda epoch: 1,
-        #         'decay': lambda epoch: max(0.98 ** epoch, 1e-4),
-        #         }
-        # self.sched = torch.optim.lr_scheduler.LambdaLR(self.optimizer, 
-        #                                         self.sched_lambda['none'])
-        # print(train_mask.shape)
         self.train_id = train_mask.nonzero().view(-1).to(torch.int64)
         self.val_id = val_mask.nonzero().view(-1).to(torch.int64)
         self.test_id = test_mask.nonzero().view(-1).to(torch.int64)

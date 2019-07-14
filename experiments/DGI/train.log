@@ -1,0 +1,78 @@
+2019-07-14 21:32:14,019:INFO: Namespace(model_dir='experiments/DGI', restore_file=None)
+2019-07-14 21:32:14,102:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 21:32:14,113:INFO: DGI(
+  (encoder): Encoder(
+    (conv): GAT(
+      (gat_layers): ModuleList(
+        (0): GraphAttention(
+          (fc): Linear(in_features=323, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+        )
+        (1): GraphAttention(
+          (fc): Linear(in_features=512, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+          (res_fc): Linear(in_features=512, out_features=512, bias=False)
+        )
+      )
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-14 21:32:39,322:INFO: Namespace(model_dir='experiments/DGI', restore_file=None)
+2019-07-14 21:32:39,401:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 21:32:39,414:INFO: DGI(
+  (encoder): Encoder(
+    (conv): GAT(
+      (gat_layers): ModuleList(
+        (0): GraphAttention(
+          (fc): Linear(in_features=323, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+        )
+        (1): GraphAttention(
+          (fc): Linear(in_features=512, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+          (res_fc): Linear(in_features=512, out_features=512, bias=False)
+        )
+      )
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-14 21:33:53,158:INFO: Namespace(model_dir='experiments/DGI', restore_file=None)
+2019-07-14 21:33:53,253:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 21:33:53,264:INFO: DGI(
+  (encoder): Encoder(
+    (conv): GAT(
+      (gat_layers): ModuleList(
+        (0): GraphAttention(
+          (fc): Linear(in_features=323, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+        )
+        (1): GraphAttention(
+          (fc): Linear(in_features=512, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+          (res_fc): Linear(in_features=512, out_features=512, bias=False)
+        )
+      )
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)

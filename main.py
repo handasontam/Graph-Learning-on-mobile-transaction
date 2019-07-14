@@ -7,10 +7,11 @@ import logging
 from dgl import DGLGraph
 from dmt.models import EdgePropGAT, GAT, GAT_EdgeAT, MiniBatchEdgeProp, MiniBatchEdgePropInfer, MiniBatchGCNInfer, MiniBatchGCNSampling, MiniBatchGraphSAGEInfer, MiniBatchGraphSAGESampling
 from dmt.models import MiniBatchEdgePropPlus, MiniBatchEdgePropPlusInfer
-from dmt.models.unsupervised import DGI
+from dmt.models.unsupervised import DGI, MiniBatchDGI
 from dmt.trainer import Trainer
 from dmt.mini_batch_trainer import MiniBatchTrainer
 from dmt.unsupervised_trainer import UnsupervisedTrainer
+from dmt.unsupervised_mini_batch_trainer import UnsupervisedMiniBatchTrainer
 from dmt.data import register_data_args, load_data
 from dmt.utils import Params, set_logger
 
@@ -207,34 +208,54 @@ def main(params):
                     activation=F.relu, 
                     dropout=params.in_drop)
         encoder = unsupervised_model.encoder
+    elif params.model == 'MiniBatchDGI':
+        g.ndata['node_features'] = features
+        print(g.ndata)
+        unsupervised_model = MiniBatchDGI.DGI(
+                    g=g, 
+                    conv_model=params.conv_model, 
+                    in_feats=num_feats, 
+                    edge_in_feats=num_edge_feats,
+                    n_hidden=params.node_hidden_dim, 
+                    n_layers=params.num_layers, 
+                    activation=F.relu, 
+                    dropout=params.in_drop,
+                    cuda=cuda)
+        unsupervised_model_infer = MiniBatchDGI.DGIInfer(
+                    g=g, 
+                    conv_model=params.conv_model, 
+                    in_feats=num_feats, 
+                    edge_in_feats=num_edge_feats,
+                    n_hidden=params.node_hidden_dim, 
+                    n_layers=params.num_layers, 
+                    activation=F.relu, 
+                    dropout=params.in_drop, 
+                    cuda=cuda)
+        encoder = unsupervised_model.encoder
+        encoder_infer = unsupervised_model_infer.encoder
         # decoder = DGI.Classifier(
         #             params.node_hidden_dim, 
         #             n_classes)
     else:
         logging.info('The model \"{}\" is not implemented'.format(params.model))
         import sys
-        sys.exis(0)
+        sys.exit(0)
 
     if cuda:
         model.cuda()   
         if 'model_infer' in locals():
             model_infer.cuda()
 
-    if params.model.lower() in ['dgi']:
+    loss_fcn = torch.nn.CrossEntropyLoss()
+    if params.model.lower() in ['dgi', 'minibatchdgi']:
         logging.info(unsupervised_model)
+        unsupervised_optimizer = torch.optim.Adam(unsupervised_model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
         # logging.info(decoder)
     else:
         logging.info(model)
-    loss_fcn = torch.nn.CrossEntropyLoss()
-
-    # use optimizer
-    if params.model.lower() in ['dgi']:
-        unsupervised_optimizer = torch.optim.Adam(unsupervised_model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
-        # decoder_optimizer = torch.optim.Adam(decoder.parameters(), lr=params.lr, weight_decay=params.weight_decay)
-    else:
         optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 
-    if "minibatch" in params.model.lower():
+    if params.model.lower() in ['minibatchedgeprop', 'minibatchgcn', 'minibatchgraphsage', 'minibatchedgepropplus']:
         g.readonly()
         # initialize the history for control variate
         # see control variate in https://arxiv.org/abs/1710.10568
@@ -258,6 +279,44 @@ def main(params):
                         model_infer=model_infer,
                         loss_fn=loss_fcn, 
                         optimizer=optimizer, 
+                        epochs=params.epochs, 
+                        features=features, 
+                        labels=labels, 
+                        train_mask=train_mask, 
+                        val_mask=val_mask, 
+                        test_mask=test_mask, 
+                        fast_mode=params.fastmode, 
+                        n_edges=n_edges, 
+                        patience=params.patience, 
+                        batch_size=params.batch_size, 
+                        test_batch_size=params.test_batch_size, 
+                        num_neighbors=params.num_neighbors, 
+                        n_layers=params.num_layers, 
+                        model_dir=params.model_dir, 
+                        num_cpu=params.num_cpu, 
+                        cuda_context=cuda_context)
+    elif params.model.lower() in ['minibatchdgi']:
+        g.readonly()
+        # initialize the history for control variate
+        g.ndata['node_features'] = features
+        #g.edata['edge_features'] = data.graph.edata['edge_features']
+        norm = 1./g.in_degrees().unsqueeze(1).float()
+        g.ndata['norm'] = norm
+        print('graph node features', g.ndata['node_features'].shape)
+        print('graph edge features', g.edata['edge_features'].shape)
+
+        degs = g.in_degrees().numpy()
+        degs[degs > params.num_neighbors] = params.num_neighbors
+        g.ndata['subg_norm'] = torch.FloatTensor(1./degs).unsqueeze(1)  # for calculating P_hat
+
+        trainer = UnsupervisedMiniBatchTrainer(
+                        g=g, 
+                        unsupervised_model=unsupervised_model, 
+                        unsupervised_model_infer=unsupervised_model_infer,
+                        encoder=encoder,
+                        encoder_infer=encoder_infer, 
+                        loss_fn=loss_fcn, 
+                        optimizer=unsupervised_optimizer, 
                         epochs=params.epochs, 
                         features=features, 
                         labels=labels, 
