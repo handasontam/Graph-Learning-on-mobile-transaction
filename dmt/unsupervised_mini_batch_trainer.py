@@ -76,7 +76,8 @@ class UnsupervisedMiniBatchTrainer(object):
                                       shuffle=True,
                                       num_hops=self.n_layers,
                                       add_self_loop=True,
-                                      seed_nodes=None):
+                                      seed_nodes=None, 
+                                      num_workers=self.num_cpu):
                 # Copy the features from the original graph to the nodeflow graph
                 node_embed_names = [['node_features', 'subg_norm', 'norm']]
                 for i in range(1, self.n_layers):
@@ -87,8 +88,7 @@ class UnsupervisedMiniBatchTrainer(object):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names,
                                     edge_embed_names=edge_embed_names,
-                                    ctx=self.cuda_context, 
-                                    num_workers=self.num_cpu)
+                                    ctx=self.cuda_context)
 
                 # Forward Pass, Calculate Loss and Accuracy
                 self.unsupervised_model.train()  # set to train mode
@@ -199,66 +199,29 @@ class UnsupervisedMiniBatchTrainer(object):
         # embeds = self.unsupervised_model_infer.encoder(self.features, corrupt=False)
         # embeds = embeds.detach().cpu().numpy()
 
-        classifier = LogisticRegression(solver='lbfgs', multi_class='ovr').fit(X=embeds[self.train_id.detach().cpu().numpy()],
-                                                                                y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('Logistic Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
-                                                     self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = LinearSVC().fit(X=embeds[self.train_id.detach().cpu().numpy()],
-                                     y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('SVC Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
-                                                self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = DecisionTreeClassifier().fit(X=embeds[self.train_id.detach().cpu().numpy()],
-                                                  y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('Decision Tree Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
-                                                          self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = GradientBoostingClassifier().fit(X=embeds[self.train_id.detach().cpu().numpy()],
-                                                      y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('GradientBoosting Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
-                                                             self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = RandomForestClassifier().fit(X=embeds[self.train_id.detach().cpu().numpy()],
-                                                  y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('Random Forest Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
-                                                          self.labels[self.test_id.detach().cpu().numpy()]))
-        ############################################################################################################################################
+        classifiers = {
+                       'Logistic': LogisticRegression(solver='lbfgs', multi_class='ovr'), 
+                       'LinearSVC': LinearSVC(), 
+                       'DecisionTree': DecisionTreeClassifier(), 
+                       'GradientBoosting': GradientBoostingClassifier(), 
+                       'RandomForest': RandomForestClassifier(), 
+                        }
         features = self.features.detach().cpu().numpy()
-        classifier = LogisticRegression(solver='lbfgs', multi_class='ovr').fit(X=features[self.train_id.detach().cpu().numpy()],
-                                                                                y=self.labels[self.train_id.detach().cpu().numpy()])
 
-        print('Logistic Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],
-                                                     self.labels[self.test_id.detach().cpu().numpy()]))
+        dgi_X_train = embeds[self.train_id.detach().cpu().numpy()]
+        X_train = features[self.train_id.detach().cpu().numpy()]
+        y_train = self.labels[self.train_id.detach().cpu().numpy()]
 
-        classifier = LinearSVC().fit(X=features[self.train_id.detach().cpu().numpy()],
-                                     y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('SVC Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],
-                                                self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = DecisionTreeClassifier().fit(X=features[self.train_id.detach().cpu().numpy()],
-                                                  y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('Decision Tree Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],
-                                                          self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = GradientBoostingClassifier().fit(X=features[self.train_id.detach().cpu().numpy()],
-                                                      y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('GradientBoosting Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],
-                                                             self.labels[self.test_id.detach().cpu().numpy()]))
-
-        classifier = RandomForestClassifier().fit(X=features[self.train_id.detach().cpu().numpy()],
-                                                  y=self.labels[self.train_id.detach().cpu().numpy()])
-
-        print('Random Forest Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],
-                                                          self.labels[self.test_id.detach().cpu().numpy()]))
+        
+        
+        dgi_X_test = embeds[self.test_id.detach().cpu().numpy()]
+        X_test = features[self.test_id.detach().cpu().numpy()]
+        y_test = self.labels[self.test_id.detach().cpu().numpy()]
+        for name, classifier in classifiers.items():
+            print(name, ' : ', classifier.fit(X=dgi_X_train, y=y_train).score(dgi_X_test, y_test))
+        
+        for name, classifier in classifiers.items():
+            print('DGI -', name, ' : ', classifier.fit(X=X_train, y=y_train).score(X_test, y_test))
 
     def plot(self, train_losses, val_losses, train_accuracies, val_accuracies):
         #####################################################################
