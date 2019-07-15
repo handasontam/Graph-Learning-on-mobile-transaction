@@ -33,7 +33,7 @@ class UnsupervisedMiniBatchTrainer(object):
         self.test_id = test_mask.nonzero().view(-1).to(torch.int64)
         self.epochs = epochs
         self.features = features
-        self.labels = labels
+        self.labels = labels.detach().cpu().numpy()
         self.train_mask = train_mask
         self.val_mask = val_mask
         self.test_mask = test_mask
@@ -87,7 +87,8 @@ class UnsupervisedMiniBatchTrainer(object):
                     edge_embed_names.append(['edge_features'])
                 nf.copy_from_parent(node_embed_names=node_embed_names,
                                     edge_embed_names=edge_embed_names,
-                                    ctx=self.cuda_context)
+                                    ctx=self.cuda_context, 
+                                    num_workers=self.num_cpu)
 
                 # Forward Pass, Calculate Loss and Accuracy
                 self.unsupervised_model.train()  # set to train mode
@@ -124,7 +125,8 @@ class UnsupervisedMiniBatchTrainer(object):
                                           shuffle=False, 
                                           num_hops=self.n_layers,
                                           add_self_loop=True,
-                                          seed_nodes=None):
+                                          seed_nodes=None, 
+                                          num_workers=self.num_cpu):
                     # Copy the features from the original graph to the nodeflow graph
                     node_embed_names = [['node_features', 'subg_norm', 'norm']]
                     for i in range(1, self.n_layers):
@@ -170,7 +172,8 @@ class UnsupervisedMiniBatchTrainer(object):
                                     shuffle=False, 
                                     num_hops=self.n_layers,
                                     add_self_loop=True,
-                                    seed_nodes=None):
+                                    seed_nodes=None, 
+                                    num_workers=self.num_cpu):
             # Copy the features from the original graph to the nodeflow graph
             node_embed_names = [['node_features', 'subg_norm', 'norm']]
             for i in range(1, self.n_layers):
@@ -187,6 +190,7 @@ class UnsupervisedMiniBatchTrainer(object):
             batch_node_ids = nf.layer_parent_nid(-1)
             torch.cuda.empty_cache()
         embeds = np.array(embeds)
+        print('learnt embeddings:', embeds)
 
         # train classifier
         # print('Loading {}th epoch'.format(best_t))
@@ -195,7 +199,7 @@ class UnsupervisedMiniBatchTrainer(object):
         # embeds = self.unsupervised_model_infer.encoder(self.features, corrupt=False)
         # embeds = embeds.detach().cpu().numpy()
 
-        classifier = LogisticRegression(solver='lbfgs', multi_class='auto').fit(X=embeds[self.train_id.detach().cpu().numpy()],
+        classifier = LogisticRegression(solver='lbfgs', multi_class='ovr').fit(X=embeds[self.train_id.detach().cpu().numpy()],
                                                                                 y=self.labels[self.train_id.detach().cpu().numpy()])
 
         print('Logistic Accuracy:', classifier.score(embeds[self.test_id.detach().cpu().numpy()],
@@ -226,7 +230,7 @@ class UnsupervisedMiniBatchTrainer(object):
                                                           self.labels[self.test_id.detach().cpu().numpy()]))
         ############################################################################################################################################
         features = self.features.detach().cpu().numpy()
-        classifier = LogisticRegression(solver='lbfgs', multi_class='auto').fit(X=features[self.train_id.detach().cpu().numpy()],
+        classifier = LogisticRegression(solver='lbfgs', multi_class='ovr').fit(X=features[self.train_id.detach().cpu().numpy()],
                                                                                 y=self.labels[self.train_id.detach().cpu().numpy()])
 
         print('Logistic Accuracy:', classifier.score(features[self.test_id.detach().cpu().numpy()],

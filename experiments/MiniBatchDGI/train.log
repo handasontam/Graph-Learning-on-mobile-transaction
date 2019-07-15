@@ -29079,3 +29079,1433 @@
 
 2019-07-14 23:10:42,184:INFO: Epoch 00013 | Time(s) 0.0107 | TrainLoss 1.3864 | ETputs(KTEPS) 1.31
 
+2019-07-14 23:36:55,294:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-14 23:36:55,369:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 23:36:55,374:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-14 23:36:55,391:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3863 | ETputs(KTEPS) nan
+
+2019-07-14 23:36:55,397:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3913 | ETputs(KTEPS) nan ***************
+
+2019-07-14 23:36:55,408:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3863 | ETputs(KTEPS) nan
+
+2019-07-14 23:36:55,418:INFO: Epoch 00002 | Time(s) 0.0091 | TrainLoss 1.3863 | ETputs(KTEPS) 1.53
+
+2019-07-14 23:36:55,429:INFO: Epoch 00003 | Time(s) 0.0090 | TrainLoss 1.3863 | ETputs(KTEPS) 1.56
+
+2019-07-14 23:36:55,440:INFO: Epoch 00004 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:36:55,450:INFO: Epoch 00005 | Time(s) 0.0091 | TrainLoss 1.3863 | ETputs(KTEPS) 1.55
+
+2019-07-14 23:36:55,460:INFO: Epoch 00006 | Time(s) 0.0090 | TrainLoss 1.3863 | ETputs(KTEPS) 1.56
+
+2019-07-14 23:36:55,471:INFO: Epoch 00007 | Time(s) 0.0090 | TrainLoss 1.3863 | ETputs(KTEPS) 1.55
+
+2019-07-14 23:36:55,480:INFO: Epoch 00008 | Time(s) 0.0089 | TrainLoss 1.3863 | ETputs(KTEPS) 1.56
+
+2019-07-14 23:36:55,491:INFO: Epoch 00009 | Time(s) 0.0090 | TrainLoss 1.3863 | ETputs(KTEPS) 1.55
+
+2019-07-14 23:36:55,502:INFO: Epoch 00010 | Time(s) 0.0091 | TrainLoss 1.3863 | ETputs(KTEPS) 1.54
+
+2019-07-14 23:36:55,510:INFO: ************** Epoch 00010 | Time(s) 0.0091 | Loss 1.3912 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-14 23:36:55,521:INFO: Epoch 00011 | Time(s) 0.0091 | TrainLoss 1.3863 | ETputs(KTEPS) 1.53
+
+2019-07-14 23:36:55,531:INFO: Epoch 00012 | Time(s) 0.0091 | TrainLoss 1.3863 | ETputs(KTEPS) 1.54
+
+2019-07-14 23:36:55,545:INFO: Epoch 00013 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.49
+
+2019-07-14 23:36:55,557:INFO: Epoch 00014 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:36:55,568:INFO: Epoch 00015 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:36:55,579:INFO: Epoch 00016 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:36:55,592:INFO: Epoch 00017 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,603:INFO: Epoch 00018 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,613:INFO: Epoch 00019 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,626:INFO: Epoch 00020 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,633:INFO: ************** Epoch 00020 | Time(s) 0.0096 | Loss 1.3911 | ETputs(KTEPS) 1.46 ***************
+
+2019-07-14 23:36:55,644:INFO: Epoch 00021 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,654:INFO: Epoch 00022 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:36:55,664:INFO: Epoch 00023 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:36:55,675:INFO: Epoch 00024 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:36:55,684:INFO: Epoch 00025 | Time(s) 0.0095 | TrainLoss 1.3863 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:36:55,695:INFO: Epoch 00026 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:36:55,705:INFO: Epoch 00027 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.49
+
+2019-07-14 23:36:55,714:INFO: Epoch 00028 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.49
+
+2019-07-14 23:36:55,725:INFO: Epoch 00029 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.49
+
+2019-07-14 23:36:55,735:INFO: Epoch 00030 | Time(s) 0.0094 | TrainLoss 1.3863 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:36:55,742:INFO: ************** Epoch 00030 | Time(s) 0.0094 | Loss 1.3911 | ETputs(KTEPS) 1.50 ***************
+
+2019-07-14 23:36:55,752:INFO: Epoch 00031 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:36:55,762:INFO: Epoch 00032 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,772:INFO: Epoch 00033 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,781:INFO: Epoch 00034 | Time(s) 0.0092 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,792:INFO: Epoch 00035 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,802:INFO: Epoch 00036 | Time(s) 0.0092 | TrainLoss 1.3863 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:36:55,811:INFO: Epoch 00037 | Time(s) 0.0092 | TrainLoss 1.3863 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:36:55,823:INFO: Epoch 00038 | Time(s) 0.0092 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,834:INFO: Epoch 00039 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,846:INFO: Epoch 00040 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,854:INFO: ************** Epoch 00040 | Time(s) 0.0093 | Loss 1.3910 | ETputs(KTEPS) 1.51 ***************
+
+2019-07-14 23:36:55,863:INFO: Epoch 00041 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,875:INFO: Epoch 00042 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:36:55,887:INFO: Epoch 00043 | Time(s) 0.0093 | TrainLoss 1.3863 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:38:00,301:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-14 23:38:00,377:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 23:38:00,382:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-14 23:38:00,401:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3865 | ETputs(KTEPS) nan
+
+2019-07-14 23:38:00,409:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3868 | ETputs(KTEPS) nan ***************
+
+2019-07-14 23:38:00,421:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3865 | ETputs(KTEPS) nan
+
+2019-07-14 23:38:00,434:INFO: Epoch 00002 | Time(s) 0.0115 | TrainLoss 1.3865 | ETputs(KTEPS) 1.22
+
+2019-07-14 23:38:00,446:INFO: Epoch 00003 | Time(s) 0.0111 | TrainLoss 1.3865 | ETputs(KTEPS) 1.26
+
+2019-07-14 23:38:00,457:INFO: Epoch 00004 | Time(s) 0.0104 | TrainLoss 1.3865 | ETputs(KTEPS) 1.35
+
+2019-07-14 23:38:00,468:INFO: Epoch 00005 | Time(s) 0.0102 | TrainLoss 1.3865 | ETputs(KTEPS) 1.37
+
+2019-07-14 23:38:00,478:INFO: Epoch 00006 | Time(s) 0.0099 | TrainLoss 1.3865 | ETputs(KTEPS) 1.41
+
+2019-07-14 23:38:00,488:INFO: Epoch 00007 | Time(s) 0.0097 | TrainLoss 1.3865 | ETputs(KTEPS) 1.45
+
+2019-07-14 23:38:00,500:INFO: Epoch 00008 | Time(s) 0.0097 | TrainLoss 1.3865 | ETputs(KTEPS) 1.44
+
+2019-07-14 23:38:00,509:INFO: Epoch 00009 | Time(s) 0.0095 | TrainLoss 1.3864 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:38:00,520:INFO: Epoch 00010 | Time(s) 0.0095 | TrainLoss 1.3864 | ETputs(KTEPS) 1.47
+
+2019-07-14 23:38:00,528:INFO: ************** Epoch 00010 | Time(s) 0.0095 | Loss 1.3867 | ETputs(KTEPS) 1.47 ***************
+
+2019-07-14 23:38:00,538:INFO: Epoch 00011 | Time(s) 0.0094 | TrainLoss 1.3864 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:38:00,549:INFO: Epoch 00012 | Time(s) 0.0094 | TrainLoss 1.3864 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:38:00,558:INFO: Epoch 00013 | Time(s) 0.0093 | TrainLoss 1.3864 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:38:00,569:INFO: Epoch 00014 | Time(s) 0.0093 | TrainLoss 1.3864 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:38:00,578:INFO: Epoch 00015 | Time(s) 0.0092 | TrainLoss 1.3864 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:38:00,588:INFO: Epoch 00016 | Time(s) 0.0092 | TrainLoss 1.3864 | ETputs(KTEPS) 1.53
+
+2019-07-14 23:38:00,600:INFO: Epoch 00017 | Time(s) 0.0092 | TrainLoss 1.3864 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:38:00,610:INFO: Epoch 00018 | Time(s) 0.0092 | TrainLoss 1.3864 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:38:00,621:INFO: Epoch 00019 | Time(s) 0.0092 | TrainLoss 1.3864 | ETputs(KTEPS) 1.52
+
+2019-07-14 23:38:00,633:INFO: Epoch 00020 | Time(s) 0.0093 | TrainLoss 1.3864 | ETputs(KTEPS) 1.51
+
+2019-07-14 23:38:00,639:INFO: ************** Epoch 00020 | Time(s) 0.0093 | Loss 1.3867 | ETputs(KTEPS) 1.51 ***************
+
+2019-07-14 23:38:00,651:INFO: Epoch 00021 | Time(s) 0.0093 | TrainLoss 1.3864 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:38:00,662:INFO: Epoch 00022 | Time(s) 0.0094 | TrainLoss 1.3864 | ETputs(KTEPS) 1.49
+
+2019-07-14 23:38:00,673:INFO: Epoch 00023 | Time(s) 0.0094 | TrainLoss 1.3864 | ETputs(KTEPS) 1.50
+
+2019-07-14 23:38:00,687:INFO: Epoch 00024 | Time(s) 0.0095 | TrainLoss 1.3864 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:38:00,701:INFO: Epoch 00025 | Time(s) 0.0096 | TrainLoss 1.3864 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:38:00,713:INFO: Epoch 00026 | Time(s) 0.0096 | TrainLoss 1.3864 | ETputs(KTEPS) 1.45
+
+2019-07-14 23:59:44,100:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-14 23:59:44,176:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-14 23:59:44,179:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-14 23:59:44,199:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3869 | ETputs(KTEPS) nan
+
+2019-07-14 23:59:44,207:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.4047 | ETputs(KTEPS) nan ***************
+
+2019-07-14 23:59:44,219:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3869 | ETputs(KTEPS) nan
+
+2019-07-14 23:59:44,230:INFO: Epoch 00002 | Time(s) 0.0104 | TrainLoss 1.3869 | ETputs(KTEPS) 1.34
+
+2019-07-14 23:59:44,239:INFO: Epoch 00003 | Time(s) 0.0096 | TrainLoss 1.3868 | ETputs(KTEPS) 1.45
+
+2019-07-14 23:59:44,249:INFO: Epoch 00004 | Time(s) 0.0095 | TrainLoss 1.3868 | ETputs(KTEPS) 1.48
+
+2019-07-14 23:59:44,260:INFO: Epoch 00005 | Time(s) 0.0098 | TrainLoss 1.3868 | ETputs(KTEPS) 1.43
+
+2019-07-14 23:59:44,269:INFO: Epoch 00006 | Time(s) 0.0096 | TrainLoss 1.3868 | ETputs(KTEPS) 1.46
+
+2019-07-14 23:59:44,280:INFO: Epoch 00007 | Time(s) 0.0098 | TrainLoss 1.3868 | ETputs(KTEPS) 1.43
+
+2019-07-14 23:59:44,291:INFO: Epoch 00008 | Time(s) 0.0100 | TrainLoss 1.3868 | ETputs(KTEPS) 1.40
+
+2019-07-14 23:59:44,301:INFO: Epoch 00009 | Time(s) 0.0098 | TrainLoss 1.3868 | ETputs(KTEPS) 1.42
+
+2019-07-14 23:59:44,310:INFO: Epoch 00010 | Time(s) 0.0097 | TrainLoss 1.3868 | ETputs(KTEPS) 1.44
+
+2019-07-14 23:59:44,316:INFO: ************** Epoch 00010 | Time(s) 0.0097 | Loss 1.4033 | ETputs(KTEPS) 1.44 ***************
+
+2019-07-14 23:59:44,329:INFO: Epoch 00011 | Time(s) 0.0099 | TrainLoss 1.3868 | ETputs(KTEPS) 1.42
+
+2019-07-14 23:59:44,342:INFO: Epoch 00012 | Time(s) 0.0101 | TrainLoss 1.3868 | ETputs(KTEPS) 1.38
+
+2019-07-15 00:00:25,326:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-15 00:00:25,399:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-15 00:00:25,402:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-15 00:00:25,419:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3888 | ETputs(KTEPS) nan
+
+2019-07-15 00:00:25,426:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3871 | ETputs(KTEPS) nan ***************
+
+2019-07-15 00:00:25,437:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3888 | ETputs(KTEPS) nan
+
+2019-07-15 00:00:25,447:INFO: Epoch 00002 | Time(s) 0.0097 | TrainLoss 1.3888 | ETputs(KTEPS) 1.44
+
+2019-07-15 00:00:25,455:INFO: Epoch 00003 | Time(s) 0.0090 | TrainLoss 1.3887 | ETputs(KTEPS) 1.56
+
+2019-07-15 00:00:25,465:INFO: Epoch 00004 | Time(s) 0.0091 | TrainLoss 1.3887 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,473:INFO: Epoch 00005 | Time(s) 0.0088 | TrainLoss 1.3887 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,482:INFO: Epoch 00006 | Time(s) 0.0088 | TrainLoss 1.3886 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,491:INFO: Epoch 00007 | Time(s) 0.0087 | TrainLoss 1.3886 | ETputs(KTEPS) 1.61
+
+2019-07-15 00:00:25,500:INFO: Epoch 00008 | Time(s) 0.0088 | TrainLoss 1.3886 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,509:INFO: Epoch 00009 | Time(s) 0.0088 | TrainLoss 1.3885 | ETputs(KTEPS) 1.60
+
+2019-07-15 00:00:25,518:INFO: Epoch 00010 | Time(s) 0.0088 | TrainLoss 1.3885 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,525:INFO: ************** Epoch 00010 | Time(s) 0.0088 | Loss 1.3871 | ETputs(KTEPS) 1.59 ***************
+
+2019-07-15 00:00:25,535:INFO: Epoch 00011 | Time(s) 0.0088 | TrainLoss 1.3885 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,544:INFO: Epoch 00012 | Time(s) 0.0088 | TrainLoss 1.3884 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,554:INFO: Epoch 00013 | Time(s) 0.0088 | TrainLoss 1.3884 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,562:INFO: Epoch 00014 | Time(s) 0.0088 | TrainLoss 1.3884 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,571:INFO: Epoch 00015 | Time(s) 0.0088 | TrainLoss 1.3883 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,580:INFO: Epoch 00016 | Time(s) 0.0088 | TrainLoss 1.3883 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,589:INFO: Epoch 00017 | Time(s) 0.0088 | TrainLoss 1.3883 | ETputs(KTEPS) 1.60
+
+2019-07-15 00:00:25,599:INFO: Epoch 00018 | Time(s) 0.0088 | TrainLoss 1.3882 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,607:INFO: Epoch 00019 | Time(s) 0.0088 | TrainLoss 1.3882 | ETputs(KTEPS) 1.60
+
+2019-07-15 00:00:25,616:INFO: Epoch 00020 | Time(s) 0.0088 | TrainLoss 1.3882 | ETputs(KTEPS) 1.59
+
+2019-07-15 00:00:25,623:INFO: ************** Epoch 00020 | Time(s) 0.0088 | Loss 1.3871 | ETputs(KTEPS) 1.59 ***************
+
+2019-07-15 00:00:25,634:INFO: Epoch 00021 | Time(s) 0.0088 | TrainLoss 1.3882 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,643:INFO: Epoch 00022 | Time(s) 0.0088 | TrainLoss 1.3881 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,653:INFO: Epoch 00023 | Time(s) 0.0089 | TrainLoss 1.3881 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,663:INFO: Epoch 00024 | Time(s) 0.0089 | TrainLoss 1.3881 | ETputs(KTEPS) 1.57
+
+2019-07-15 00:00:25,671:INFO: Epoch 00025 | Time(s) 0.0089 | TrainLoss 1.3881 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,681:INFO: Epoch 00026 | Time(s) 0.0089 | TrainLoss 1.3880 | ETputs(KTEPS) 1.57
+
+2019-07-15 00:00:25,690:INFO: Epoch 00027 | Time(s) 0.0089 | TrainLoss 1.3880 | ETputs(KTEPS) 1.58
+
+2019-07-15 00:00:25,700:INFO: Epoch 00028 | Time(s) 0.0089 | TrainLoss 1.3880 | ETputs(KTEPS) 1.57
+
+2019-07-15 00:00:25,709:INFO: Epoch 00029 | Time(s) 0.0089 | TrainLoss 1.3880 | ETputs(KTEPS) 1.57
+
+2019-07-15 00:00:25,719:INFO: Epoch 00030 | Time(s) 0.0090 | TrainLoss 1.3879 | ETputs(KTEPS) 1.56
+
+2019-07-15 00:00:25,728:INFO: ************** Epoch 00030 | Time(s) 0.0090 | Loss 1.3871 | ETputs(KTEPS) 1.56 ***************
+
+2019-07-15 00:00:25,740:INFO: Epoch 00031 | Time(s) 0.0090 | TrainLoss 1.3879 | ETputs(KTEPS) 1.56
+
+2019-07-15 00:00:25,750:INFO: Epoch 00032 | Time(s) 0.0090 | TrainLoss 1.3879 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:00:25,760:INFO: Epoch 00033 | Time(s) 0.0090 | TrainLoss 1.3879 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:00:25,771:INFO: Epoch 00034 | Time(s) 0.0091 | TrainLoss 1.3878 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:25,781:INFO: Epoch 00035 | Time(s) 0.0091 | TrainLoss 1.3878 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:25,791:INFO: Epoch 00036 | Time(s) 0.0091 | TrainLoss 1.3878 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:25,802:INFO: Epoch 00037 | Time(s) 0.0091 | TrainLoss 1.3878 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,812:INFO: Epoch 00038 | Time(s) 0.0092 | TrainLoss 1.3877 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,823:INFO: Epoch 00039 | Time(s) 0.0092 | TrainLoss 1.3877 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,834:INFO: Epoch 00040 | Time(s) 0.0092 | TrainLoss 1.3877 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,841:INFO: ************** Epoch 00040 | Time(s) 0.0092 | Loss 1.3870 | ETputs(KTEPS) 1.51 ***************
+
+2019-07-15 00:00:25,854:INFO: Epoch 00041 | Time(s) 0.0093 | TrainLoss 1.3877 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,865:INFO: Epoch 00042 | Time(s) 0.0093 | TrainLoss 1.3877 | ETputs(KTEPS) 1.50
+
+2019-07-15 00:00:25,874:INFO: Epoch 00043 | Time(s) 0.0093 | TrainLoss 1.3876 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,883:INFO: Epoch 00044 | Time(s) 0.0093 | TrainLoss 1.3876 | ETputs(KTEPS) 1.50
+
+2019-07-15 00:00:25,892:INFO: Epoch 00045 | Time(s) 0.0093 | TrainLoss 1.3876 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,901:INFO: Epoch 00046 | Time(s) 0.0093 | TrainLoss 1.3876 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,909:INFO: Epoch 00047 | Time(s) 0.0092 | TrainLoss 1.3876 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:00:25,918:INFO: Epoch 00048 | Time(s) 0.0092 | TrainLoss 1.3876 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,927:INFO: Epoch 00049 | Time(s) 0.0092 | TrainLoss 1.3875 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,936:INFO: Epoch 00050 | Time(s) 0.0092 | TrainLoss 1.3875 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,943:INFO: ************** Epoch 00050 | Time(s) 0.0092 | Loss 1.3870 | ETputs(KTEPS) 1.52 ***************
+
+2019-07-15 00:00:25,953:INFO: Epoch 00051 | Time(s) 0.0092 | TrainLoss 1.3875 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,962:INFO: Epoch 00052 | Time(s) 0.0092 | TrainLoss 1.3875 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:25,970:INFO: Epoch 00053 | Time(s) 0.0092 | TrainLoss 1.3875 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,980:INFO: Epoch 00054 | Time(s) 0.0092 | TrainLoss 1.3874 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,988:INFO: Epoch 00055 | Time(s) 0.0092 | TrainLoss 1.3874 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:25,997:INFO: Epoch 00056 | Time(s) 0.0092 | TrainLoss 1.3874 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,005:INFO: Epoch 00057 | Time(s) 0.0091 | TrainLoss 1.3874 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,014:INFO: Epoch 00058 | Time(s) 0.0091 | TrainLoss 1.3874 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,023:INFO: Epoch 00059 | Time(s) 0.0091 | TrainLoss 1.3874 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,033:INFO: Epoch 00060 | Time(s) 0.0091 | TrainLoss 1.3874 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,039:INFO: ************** Epoch 00060 | Time(s) 0.0091 | Loss 1.3870 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:00:26,050:INFO: Epoch 00061 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,059:INFO: Epoch 00062 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,068:INFO: Epoch 00063 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,077:INFO: Epoch 00064 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,086:INFO: Epoch 00065 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,095:INFO: Epoch 00066 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,104:INFO: Epoch 00067 | Time(s) 0.0091 | TrainLoss 1.3873 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,113:INFO: Epoch 00068 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,121:INFO: Epoch 00069 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,130:INFO: Epoch 00070 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:00:26,136:INFO: ************** Epoch 00070 | Time(s) 0.0091 | Loss 1.3870 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:00:26,147:INFO: Epoch 00071 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,156:INFO: Epoch 00072 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:00:26,166:INFO: Epoch 00073 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,176:INFO: Epoch 00074 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,185:INFO: Epoch 00075 | Time(s) 0.0091 | TrainLoss 1.3872 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,196:INFO: Epoch 00076 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,205:INFO: Epoch 00077 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,215:INFO: Epoch 00078 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,225:INFO: Epoch 00079 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,235:INFO: Epoch 00080 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:00:26,243:INFO: ************** Epoch 00080 | Time(s) 0.0091 | Loss 1.3870 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:00:26,255:INFO: Epoch 00081 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,265:INFO: Epoch 00082 | Time(s) 0.0091 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,276:INFO: Epoch 00083 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,286:INFO: Epoch 00084 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,296:INFO: Epoch 00085 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,306:INFO: Epoch 00086 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:26,317:INFO: Epoch 00087 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:26,326:INFO: Epoch 00088 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:26,335:INFO: Epoch 00089 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:00:26,344:INFO: Epoch 00090 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,352:INFO: ************** Epoch 00090 | Time(s) 0.0092 | Loss 1.3870 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:00:26,361:INFO: Epoch 00091 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,370:INFO: Epoch 00092 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,380:INFO: Epoch 00093 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,388:INFO: Epoch 00094 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,398:INFO: Epoch 00095 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,406:INFO: Epoch 00096 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,416:INFO: Epoch 00097 | Time(s) 0.0092 | TrainLoss 1.3869 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:26,424:INFO: Epoch 00098 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:00:28,619:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-15 00:00:28,698:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-15 00:00:28,702:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-15 00:00:28,723:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3924 | ETputs(KTEPS) nan
+
+2019-07-15 00:00:28,732:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3921 | ETputs(KTEPS) nan ***************
+
+2019-07-15 00:00:28,743:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3923 | ETputs(KTEPS) nan
+
+2019-07-15 00:00:28,751:INFO: Epoch 00002 | Time(s) 0.0081 | TrainLoss 1.3922 | ETputs(KTEPS) 1.73
+
+2019-07-15 00:00:28,764:INFO: Epoch 00003 | Time(s) 0.0100 | TrainLoss 1.3922 | ETputs(KTEPS) 1.40
+
+2019-07-15 00:00:28,772:INFO: Epoch 00004 | Time(s) 0.0094 | TrainLoss 1.3921 | ETputs(KTEPS) 1.49
+
+2019-07-15 00:00:28,783:INFO: Epoch 00005 | Time(s) 0.0098 | TrainLoss 1.3920 | ETputs(KTEPS) 1.43
+
+2019-07-15 00:00:28,794:INFO: Epoch 00006 | Time(s) 0.0099 | TrainLoss 1.3920 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:00:28,802:INFO: Epoch 00007 | Time(s) 0.0096 | TrainLoss 1.3919 | ETputs(KTEPS) 1.47
+
+2019-07-15 00:00:28,815:INFO: Epoch 00008 | Time(s) 0.0100 | TrainLoss 1.3918 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:00:28,824:INFO: Epoch 00009 | Time(s) 0.0098 | TrainLoss 1.3918 | ETputs(KTEPS) 1.42
+
+2019-07-15 00:00:28,834:INFO: Epoch 00010 | Time(s) 0.0098 | TrainLoss 1.3917 | ETputs(KTEPS) 1.43
+
+2019-07-15 00:00:28,843:INFO: ************** Epoch 00010 | Time(s) 0.0098 | Loss 1.3916 | ETputs(KTEPS) 1.43 ***************
+
+2019-07-15 00:00:28,852:INFO: Epoch 00011 | Time(s) 0.0096 | TrainLoss 1.3916 | ETputs(KTEPS) 1.46
+
+2019-07-15 00:00:28,863:INFO: Epoch 00012 | Time(s) 0.0096 | TrainLoss 1.3916 | ETputs(KTEPS) 1.45
+
+2019-07-15 00:00:28,871:INFO: Epoch 00013 | Time(s) 0.0095 | TrainLoss 1.3915 | ETputs(KTEPS) 1.47
+
+2019-07-15 00:01:57,265:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-15 00:01:57,344:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-15 00:01:57,348:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-15 00:01:57,369:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3878 | ETputs(KTEPS) nan
+
+2019-07-15 00:01:57,376:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3897 | ETputs(KTEPS) nan ***************
+
+2019-07-15 00:01:57,388:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3877 | ETputs(KTEPS) nan
+
+2019-07-15 00:01:57,397:INFO: Epoch 00002 | Time(s) 0.0083 | TrainLoss 1.3877 | ETputs(KTEPS) 1.69
+
+2019-07-15 00:01:57,409:INFO: Epoch 00003 | Time(s) 0.0098 | TrainLoss 1.3877 | ETputs(KTEPS) 1.43
+
+2019-07-15 00:01:57,421:INFO: Epoch 00004 | Time(s) 0.0105 | TrainLoss 1.3876 | ETputs(KTEPS) 1.33
+
+2019-07-15 00:01:57,430:INFO: Epoch 00005 | Time(s) 0.0100 | TrainLoss 1.3876 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:01:57,441:INFO: Epoch 00006 | Time(s) 0.0101 | TrainLoss 1.3876 | ETputs(KTEPS) 1.38
+
+2019-07-15 00:01:57,451:INFO: Epoch 00007 | Time(s) 0.0102 | TrainLoss 1.3876 | ETputs(KTEPS) 1.37
+
+2019-07-15 00:01:57,460:INFO: Epoch 00008 | Time(s) 0.0099 | TrainLoss 1.3875 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:01:57,472:INFO: Epoch 00009 | Time(s) 0.0102 | TrainLoss 1.3875 | ETputs(KTEPS) 1.38
+
+2019-07-15 00:01:57,481:INFO: Epoch 00010 | Time(s) 0.0100 | TrainLoss 1.3875 | ETputs(KTEPS) 1.40
+
+2019-07-15 00:01:57,490:INFO: ************** Epoch 00010 | Time(s) 0.0100 | Loss 1.3897 | ETputs(KTEPS) 1.40 ***************
+
+2019-07-15 00:01:57,500:INFO: Epoch 00011 | Time(s) 0.0099 | TrainLoss 1.3875 | ETputs(KTEPS) 1.42
+
+2019-07-15 00:01:57,509:INFO: Epoch 00012 | Time(s) 0.0097 | TrainLoss 1.3875 | ETputs(KTEPS) 1.44
+
+2019-07-15 00:01:57,519:INFO: Epoch 00013 | Time(s) 0.0097 | TrainLoss 1.3874 | ETputs(KTEPS) 1.44
+
+2019-07-15 00:01:57,527:INFO: Epoch 00014 | Time(s) 0.0096 | TrainLoss 1.3874 | ETputs(KTEPS) 1.46
+
+2019-07-15 00:01:57,537:INFO: Epoch 00015 | Time(s) 0.0096 | TrainLoss 1.3874 | ETputs(KTEPS) 1.46
+
+2019-07-15 00:01:57,545:INFO: Epoch 00016 | Time(s) 0.0095 | TrainLoss 1.3874 | ETputs(KTEPS) 1.48
+
+2019-07-15 00:01:57,555:INFO: Epoch 00017 | Time(s) 0.0095 | TrainLoss 1.3873 | ETputs(KTEPS) 1.47
+
+2019-07-15 00:01:57,564:INFO: Epoch 00018 | Time(s) 0.0095 | TrainLoss 1.3873 | ETputs(KTEPS) 1.48
+
+2019-07-15 00:01:57,573:INFO: Epoch 00019 | Time(s) 0.0094 | TrainLoss 1.3873 | ETputs(KTEPS) 1.49
+
+2019-07-15 00:01:57,582:INFO: Epoch 00020 | Time(s) 0.0094 | TrainLoss 1.3873 | ETputs(KTEPS) 1.49
+
+2019-07-15 00:01:57,589:INFO: ************** Epoch 00020 | Time(s) 0.0094 | Loss 1.3896 | ETputs(KTEPS) 1.49 ***************
+
+2019-07-15 00:01:57,599:INFO: Epoch 00021 | Time(s) 0.0094 | TrainLoss 1.3873 | ETputs(KTEPS) 1.49
+
+2019-07-15 00:01:57,608:INFO: Epoch 00022 | Time(s) 0.0093 | TrainLoss 1.3872 | ETputs(KTEPS) 1.50
+
+2019-07-15 00:01:57,618:INFO: Epoch 00023 | Time(s) 0.0094 | TrainLoss 1.3872 | ETputs(KTEPS) 1.50
+
+2019-07-15 00:01:57,627:INFO: Epoch 00024 | Time(s) 0.0093 | TrainLoss 1.3872 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:01:57,636:INFO: Epoch 00025 | Time(s) 0.0093 | TrainLoss 1.3872 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:01:57,644:INFO: Epoch 00026 | Time(s) 0.0092 | TrainLoss 1.3872 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,654:INFO: Epoch 00027 | Time(s) 0.0093 | TrainLoss 1.3871 | ETputs(KTEPS) 1.51
+
+2019-07-15 00:01:57,662:INFO: Epoch 00028 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,672:INFO: Epoch 00029 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,681:INFO: Epoch 00030 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,687:INFO: ************** Epoch 00030 | Time(s) 0.0092 | Loss 1.3896 | ETputs(KTEPS) 1.52 ***************
+
+2019-07-15 00:01:57,697:INFO: Epoch 00031 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,707:INFO: Epoch 00032 | Time(s) 0.0092 | TrainLoss 1.3871 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,717:INFO: Epoch 00033 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:57,725:INFO: Epoch 00034 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,734:INFO: Epoch 00035 | Time(s) 0.0092 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,742:INFO: Epoch 00036 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,752:INFO: Epoch 00037 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,761:INFO: Epoch 00038 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,771:INFO: Epoch 00039 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,779:INFO: Epoch 00040 | Time(s) 0.0091 | TrainLoss 1.3870 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,787:INFO: ************** Epoch 00040 | Time(s) 0.0091 | Loss 1.3896 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:57,796:INFO: Epoch 00041 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,807:INFO: Epoch 00042 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,816:INFO: Epoch 00043 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,825:INFO: Epoch 00044 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,835:INFO: Epoch 00045 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,844:INFO: Epoch 00046 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:57,856:INFO: Epoch 00047 | Time(s) 0.0092 | TrainLoss 1.3869 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,865:INFO: Epoch 00048 | Time(s) 0.0091 | TrainLoss 1.3869 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,873:INFO: Epoch 00049 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,883:INFO: Epoch 00050 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,889:INFO: ************** Epoch 00050 | Time(s) 0.0091 | Loss 1.3896 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:01:57,900:INFO: Epoch 00051 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,909:INFO: Epoch 00052 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,920:INFO: Epoch 00053 | Time(s) 0.0092 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,928:INFO: Epoch 00054 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,937:INFO: Epoch 00055 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,946:INFO: Epoch 00056 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,957:INFO: Epoch 00057 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,967:INFO: Epoch 00058 | Time(s) 0.0092 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,976:INFO: Epoch 00059 | Time(s) 0.0091 | TrainLoss 1.3868 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,985:INFO: Epoch 00060 | Time(s) 0.0091 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:57,991:INFO: ************** Epoch 00060 | Time(s) 0.0091 | Loss 1.3895 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:01:58,003:INFO: Epoch 00061 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,011:INFO: Epoch 00062 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,023:INFO: Epoch 00063 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.52
+
+2019-07-15 00:01:58,031:INFO: Epoch 00064 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,040:INFO: Epoch 00065 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,050:INFO: Epoch 00066 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,059:INFO: Epoch 00067 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,069:INFO: Epoch 00068 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,077:INFO: Epoch 00069 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,087:INFO: Epoch 00070 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,093:INFO: ************** Epoch 00070 | Time(s) 0.0092 | Loss 1.3895 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:01:58,105:INFO: Epoch 00071 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,114:INFO: Epoch 00072 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,124:INFO: Epoch 00073 | Time(s) 0.0092 | TrainLoss 1.3867 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,133:INFO: Epoch 00074 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,141:INFO: Epoch 00075 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,152:INFO: Epoch 00076 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,160:INFO: Epoch 00077 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,170:INFO: Epoch 00078 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,179:INFO: Epoch 00079 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,188:INFO: Epoch 00080 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,194:INFO: ************** Epoch 00080 | Time(s) 0.0092 | Loss 1.3895 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:01:58,205:INFO: Epoch 00081 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,213:INFO: Epoch 00082 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,223:INFO: Epoch 00083 | Time(s) 0.0092 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,232:INFO: Epoch 00084 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,240:INFO: Epoch 00085 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,250:INFO: Epoch 00086 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,259:INFO: Epoch 00087 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,269:INFO: Epoch 00088 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,277:INFO: Epoch 00089 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,287:INFO: Epoch 00090 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,293:INFO: ************** Epoch 00090 | Time(s) 0.0091 | Loss 1.3895 | ETputs(KTEPS) 1.53 ***************
+
+2019-07-15 00:01:58,304:INFO: Epoch 00091 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,313:INFO: Epoch 00092 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,323:INFO: Epoch 00093 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,332:INFO: Epoch 00094 | Time(s) 0.0091 | TrainLoss 1.3866 | ETputs(KTEPS) 1.53
+
+2019-07-15 00:01:58,340:INFO: Epoch 00095 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,349:INFO: Epoch 00096 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,358:INFO: Epoch 00097 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,368:INFO: Epoch 00098 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,376:INFO: Epoch 00099 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,385:INFO: Epoch 00100 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,392:INFO: ************** Epoch 00100 | Time(s) 0.0091 | Loss 1.3894 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,403:INFO: Epoch 00101 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,411:INFO: Epoch 00102 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,421:INFO: Epoch 00103 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,429:INFO: Epoch 00104 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,438:INFO: Epoch 00105 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,446:INFO: Epoch 00106 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,456:INFO: Epoch 00107 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,465:INFO: Epoch 00108 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,474:INFO: Epoch 00109 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,484:INFO: Epoch 00110 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,490:INFO: ************** Epoch 00110 | Time(s) 0.0091 | Loss 1.3894 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,500:INFO: Epoch 00111 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,509:INFO: Epoch 00112 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,518:INFO: Epoch 00113 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,526:INFO: Epoch 00114 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,536:INFO: Epoch 00115 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,544:INFO: Epoch 00116 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:58,554:INFO: Epoch 00117 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,563:INFO: Epoch 00118 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:58,572:INFO: Epoch 00119 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:58,582:INFO: Epoch 00120 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,590:INFO: ************** Epoch 00120 | Time(s) 0.0091 | Loss 1.3894 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,602:INFO: Epoch 00121 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,611:INFO: Epoch 00122 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,621:INFO: Epoch 00123 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,629:INFO: Epoch 00124 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,639:INFO: Epoch 00125 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,649:INFO: Epoch 00126 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,659:INFO: Epoch 00127 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,669:INFO: Epoch 00128 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,678:INFO: Epoch 00129 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,688:INFO: Epoch 00130 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,694:INFO: ************** Epoch 00130 | Time(s) 0.0091 | Loss 1.3893 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,707:INFO: Epoch 00131 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,717:INFO: Epoch 00132 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,725:INFO: Epoch 00133 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,735:INFO: Epoch 00134 | Time(s) 0.0091 | TrainLoss 1.3865 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,743:INFO: Epoch 00135 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,753:INFO: Epoch 00136 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,761:INFO: Epoch 00137 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,771:INFO: Epoch 00138 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,780:INFO: Epoch 00139 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,790:INFO: Epoch 00140 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,796:INFO: ************** Epoch 00140 | Time(s) 0.0091 | Loss 1.3892 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,808:INFO: Epoch 00141 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,818:INFO: Epoch 00142 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,826:INFO: Epoch 00143 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,835:INFO: Epoch 00144 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,844:INFO: Epoch 00145 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,854:INFO: Epoch 00146 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,863:INFO: Epoch 00147 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,873:INFO: Epoch 00148 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,881:INFO: Epoch 00149 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,890:INFO: Epoch 00150 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,897:INFO: ************** Epoch 00150 | Time(s) 0.0091 | Loss 1.3892 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:58,908:INFO: Epoch 00151 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,919:INFO: Epoch 00152 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,927:INFO: Epoch 00153 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,937:INFO: Epoch 00154 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,946:INFO: Epoch 00155 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,956:INFO: Epoch 00156 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,965:INFO: Epoch 00157 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,974:INFO: Epoch 00158 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,983:INFO: Epoch 00159 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,991:INFO: Epoch 00160 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:58,999:INFO: ************** Epoch 00160 | Time(s) 0.0091 | Loss 1.3891 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:59,009:INFO: Epoch 00161 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,020:INFO: Epoch 00162 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,029:INFO: Epoch 00163 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,039:INFO: Epoch 00164 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,047:INFO: Epoch 00165 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,057:INFO: Epoch 00166 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,067:INFO: Epoch 00167 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,076:INFO: Epoch 00168 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,086:INFO: Epoch 00169 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,094:INFO: Epoch 00170 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,140:INFO: ************** Epoch 00170 | Time(s) 0.0091 | Loss 1.3890 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:59,152:INFO: Epoch 00171 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,161:INFO: Epoch 00172 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,171:INFO: Epoch 00173 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,179:INFO: Epoch 00174 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,188:INFO: Epoch 00175 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,198:INFO: Epoch 00176 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,207:INFO: Epoch 00177 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,216:INFO: Epoch 00178 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,225:INFO: Epoch 00179 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,234:INFO: Epoch 00180 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,240:INFO: ************** Epoch 00180 | Time(s) 0.0091 | Loss 1.3890 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:59,252:INFO: Epoch 00181 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,260:INFO: Epoch 00182 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,270:INFO: Epoch 00183 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,278:INFO: Epoch 00184 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,287:INFO: Epoch 00185 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,295:INFO: Epoch 00186 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,306:INFO: Epoch 00187 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,314:INFO: Epoch 00188 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,324:INFO: Epoch 00189 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,332:INFO: Epoch 00190 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,339:INFO: ************** Epoch 00190 | Time(s) 0.0091 | Loss 1.3889 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:59,349:INFO: Epoch 00191 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,358:INFO: Epoch 00192 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,368:INFO: Epoch 00193 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,377:INFO: Epoch 00194 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,387:INFO: Epoch 00195 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,395:INFO: Epoch 00196 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,406:INFO: Epoch 00197 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,414:INFO: Epoch 00198 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,423:INFO: Epoch 00199 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,433:INFO: Epoch 00200 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,439:INFO: ************** Epoch 00200 | Time(s) 0.0091 | Loss 1.3888 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:01:59,450:INFO: Epoch 00201 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,459:INFO: Epoch 00202 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,468:INFO: Epoch 00203 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:01:59,476:INFO: Epoch 00204 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,485:INFO: Epoch 00205 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,494:INFO: Epoch 00206 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,504:INFO: Epoch 00207 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,512:INFO: Epoch 00208 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,522:INFO: Epoch 00209 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,531:INFO: Epoch 00210 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,538:INFO: ************** Epoch 00210 | Time(s) 0.0091 | Loss 1.3888 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:01:59,547:INFO: Epoch 00211 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,557:INFO: Epoch 00212 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,566:INFO: Epoch 00213 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,576:INFO: Epoch 00214 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,586:INFO: Epoch 00215 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,595:INFO: Epoch 00216 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,606:INFO: Epoch 00217 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,615:INFO: Epoch 00218 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,624:INFO: Epoch 00219 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,633:INFO: Epoch 00220 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,639:INFO: ************** Epoch 00220 | Time(s) 0.0091 | Loss 1.3887 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:01:59,650:INFO: Epoch 00221 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,659:INFO: Epoch 00222 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,669:INFO: Epoch 00223 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,677:INFO: Epoch 00224 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,686:INFO: Epoch 00225 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,694:INFO: Epoch 00226 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,704:INFO: Epoch 00227 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,712:INFO: Epoch 00228 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,723:INFO: Epoch 00229 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,732:INFO: Epoch 00230 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,739:INFO: ************** Epoch 00230 | Time(s) 0.0090 | Loss 1.3886 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:01:59,749:INFO: Epoch 00231 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,758:INFO: Epoch 00232 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,768:INFO: Epoch 00233 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,777:INFO: Epoch 00234 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,786:INFO: Epoch 00235 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,794:INFO: Epoch 00236 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,804:INFO: Epoch 00237 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,812:INFO: Epoch 00238 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,822:INFO: Epoch 00239 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,831:INFO: Epoch 00240 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,838:INFO: ************** Epoch 00240 | Time(s) 0.0090 | Loss 1.3886 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:01:59,848:INFO: Epoch 00241 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,858:INFO: Epoch 00242 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,867:INFO: Epoch 00243 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,876:INFO: Epoch 00244 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,885:INFO: Epoch 00245 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,894:INFO: Epoch 00246 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,904:INFO: Epoch 00247 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,913:INFO: Epoch 00248 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,922:INFO: Epoch 00249 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,931:INFO: Epoch 00250 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,938:INFO: ************** Epoch 00250 | Time(s) 0.0090 | Loss 1.3885 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:01:59,948:INFO: Epoch 00251 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,958:INFO: Epoch 00252 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,967:INFO: Epoch 00253 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,976:INFO: Epoch 00254 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,986:INFO: Epoch 00255 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:01:59,994:INFO: Epoch 00256 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,004:INFO: Epoch 00257 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,012:INFO: Epoch 00258 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,023:INFO: Epoch 00259 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,032:INFO: Epoch 00260 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,039:INFO: ************** Epoch 00260 | Time(s) 0.0090 | Loss 1.3884 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:02:00,050:INFO: Epoch 00261 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,058:INFO: Epoch 00262 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,068:INFO: Epoch 00263 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,077:INFO: Epoch 00264 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,087:INFO: Epoch 00265 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,095:INFO: Epoch 00266 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,105:INFO: Epoch 00267 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,113:INFO: Epoch 00268 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,123:INFO: Epoch 00269 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,133:INFO: Epoch 00270 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,143:INFO: ************** Epoch 00270 | Time(s) 0.0090 | Loss 1.3884 | ETputs(KTEPS) 1.55 ***************
+
+2019-07-15 00:02:00,155:INFO: Epoch 00271 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,165:INFO: Epoch 00272 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,175:INFO: Epoch 00273 | Time(s) 0.0090 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,186:INFO: Epoch 00274 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,195:INFO: Epoch 00275 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,205:INFO: Epoch 00276 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,214:INFO: Epoch 00277 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.55
+
+2019-07-15 00:02:00,226:INFO: Epoch 00278 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,237:INFO: Epoch 00279 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,247:INFO: Epoch 00280 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,256:INFO: ************** Epoch 00280 | Time(s) 0.0091 | Loss 1.3883 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:02:00,267:INFO: Epoch 00281 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,276:INFO: Epoch 00282 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,286:INFO: Epoch 00283 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,295:INFO: Epoch 00284 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,305:INFO: Epoch 00285 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,314:INFO: Epoch 00286 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,324:INFO: Epoch 00287 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,333:INFO: Epoch 00288 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,345:INFO: Epoch 00289 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,356:INFO: Epoch 00290 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,364:INFO: ************** Epoch 00290 | Time(s) 0.0091 | Loss 1.3882 | ETputs(KTEPS) 1.54 ***************
+
+2019-07-15 00:02:00,375:INFO: Epoch 00291 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,385:INFO: Epoch 00292 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,393:INFO: Epoch 00293 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:02:00,403:INFO: Epoch 00294 | Time(s) 0.0091 | TrainLoss 1.3864 | ETputs(KTEPS) 1.54
+
+2019-07-15 00:46:40,420:INFO: Namespace(model_dir='experiments/MiniBatchDGI', restore_file=None)
+2019-07-15 00:46:40,500:INFO: ----Data statistics------'
+      #Edges 14
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-07-15 00:46:40,503:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=8, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=326, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-07-15 00:46:40,523:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3863 | ETputs(KTEPS) nan
+
+2019-07-15 00:46:40,530:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3883 | ETputs(KTEPS) nan ***************
+
+2019-07-15 00:46:40,541:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3863 | ETputs(KTEPS) nan
+
+2019-07-15 00:46:40,552:INFO: Epoch 00002 | Time(s) 0.0107 | TrainLoss 1.3863 | ETputs(KTEPS) 1.31
+
+2019-07-15 00:46:40,561:INFO: Epoch 00003 | Time(s) 0.0098 | TrainLoss 1.3863 | ETputs(KTEPS) 1.42
+
+2019-07-15 00:46:40,572:INFO: Epoch 00004 | Time(s) 0.0100 | TrainLoss 1.3863 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:46:40,582:INFO: Epoch 00005 | Time(s) 0.0100 | TrainLoss 1.3863 | ETputs(KTEPS) 1.40
+
+2019-07-15 00:46:40,591:INFO: Epoch 00006 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.46
+
+2019-07-15 00:46:40,602:INFO: Epoch 00007 | Time(s) 0.0099 | TrainLoss 1.3863 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:46:40,611:INFO: Epoch 00008 | Time(s) 0.0096 | TrainLoss 1.3863 | ETputs(KTEPS) 1.45
+
+2019-07-15 00:46:40,622:INFO: Epoch 00009 | Time(s) 0.0099 | TrainLoss 1.3863 | ETputs(KTEPS) 1.42
+
+2019-07-15 00:46:40,633:INFO: Epoch 00010 | Time(s) 0.0099 | TrainLoss 1.3863 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:46:40,639:INFO: ************** Epoch 00010 | Time(s) 0.0099 | Loss 1.3882 | ETputs(KTEPS) 1.41 ***************
+
+2019-07-15 00:46:40,653:INFO: Epoch 00011 | Time(s) 0.0101 | TrainLoss 1.3863 | ETputs(KTEPS) 1.38
+
+2019-07-15 00:46:40,661:INFO: Epoch 00012 | Time(s) 0.0099 | TrainLoss 1.3863 | ETputs(KTEPS) 1.41
+
+2019-07-15 00:46:40,672:INFO: Epoch 00013 | Time(s) 0.0100 | TrainLoss 1.3863 | ETputs(KTEPS) 1.39
+
+2019-07-15 00:46:40,683:INFO: Epoch 00014 | Time(s) 0.0101 | TrainLoss 1.3863 | ETputs(KTEPS) 1.39
+

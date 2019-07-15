@@ -241,17 +241,23 @@ def main(params):
         import sys
         sys.exit(0)
 
-    if cuda:
-        model.cuda()   
-        if 'model_infer' in locals():
-            model_infer.cuda()
 
     loss_fcn = torch.nn.CrossEntropyLoss()
     if params.model.lower() in ['dgi', 'minibatchdgi']:
+        if cuda:
+            unsupervised_model.cuda()   
+            if 'model_infer' in locals():
+                model_infer.cuda()
+            elif 'unsupervised_model_infer' in locals():
+                unsupervised_model_infer.cuda()
         logging.info(unsupervised_model)
         unsupervised_optimizer = torch.optim.Adam(unsupervised_model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
         # logging.info(decoder)
     else:
+        if cuda:
+            model.cuda()   
+            if 'model_infer' in locals():
+                model_infer.cuda()
         logging.info(model)
         optimizer = torch.optim.Adam(model.parameters(), lr=params.lr, weight_decay=params.weight_decay)
 

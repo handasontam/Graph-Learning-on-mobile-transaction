@@ -91,7 +91,8 @@ class MiniBatchTrainer(object):
                                         shuffle=True,
                                         num_hops=self.n_layers,
                                         add_self_loop=True,
-                                        seed_nodes=self.train_id):
+                                        seed_nodes=self.train_id, 
+                                        num_workers=self.num_cpu):
                 # update the aggregate history of all nodes in each layer
                 for i in range(self.n_layers):
                     agg_history_str = 'agg_history_{}'.format(i)
