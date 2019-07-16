@@ -116,13 +116,15 @@ class DGIInfer(nn.Module):
     def forward(self, nf):
         positive = self.encoder(nf, corrupt=False)
         negative = self.encoder(nf, corrupt=True)
-        summary = torch.sigmoid(positive.mean(dim=0))
+        summary = positive.mean(dim=0)
 
         positive = self.discriminator(positive, summary)
         negative = self.discriminator(negative, summary)
 
         l1 = self.loss(positive, torch.ones_like(positive))
         l2 = self.loss(negative, torch.zeros_like(negative))
+        print(l1)
+        print(l2)
 
         return l1 + l2
 

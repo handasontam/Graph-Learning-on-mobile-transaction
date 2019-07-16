@@ -150,8 +150,8 @@ class UnsupervisedMiniBatchTrainer(object):
                 logging.info("************** Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | ETputs(KTEPS) {:.2f} ***************\n".
                              format(epoch, np.mean(dur), average_loss, self.n_edges / np.mean(dur) / 1000))
 
-            # early stopping
-            self.early_stopping(average_loss, self.unsupervised_model_infer)
+                # early stopping
+                self.early_stopping(average_loss, self.unsupervised_model_infer)
             if self.early_stopping.early_stop:
                 logging.info("Early stopping")
                 break
