@@ -20,7 +20,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 class UnsupervisedMiniBatchTrainer(object):
-    def __init__(self, g, unsupervised_model, unsupervised_model_infer, encoder, encoder_infer, loss_fn, optimizer, epochs, features, labels, train_mask, val_mask, test_mask, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, num_cpu, cuda_context, model_dir='./'):
+    def __init__(self, g, unsupervised_model, unsupervised_model_infer, encoder, encoder_infer, loss_fn, optimizer, epochs, features, labels, train_id, val_id, test_id, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, num_cpu, cuda_context, model_dir='./'):
         self.g = g
         self.unsupervised_model = unsupervised_model
         self.unsupervised_model_infer = unsupervised_model_infer
@@ -28,15 +28,12 @@ class UnsupervisedMiniBatchTrainer(object):
         self.encoder_infer = encoder_infer
         self.loss_fn = loss_fn
         self.optimizer = optimizer
-        self.train_id = train_mask.nonzero().view(-1).to(torch.int64)
-        self.val_id = val_mask.nonzero().view(-1).to(torch.int64)
-        self.test_id = test_mask.nonzero().view(-1).to(torch.int64)
+        self.train_id = train_id
+        self.val_id = val_id
+        self.test_id = test_id
         self.epochs = epochs
         self.features = features
-        self.labels = labels.detach().cpu().numpy()
-        self.train_mask = train_mask
-        self.val_mask = val_mask
-        self.test_mask = test_mask
+        self.labels = labels
         if use_tensorboardx:
             self.writer = SummaryWriter('/tmp/tensorboardx')
         self.fast_mode = fast_mode
@@ -208,20 +205,18 @@ class UnsupervisedMiniBatchTrainer(object):
                         }
         features = self.features.detach().cpu().numpy()
 
-        dgi_X_train = embeds[self.train_id.detach().cpu().numpy()]
-        X_train = features[self.train_id.detach().cpu().numpy()]
-        y_train = self.labels[self.train_id.detach().cpu().numpy()]
+        dgi_X_train = embeds[self.train_id]
+        X_train = features[self.train_id]
+        y_train = self.labels.loc[self.train_id]['label']
 
-        
-        
-        dgi_X_test = embeds[self.test_id.detach().cpu().numpy()]
-        X_test = features[self.test_id.detach().cpu().numpy()]
-        y_test = self.labels[self.test_id.detach().cpu().numpy()]
+        dgi_X_test = embeds[self.test_id]
+        X_test = features[self.test_id]
+        y_test = self.labels.loc[self.test_id]['label']
         for name, classifier in classifiers.items():
-            print(name, ' : ', classifier.fit(X=dgi_X_train, y=y_train).score(dgi_X_test, y_test))
+            print('DGI -', name, ' : ', classifier.fit(X=dgi_X_train, y=y_train).score(dgi_X_test, y_test))
         
         for name, classifier in classifiers.items():
-            print('DGI -', name, ' : ', classifier.fit(X=X_train, y=y_train).score(X_test, y_test))
+            print(name, ' : ', classifier.fit(X=X_train, y=y_train).score(X_test, y_test))
 
     def plot(self, train_losses, val_losses, train_accuracies, val_accuracies):
         #####################################################################

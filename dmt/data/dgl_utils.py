@@ -1,5 +1,5 @@
-import networkx as nx
 import numpy as np
+import dgl
 
 def get_graph_from_data(data_path, directed, edge_dim):
     """
@@ -11,7 +11,7 @@ def get_graph_from_data(data_path, directed, edge_dim):
     # process the data
     with open(data_path, 'r') as f:
         data = f.readlines()
-        dg = nx.DiGraph()
+        dg = dgl.DGLGraph()
         i=0
         for edges in data:
             s = edges.strip().split(',')

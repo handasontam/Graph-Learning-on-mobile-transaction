@@ -15,7 +15,7 @@ from dgl.contrib.sampling import NeighborSampler
 import dgl.function as fn
 
 class MiniBatchTrainer(object):
-    def __init__(self, g, model, model_infer, loss_fn, optimizer, epochs, features, labels, train_mask, val_mask, test_mask, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, num_cpu, cuda_context, model_dir='./'):
+    def __init__(self, g, model, model_infer, loss_fn, optimizer, epochs, features, labels, train_id, val_id, test_id, fast_mode, n_edges, patience, batch_size, test_batch_size, num_neighbors, n_layers, num_cpu, cuda_context, model_dir='./'):
         self.g = g
         self.model = model
         self.model_infer = model_infer
@@ -28,15 +28,12 @@ class MiniBatchTrainer(object):
         # self.sched = torch.optim.lr_scheduler.LambdaLR(self.optimizer, 
         #                                         self.sched_lambda['none'])
         # print(train_mask.shape)
-        self.train_id = train_mask.nonzero().view(-1).to(torch.int64)
-        self.val_id = val_mask.nonzero().view(-1).to(torch.int64)
-        self.test_id = test_mask.nonzero().view(-1).to(torch.int64)
+        self.train_id = train_id
+        self.val_id = val_id
+        self.test_id = test_id
         self.epochs = epochs
         self.features = features
         self.labels = labels
-        self.train_mask = train_mask
-        self.val_mask = val_mask
-        self.test_mask = test_mask
         if use_tensorboardx:
             self.writer = SummaryWriter('/tmp/tensorboardx')
         self.fast_mode = fast_mode
@@ -53,13 +50,13 @@ class MiniBatchTrainer(object):
         # initialize early stopping object
         self.early_stopping = EarlyStopping(patience=patience, log_dir=model_dir, verbose=True)
 
-    def evaluate(self, features, labels, mask):
-        self.model.eval()
-        with torch.no_grad():
-            logits = self.model(features)
-            logits = logits[mask]
-            labels = labels[mask]
-            return accuracy(logits, labels)
+    # def evaluate(self, features, labels, mask):
+    #     self.model.eval()
+    #     with torch.no_grad():
+    #         logits = self.model(features)
+    #         logits = logits[mask]
+    #         labels = labels[mask]
+    #         return accuracy(logits, labels)
 
     def train(self):
         # initialize
@@ -117,7 +114,7 @@ class MiniBatchTrainer(object):
                 logits = self.model(nf)
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
-                batch_labels = self.labels[batch_node_ids]
+                batch_labels = torch.LongTensor(self.labels.loc[batch_node_ids]['label'].values)
                 mini_batch_accuracy = torch_accuracy(logits, batch_labels)
                 train_num_correct += mini_batch_accuracy * batch_size
                 train_loss = self.loss_fn(logits, batch_labels)
@@ -126,7 +123,7 @@ class MiniBatchTrainer(object):
                 _, indicies = torch.max(logits, dim=1)
                 pred = indicies.cpu().detach().numpy()
                 pred_temp = np.append(pred_temp, pred)
-                label_temp = np.append(label_temp, self.labels[batch_node_ids].cpu())
+                label_temp = np.append(label_temp, batch_labels.cpu())
 
                 # Train
                 self.optimizer.zero_grad()
@@ -184,7 +181,7 @@ class MiniBatchTrainer(object):
                 logits, embeddings = self.model_infer(nf)
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
-                batch_labels = self.labels[batch_node_ids]
+                batch_labels = torch.LongTensor(self.labels.loc[batch_node_ids]['label'].values)
                 mini_batch_accuracy = torch_accuracy(logits, batch_labels)
                 val_num_correct += mini_batch_accuracy * batch_size
                 mini_batch_val_loss = self.loss_fn(logits, batch_labels)
@@ -193,7 +190,7 @@ class MiniBatchTrainer(object):
                 _, indicies = torch.max(logits, dim=1)
                 pred = indicies.cpu().detach().numpy()
                 pred_temp = np.append(pred_temp, pred)
-                label_temp = np.append(label_temp, self.labels[batch_node_ids].cpu())
+                label_temp = np.append(label_temp, batch_labels.cpu())
 
 
             # loss and accuracy of this epoch
@@ -235,9 +232,6 @@ class MiniBatchTrainer(object):
         # load the last checkpoint with the best model
         self.model.load_state_dict(torch.load(os.path.join(self.model_dir, 'checkpoint.pt')))
 
-        # # logging.info()
-        # acc = self.evaluate(self.features, self.labels, self.test_mask)
-        # logging.info("Test Accuracy {:.4f}".format(acc))
 
         self.plot(train_losses, val_losses, train_accuracies, val_accuracies)
 

@@ -84,8 +84,6 @@ class MiniBatchEdgeProp(nn.Module):
                  num_classes,
                  activation,
                  feat_drop,
-                 residual, 
-                 use_batch_norm, 
                  cuda):
         super(MiniBatchEdgeProp, self).__init__()
         self.cuda = cuda
@@ -187,8 +185,6 @@ class MiniBatchEdgePropInfer(nn.Module):
                  num_hidden,
                  num_classes,
                  activation,
-                 residual, 
-                 use_batch_norm, 
                  cuda):
         super(MiniBatchEdgePropInfer, self).__init__()
         self.cuda = cuda

@@ -30,8 +30,6 @@ class Encoder(nn.Module):
                     n_hidden,
                     F.elu,
                     dropout,
-                    False,
-                    False,
                     cuda)
             else:
                 self.conv = MiniBatchEdgePropInfer(
@@ -42,8 +40,6 @@ class Encoder(nn.Module):
                     n_hidden,
                     n_hidden,
                     F.elu,
-                    False,
-                    False,
                     cuda)
         else:
             logging.info(
@@ -123,8 +119,6 @@ class DGIInfer(nn.Module):
 
         l1 = self.loss(positive, torch.ones_like(positive))
         l2 = self.loss(negative, torch.zeros_like(negative))
-        print(l1)
-        print(l2)
 
         return l1 + l2
 

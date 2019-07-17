@@ -12,7 +12,9 @@ from dmt.trainer import Trainer
 from dmt.mini_batch_trainer import MiniBatchTrainer
 from dmt.unsupervised_trainer import UnsupervisedTrainer
 from dmt.unsupervised_mini_batch_trainer import UnsupervisedMiniBatchTrainer
-from dmt.data import register_data_args, load_data
+# from dmt.data import register_data_args, load_data
+from dmt.data.data_loader import Dataset
+from dmt.data.wechat_data_loader import WeChatDataset
 from dmt.utils import Params, set_logger
 
 # logger = logging.getLogger(__name__)
@@ -20,18 +22,24 @@ from dmt.utils import Params, set_logger
 
 def main(params):
     # load and preprocess dataset
-    data = load_data(params.dataset)
+    data = Dataset(data_path=params.data_dir, 
+                   preprocess=params.preprocess, 
+                   directed=False)
     features = torch.FloatTensor(data.features)
-    labels = torch.LongTensor(data.labels)
-    train_mask = torch.ByteTensor(data.train_mask)
-    val_mask = torch.ByteTensor(data.val_mask)
-    test_mask = torch.ByteTensor(data.test_mask)
+    # labels = torch.LongTensor(data.labels)
+    labels = data.labels
+    train_id = data.train_id
+    val_id = data.val_id
+    test_id = data.test_id
+    # train_mask = torch.ByteTensor(data.train_mask)
+    # val_mask = torch.ByteTensor(data.val_mask)
+    # test_mask = torch.ByteTensor(data.test_mask)
     num_feats = features.shape[1]
     # num_edge_feats = edge_features.shape[1]
     num_edge_feats = data.num_edge_feats
-    n_classes = data.num_labels
-    n_edges = data.graph.number_of_edges()
-    n_nodes = data.graph.number_of_nodes()
+    n_classes = data.num_classes
+    n_edges = data.g.number_of_edges()
+    n_nodes = data.g.number_of_nodes()
     logging.info("""----Data statistics------'
       #Edges %d
       #Classes %d
@@ -39,9 +47,9 @@ def main(params):
       #Val samples %d
       #Test samples %d""" %
           (n_edges, n_classes,
-           train_mask.sum().item(),
-           val_mask.sum().item(),
-           test_mask.sum().item()))
+           len(train_id),
+           len(val_id),
+           len(test_id)))
     if params.gpu < 0:
         cuda = False
         cuda_context = None
@@ -50,12 +58,12 @@ def main(params):
         torch.cuda.set_device(params.gpu)
         cuda_context = torch.device('cuda:{}'.format(params.gpu))
         labels = labels.cuda()
-        train_mask = train_mask.cuda()
-        val_mask = val_mask.cuda()
-        test_mask = test_mask.cuda()
+        # train_mask = train_mask.cuda()
+        # val_mask = val_mask.cuda()
+        # test_mask = test_mask.cuda()
 
     # create DGL graph
-    g = data.graph
+    g = data.g
     n_edges = g.number_of_edges()
     # add self loop
     # print(g.edata)
@@ -117,8 +125,6 @@ def main(params):
                     n_classes,
                     F.elu,
                     params.in_drop,
-                    params.residual, 
-                    params.use_batch_norm,
                     cuda)
         model_infer = MiniBatchEdgePropInfer(
                     g, 
@@ -129,8 +135,6 @@ def main(params):
                     n_classes,
                     F.elu,
                     0, #params.in_drop,
-                    params.residual, 
-                    params.use_batch_norm,
                     cuda)
         
     elif params.model == 'MiniBatchGCN':
@@ -287,10 +291,10 @@ def main(params):
                         optimizer=optimizer, 
                         epochs=params.epochs, 
                         features=features, 
-                        labels=labels, 
-                        train_mask=train_mask, 
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
+                        labels=labels,
+                        train_id=train_id,
+                        val_id=val_id,
+                        test_id=test_id, 
                         fast_mode=params.fastmode, 
                         n_edges=n_edges, 
                         patience=params.patience, 
@@ -326,9 +330,9 @@ def main(params):
                         epochs=params.epochs, 
                         features=features, 
                         labels=labels, 
-                        train_mask=train_mask, 
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
+                        train_id=train_id, 
+                        val_id=val_id, 
+                        test_id=test_id, 
                         fast_mode=params.fastmode, 
                         n_edges=n_edges, 
                         patience=params.patience, 
@@ -351,9 +355,9 @@ def main(params):
                         epochs=params.epochs,
                         features=features,
                         labels=labels,
-                        train_mask=train_mask,
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
+                        train_id=train_id,
+                        val_id=val_id, 
+                        test_id=test_id, 
                         fast_mode=params.fastmode, 
                         n_edges=n_edges, 
                         patience=params.patience, 
@@ -362,28 +366,35 @@ def main(params):
                         num_cpu=params.num_cpu, 
                         cuda_context=cuda_context)
     else:
-        if cuda:
-            g.edata['edge_features'] = data.graph.edata['edge_features'].cuda()
-        trainer = Trainer(
-                        model=model, 
-                        loss_fn=loss_fcn, 
-                        optimizer=optimizer, 
-                        epochs=params.epochs, 
-                        features=features, 
-                        labels=labels, 
-                        train_mask=train_mask, 
-                        val_mask=val_mask, 
-                        test_mask=test_mask, 
-                        fast_mode=params.fast_mode, 
-                        n_edges=n_edges, 
-                        patience=params.patience, 
-                        model_dir=params.model_dir)
+        logging.info(f'\033[1;31;40mThe model: {params.model} is not supported yet.')
+        # if cuda:
+        #     g.edata['edge_features'] = data.g.edata['edge_features'].cuda()
+        # trainer = Trainer(
+        #                 model=model, 
+        #                 loss_fn=loss_fcn, 
+        #                 optimizer=optimizer, 
+        #                 epochs=params.epochs, 
+        #                 features=features, 
+        #                 labels=labels, 
+        #                 train_mask=train_mask, 
+        #                 val_mask=val_mask, 
+        #                 test_mask=test_mask, 
+        #                 fast_mode=params.fast_mode, 
+        #                 n_edges=n_edges, 
+        #                 patience=params.patience, 
+        #                 model_dir=params.model_dir)
     trainer.train()
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Examples')
     # register_data_args(parser)
+    parser.add_argument("--data-dir", type=str, required=True, 
+                        help="Directory containing adj.txt, features.txt, label.txt")
+    feature_parser = parser.add_mutually_exclusive_group(required=True)
+    feature_parser.add_argument('--preprocess', dest='preprocess', action='store_true')
+    feature_parser.add_argument('--no-preprocess', dest='preprocess', action='store_false')
+    parser.set_defaults(preprocess=True)
     parser.add_argument("--model-dir", type=str, required=True, 
                         help="Directory containing params.json")
     parser.add_argument('--restore_file', default=None,
@@ -401,12 +412,9 @@ if __name__ == '__main__':
     assert os.path.isfile(json_path), "No json configuration file found at {}".format(json_path)
     params = Params(json_path)
 
+    params.preprocess = args.preprocess
+    params.data_dir = args.data_dir
     params.model_dir = args.model_dir
-
-    # models asssertions
-    # current_models = {'EdgePropAT', 'GAT', 'GAT_EdgeAT', 'MiniBatchEdgeProp', 'MiniBatchGCN', 'MiniBatchGraphSAGE', 'MiniBatchEdgePropPlus', 'DGI'}
-    # assert params.model in current_models, "The model \"{}\" is not implemented, please chose from {}".format(params.model, current_models)
-
 
     # params.cuda = torch.cuda.is_available()
 
