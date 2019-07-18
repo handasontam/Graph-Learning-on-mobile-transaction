@@ -32,7 +32,7 @@ python main.py --data-dir ./dmt/data/test_data/ --preprocess --model-dir experim
 
 # params.json
 ## General parameter
-- gpu (int): The gpu id, gpu should be set to -1 if you only want to use cpu
+- gpu (int): The gpu id. gpu should be set to -1 if you only want to use cpu
 - epochs (int): The max number of epochs.
 - lr (float): learning rate
 - patience (int): patience for early stopping, if the loss stops decreasing for consecutive (patience) epochs, it will early stop.
