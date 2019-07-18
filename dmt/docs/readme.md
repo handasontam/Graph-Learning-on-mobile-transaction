@@ -45,7 +45,7 @@ python main.py --data-dir ./dmt/data/test_data/ --preprocess --model-dir experim
 - batch_size (int): 
 - test_batch_size (int):
 - num_neighbors (int): number of samples used for neighbor sampling
-- num_cpu
+- num_cpu: number of cpu used for minibatch sampling and neighbor sampling
 
 ## Model
 ### DGI
