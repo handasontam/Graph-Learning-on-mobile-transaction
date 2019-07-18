@@ -11,6 +11,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 from ..MiniBatchEdgePropNS import MiniBatchEdgeProp, MiniBatchEdgePropInfer
+from ..MiniBatchGCN import MiniBatchGCNInfer, MiniBatchGCNSampling
 import logging
 from dgl.contrib.sampling import NeighborSampler
 
@@ -19,6 +20,7 @@ class Encoder(nn.Module):
     def __init__(self, g, conv_model, in_feats, edge_in_feats, n_hidden, n_layers, activation, dropout, infer, cuda):
         super(Encoder, self).__init__()
         self.g = g
+        self.infer = infer
         if conv_model.upper() == 'EDGEPROP':
             if not infer:
                 self.conv = MiniBatchEdgeProp(
@@ -41,6 +43,24 @@ class Encoder(nn.Module):
                     n_hidden,
                     F.elu,
                     cuda)
+        elif conv_model.upper() == 'GCN':
+            if not infer:
+                self.conv = MiniBatchGCNSampling(
+                    in_feats=in_feats,
+                    n_hidden=n_hidden,
+                    n_classes=n_hidden,
+                    n_layers=n_layers,
+                    activation=F.relu, 
+                    dropout=dropout
+                )
+            else:
+                self.conv = MiniBatchGCNInfer(
+                    in_feats=in_feats, 
+                    n_hidden=n_hidden,
+                    n_classes=n_hidden,
+                    n_layers=n_layers,
+                    activation=F.relu
+                )
         else:
             logging.info(
                 'The encoder model - {} is not implemented in DGI'.format(conv_model))
@@ -54,7 +74,10 @@ class Encoder(nn.Module):
                 # shuffle edge features
                 perm = torch.randperm(nf.block_size(i))
                 nf.blocks[i].data['edge_features'] = nf.blocks[i].data['edge_features'][perm]
-        features = self.conv(nf)
+        if self.infer:
+            features, _ = self.conv(nf)
+        else:
+            features = self.conv(nf)
         return features
 
 

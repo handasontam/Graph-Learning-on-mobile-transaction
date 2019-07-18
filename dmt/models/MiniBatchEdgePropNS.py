@@ -266,8 +266,9 @@ class MiniBatchEdgePropInfer(nn.Module):
                             fn.sum(msg='m', out='h'), 
                             node_layer)
             h = nf.layers[i+1].data.pop('activation')
-        h = self.fc(h)
-        return h
+        embedding = h
+        h = self.fc(embedding)
+        return h, embedding
 
     def edge_nonlinearity(self, edges):
         eft = self.activation(edges.data['eft'])

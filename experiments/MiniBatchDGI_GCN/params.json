@@ -1,0 +1,18 @@
+{
+    "model": "MiniBatchDGI", 
+    "gpu": -1,
+    "conv_model": "GCN", 
+    "epochs": 10000, 
+    "num_layers": 2, 
+    "node_hidden_dim": 3,
+    "in_drop": 0.0, 
+    "lr": 0.0003,
+    "batch_size": 8192, 
+    "test_batch_size": 8192,  
+    "num_neighbors": 25, 
+    "weight_decay": 0.01,
+    "use_batch_norm": false,
+    "fastmode": false,
+    "patience": 30,
+    "num_cpu": 10
+}
