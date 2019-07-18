@@ -1,7 +1,6 @@
 {
     "model": "MiniBatchEdgePropPlus", 
     "gpu": -1,
-    "dataset": "test" , 
     "epochs": 10000, 
     "num_layers": 1, 
     "node_hidden_dim": 20,

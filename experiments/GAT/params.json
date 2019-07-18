@@ -1,7 +1,6 @@
 {
     "model": "GAT", 
     "gpu": -1,
-    "dataset": "wechat" , 
     "epochs": 10000, 
     "num_heads": 2,
     "num_out_heads": 1,

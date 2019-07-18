@@ -1,7 +1,6 @@
 {
     "model": "GAT_EdgeAT", 
     "gpu": -1,
-    "dataset": "simple" , 
     "epochs": 10000, 
     "num_heads": 2,
     "num_out_heads": 1,

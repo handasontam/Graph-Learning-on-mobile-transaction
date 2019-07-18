@@ -1,7 +1,6 @@
 {
     "model": "DGI", 
     "gpu": -1,
-    "dataset": "wechat" , 
     "conv_model": "GAT", 
     "epochs": 10000, 
     "num_layers": 1, 
