@@ -3,14 +3,31 @@
 ```bash
 mkdir -p experiments/test
 ```
-- create the params.json (see below)
+- create the params.json (see the following section (copy one of the below and modify))
 ```bash
 vim experiments/test/params.json
 ```
 
+- prepare the dataset (adj.txt, features,txt, label.txt), the format for each of the file is listed below (Also see data/test_data for the example):
+
+## adj.txt:
+```
+from_node_id, to_node_id, edge_features1, edge_features2, ...
+```
+
+## features.txt
+```
+node_id, feature1, feature2, ...
+```
+
+## label.txt
+```
+node_id, label_id
+```
+
 - start the experiment using the following command
 ```bash
-python main.py --model-dir ./experiments/MiniEdgeProp
+python main.py --data-dir ./dmt/data/test_data/ --preprocess --model-dir experiments/test
 ```
 
 # params.json
@@ -31,12 +48,31 @@ python main.py --model-dir ./experiments/MiniEdgeProp
 - num_cpu
 
 ## Model
+### DGI
+- conv_model can be 'GCN' or 'GAT'
+
+```json
+{
+    "model": "DGI", 
+    "gpu": -1,
+    "conv_model": "GCN", 
+    "epochs": 10000, 
+    "num_layers": 1, 
+    "node_hidden_dim": 128,
+    "in_drop": 0.0, 
+    "lr": 0.0002, 
+    "weight_decay": 0.01,
+    "fastmode": false,
+    "patience": 100,
+    "num_cpu": 10
+}
+```
+
 ### MiniBatchGraphSAGE
 ```json
 {
     "model": "MiniBatchGraphSAGE",
     "gpu": 0,
-    "dataset": "wechat" ,
     "epochs": 10000,
     "num_layers": 1,
     "num_hidden": 128,
@@ -59,8 +95,7 @@ python main.py --model-dir ./experiments/MiniEdgeProp
 ```json
 {
     "model": "MiniBatchEdgeProp", 
-    "gpu": -1,
-    "dataset": "wechat" , 
+    "gpu": 0,
     "epochs": 10000, 
     "num_layers": 1, 
     "num_hidden": 5, 
@@ -81,8 +116,7 @@ python main.py --model-dir ./experiments/MiniEdgeProp
 ```json
 {
     "model": "MiniBatchDGI", 
-    "gpu": -1,
-    "dataset": "wechat" , 
+    "gpu": 0,
     "conv_model": "EdgeProp", 
     "epochs": 10000, 
     "num_layers": 1, 
@@ -94,28 +128,7 @@ python main.py --model-dir ./experiments/MiniEdgeProp
     "num_neighbors": 25, 
     "weight_decay": 0.01,
     "fastmode": false,
-    "patience": 50,
-    "num_cpu": 10
-}
-```
-
-### DGI
-- conv_model can be 'GCN' or 'GAT'
-
-```json
-{
-    "model": "DGI", 
-    "gpu": -1,
-    "dataset": "wechat" , 
-    "conv_model": "GAT", 
-    "epochs": 10000, 
-    "num_layers": 1, 
-    "node_hidden_dim": 128,
-    "in_drop": 0.0, 
-    "lr": 0.0002, 
-    "weight_decay": 0.01,
-    "fastmode": false,
-    "patience": 100,
+    "patience": 10,
     "num_cpu": 10
 }
 ```

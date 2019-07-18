@@ -57,7 +57,7 @@ def main(params):
         cuda = True
         torch.cuda.set_device(params.gpu)
         cuda_context = torch.device('cuda:{}'.format(params.gpu))
-        labels = labels.cuda()
+        # labels = labels.cuda()
         # train_mask = train_mask.cuda()
         # val_mask = val_mask.cuda()
         # test_mask = test_mask.cuda()
@@ -366,7 +366,7 @@ def main(params):
                         num_cpu=params.num_cpu, 
                         cuda_context=cuda_context)
     else:
-        logging.info(f'\033[1;31;40mThe model: {params.model} is not supported yet.')
+        logging.info('\033[1;31;40mThe model: {} is not supported yet.'.format(params.model))
         # if cuda:
         #     g.edata['edge_features'] = data.g.edata['edge_features'].cuda()
         # trainer = Trainer(

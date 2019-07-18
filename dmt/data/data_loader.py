@@ -36,20 +36,20 @@ class Dataset(object):
     def load_graph(self):
         # Graph and Edge Features
         if self.preprocess:
-            logging.info(f'Reading {self.edges_dir} into dgl graph')
+            logging.info('Reading {} into dgl graph'.format(self.edges_dir))
             with open(self.edges_dir, 'r') as f:
-                data = f.readlines()
-                data = np.array([line.strip().split(',') for line in data]).astype(np.float32)
-                logging.info(f'Number of edges found in {self.edges_dir}: {data.shape[0]}')
-                data = data[np.in1d(data[:,0], list(self.feat_graph_intersec_set))]
-                data = data[np.in1d(data[:,1], list(self.feat_graph_intersec_set))]
-                logging.info(f'*** Number of edges after filtering : {data.shape[0]}')
-                edge_from_id = data[:,0].astype(int)
-                edge_to_id = data[:,1].astype(int)
+                # data = f.readlines()
+                # data = np.array([line.strip().split(',') for line in data]).astype(np.float32)
+                logging.info('Number of edges found in {}: {}'.format(self.edges_dir, self._data.shape[0]))
+                self._data = self._data[np.in1d(self._data[:,0], list(self.feat_graph_intersec_set))]
+                self._data = self._data[np.in1d(self._data[:,1], list(self.feat_graph_intersec_set))]
+                logging.info('*** Number of edges after filtering : {}'.format(self._data.shape[0]))
+                edge_from_id = self._data[:,0].astype(int)
+                edge_to_id = self._data[:,1].astype(int)
                 # Map vertex id to consecutive integers
                 edge_from_id = np.vectorize(self.v_mapping.get)(edge_from_id)
                 edge_to_id = np.vectorize(self.v_mapping.get)(edge_to_id)
-                edge_features = data[:,2:]
+                edge_features = self._data[:,2:]
                 # Create DGL Graph
                 self.g = dgl.DGLGraph()
                 self.g.add_nodes(self.number_of_nodes)
@@ -69,10 +69,10 @@ class Dataset(object):
             with open(self.dgl_pickle_path, 'wb') as f:
                 pickle.dump(self.g, f)
         else:
-            logging.info(f'Reading dgl graph directly from {self.dgl_pickle_path}')
+            logging.info('Reading dgl graph directly from {}'.format(self.dgl_pickle_path))
             with open(self.dgl_pickle_path, 'rb') as f:
                 self.g= pickle.load(f)
-            logging.info(f'dgl graph loaded successfully from {self.dgl_pickle_path}')
+            logging.info('dgl graph loaded successfully from {}'.format(self.dgl_pickle_path))
     
     def load_node_features(self):
         # Node Features
@@ -94,6 +94,7 @@ class Dataset(object):
                             delimiter=',', 
                             header=None, 
                             names=['id', 'label'])
+        self.labels_set = set(self.labels['id'])
 
     def vertex_id_map(self):
         # Vertex id map
@@ -101,31 +102,34 @@ class Dataset(object):
         if self.preprocess:
             nodes_set = set()
             with open(self.edges_dir, 'r') as f:
-                for line in f.readlines():
-                    s = line.strip().split(',')
-                    nodes_set = nodes_set.union({int(s[0])}).union({int(s[1])})
+                self._data = f.readlines()
+                self._data = np.array([line.strip().split(',') for line in self._data]).astype(np.float32)
+                nodes_set = set(np.append(self._data[:,0], self._data[:,1]).astype(int))
+                # print(nodes_set)
+                # for line in f.readlines():
+                #     s = line.strip().split(',')
+                #     nodes_set = nodes_set.union({int(s[0])}).union({int(s[1])})
             features_set = set(self.features.index)
-            self.labels_set = set(self.labels['id'])
             self.feat_graph_intersec_set = features_set.intersection(nodes_set)
-            logging.info(f'Number of node features in features.txt: {len(features_set)}')
-            logging.info(f'Number of nodes in adj.txt: {len(nodes_set)}')
-            logging.info(f'Number of node in the intersection: {len(features_set)}')
+            logging.info('Number of node features in features.txt: {}'.format(len(features_set)))
+            logging.info('Number of nodes in adj.txt: {}'.format(len(nodes_set)))
+            logging.info('Number of node in the intersection: {}'.format(len(features_set)))
             
             self.number_of_nodes = len(self.feat_graph_intersec_set)
             self.v_mapping = dict(zip(list(self.feat_graph_intersec_set), range(self.number_of_nodes)))  # key is vertex id, value is new vertex id
 
             logging.info('Node id mapping created')
-            logging.info(f'Save the mapping to {self.vertex_map_path}')
+            logging.info('Save the mapping to {}'.format(self.vertex_map_path))
             with open(self.vertex_map_path, 'w') as csv_file:
                 writer = csv.writer(csv_file)
                 for key, value in self.v_mapping.items():
                     writer.writerow([key, value])
-            logging.info(f'\033[1;32;40mVertex id mapping is sucessfully saved to {self.vertex_map_path}\033[0;37;40m ')
+            logging.info('\033[1;32;40mVertex id mapping is sucessfully saved to {}\033[0;37;40m '.format(self.vertex_map_path))
         else:
-            logging.info(f'Loading vertex id mapping from {self.vertex_map_path}')
+            logging.info('Loading vertex id mapping from {}'.format(self.vertex_map_path))
             v_map = pd.read_csv(self.vertex_map_path, delimiter=',', header=None)
             self.v_mapping = pd.Series(v_map[1].values,index=v_map[0]).to_dict()
-            logging.info(f'\033[1;32;40mLoad vertex id mapping success')
+            logging.info('\033[1;32;40mLoad vertex id mapping success')
 
     def preprocess_node_features(self):
         logging.info('Preprocessing node features')
@@ -144,7 +148,7 @@ class Dataset(object):
         self.features[:, large_variance_column_index] = np.cbrt(self.features[:, large_variance_column_index])
         scaler = preprocessing.StandardScaler().fit(self.features)
         self.features = scaler.transform(self.features)
-        logging.info(f'features shape: {self.features.shape}')
+        logging.info('features shape: {}'.format(self.features.shape))
     
     def preprocess_labels(self):
         logging.info('filtering unused nodes in the label')
@@ -163,7 +167,7 @@ class Dataset(object):
         logging.info('Train, validation, test split')
         # train, val, test split
         if os.path.exists(self.train_val_test_mask):
-            logging.info(f'The mask file: {self.train_val_test_mask} exists! Reading train, val, test mask from the file')
+            logging.info('The mask file: {} exists! Reading train, val, test mask from the file'.format(self.train_val_test_mask))
             train_val_test_label = pd.read_csv(self.train_val_test_mask, delimiter=',', header=None, names=['id', 'mode'])
             train_val_test_label = train_val_test_label.set_index('id')
             train_val_test_label = train_val_test_label.loc[list(self.feat_graph_label_intersec_set)]
@@ -174,7 +178,7 @@ class Dataset(object):
             val_id = set(train_val_test_label[train_val_test_label['mode'] == 'val'].index.values)
             test_id = set(train_val_test_label[train_val_test_label['mode'] == 'test'].index.values)
         else:
-            logging.info(f'The mask file: {self.train_val_test_mask} doest not exist. Performing train, val, test split')
+            logging.info('The mask file: {} doest not exist. Performing train, val, test split'.format(self.train_val_test_mask))
             train_id, test_id, y_train, y_test = train_test_split(self.labels.index, self.labels['label'], 
                                                test_size=0.2)
             train_id, val_id, y_train, y_val = train_test_split(train_id, y_train, 
@@ -214,9 +218,9 @@ class Dataset(object):
         # logging.info(f'y_train shape: {y_train.shape}')
         # logging.info(f'y_val shape: {y_val.shape}')
         # logging.info(f'y_test shape: {y_test.shape}')
-        logging.info(f'train_mask shape: {self.train_mask.shape}')
-        logging.info(f'val_mask shape: {self.val_mask.shape}')
-        logging.info(f'test_mask shape: {self.test_mask.shape}')
+        logging.info('train_mask shape: {}'.format(self.train_mask.shape))
+        logging.info('val_mask shape: {}'.format(self.val_mask.shape))
+        logging.info('test_mask shape: {}'.format(self.test_mask.shape))
 
     def load(self):
         logging.info('loading data...')
@@ -240,6 +244,9 @@ class Dataset(object):
         print(self.features)
         print(self.labels)
         print(self.v_mapping)
+        print(self.train_id)
+        print(self.val_id)
+        print(self.test_id)
 
         self.num_classes = len(np.unique(self.labels))
         # import sys
