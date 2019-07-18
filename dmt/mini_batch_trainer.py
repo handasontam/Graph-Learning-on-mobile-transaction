@@ -115,6 +115,8 @@ class MiniBatchTrainer(object):
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
                 batch_labels = torch.LongTensor(self.labels.loc[batch_node_ids]['label'].values)
+                if self.cuda_context:
+                    batch_labels = batch_labels.cuda()
                 mini_batch_accuracy = torch_accuracy(logits, batch_labels)
                 train_num_correct += mini_batch_accuracy * batch_size
                 train_loss = self.loss_fn(logits, batch_labels)
@@ -182,6 +184,8 @@ class MiniBatchTrainer(object):
                 batch_node_ids = nf.layer_parent_nid(-1)
                 batch_size = len(batch_node_ids)
                 batch_labels = torch.LongTensor(self.labels.loc[batch_node_ids]['label'].values)
+                if self.cuda_context:
+                    batch_labels = batch_labels.cuda()
                 mini_batch_accuracy = torch_accuracy(logits, batch_labels)
                 val_num_correct += mini_batch_accuracy * batch_size
                 mini_batch_val_loss = self.loss_fn(logits, batch_labels)

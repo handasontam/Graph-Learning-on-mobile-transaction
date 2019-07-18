@@ -129,7 +129,7 @@ class Dataset(object):
             logging.info('Loading vertex id mapping from {}'.format(self.vertex_map_path))
             v_map = pd.read_csv(self.vertex_map_path, delimiter=',', header=None)
             self.v_mapping = pd.Series(v_map[1].values,index=v_map[0]).to_dict()
-            logging.info('\033[1;32;40mLoad vertex id mapping success')
+            logging.info('\033[1;32;40mLoad vertex id mapping success\033[0;37;40m ')
 
     def preprocess_node_features(self):
         logging.info('Preprocessing node features')

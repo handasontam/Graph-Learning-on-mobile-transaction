@@ -99,7 +99,7 @@ class MiniBatchEdgeProp(nn.Module):
                  feat_drop,
                  cuda):
         super(MiniBatchEdgeProp, self).__init__()
-        self.cuda = cuda
+        self.use_cuda = cuda
         self.num_layers = num_layers
         self.activation = activation
         if feat_drop:
@@ -167,7 +167,7 @@ class MiniBatchEdgeProp(nn.Module):
 
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
             layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
-            if self.cuda:
+            if self.use_cuda:
                 self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden).cuda(), h[layer_nid]), 1)
             else:
                 self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
@@ -227,7 +227,7 @@ class MiniBatchEdgePropInfer(nn.Module):
                  feat_drop,
                  cuda):
         super(MiniBatchEdgePropInfer, self).__init__()
-        self.cuda = cuda
+        self.use_cuda = cuda
         self.num_layers = num_layers
         self.activation = activation
         if feat_drop:
@@ -292,7 +292,7 @@ class MiniBatchEdgePropInfer(nn.Module):
             
             parent_nid = dgl.utils.toindex(nf.layer_parent_nid(i+1))
             layer_nid = nf.map_from_parent_nid(i, parent_nid, remap_local=True)
-            if self.cuda:
+            if self.use_cuda:
                 self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden).cuda(), h[layer_nid]), 1)
             else:
                 self_h = torch.cat((torch.zeros(len(layer_nid), self.num_hidden), h[layer_nid]), 1)
