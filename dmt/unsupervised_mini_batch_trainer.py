@@ -57,73 +57,25 @@ class UnsupervisedMiniBatchTrainer(object):
         train_losses = []  # per mini-batch
         losses = []
 
-        for epoch in range(self.epochs):
-            train_losses_temp = []
-            if use_tensorboardx:
-                for i, (name, param) in enumerate(self.unsupervised_model.named_parameters()):
-                    self.writer.add_histogram(name, param, epoch)
-            # minibatch train
-            train_total_losses = 0  # total cross entropy loss
-            if epoch >= 2:
-                t0 = time.time()
-            for nf in NeighborSampler(self.g,
-                                      batch_size=self.batch_size,
-                                      expand_factor=self.num_neighbors,
-                                      neighbor_type='in',
-                                      shuffle=True,
-                                      num_hops=self.n_layers,
-                                      add_self_loop=True,
-                                      seed_nodes=None, 
-                                      num_workers=self.num_cpu):
-                # Copy the features from the original graph to the nodeflow graph
-                node_embed_names = [['node_features', 'subg_norm', 'norm']]
-                for i in range(1, self.n_layers):
-                    node_embed_names.append(['subg_norm', 'norm'])
-                node_embed_names.append(['subg_norm', 'norm'])
-                edge_embed_names = [['edge_features']]
-                for i in range(1, self.n_layers):
-                    edge_embed_names.append(['edge_features'])
-                nf.copy_from_parent(node_embed_names=node_embed_names,
-                                    edge_embed_names=edge_embed_names,
-                                    ctx=self.cuda_context)
-
-                # Forward Pass, Calculate Loss and Accuracy
-                self.unsupervised_model.train()  # set to train mode
-                train_loss = self.unsupervised_model(nf)
-                batch_node_ids = nf.layer_parent_nid(-1)
-                batch_size = len(batch_node_ids)
-                train_total_losses += (train_loss.item() * batch_size)
-
-                # Train
-                self.optimizer.zero_grad()
-                train_loss.backward()
-                self.optimizer.step()
-
-                torch.cuda.empty_cache()
-
-            # copy parameter to the inference model
-            if epoch >= 2:
-                dur.append(time.time() - t0)
-
-            # loss and accuracy of this epoch
-            train_average_loss = train_total_losses / self.g.number_of_nodes()
-            train_losses.append(train_average_loss)
-            logging.info("Epoch {:05d} | Time(s) {:.4f} | TrainLoss {:.4f} | ETputs(KTEPS) {:.2f}\n".
-                         format(epoch, np.mean(dur), train_average_loss, self.n_edges / np.mean(dur) / 1000))
-
-            if epoch % 10 == 0:
-                total_losses = 0  # total cross entropy loss:
-                self.unsupervised_model_infer.load_state_dict(
-                    self.unsupervised_model.state_dict())
+        if not self.fast_mode:
+            for epoch in range(self.epochs):
+                train_losses_temp = []
+                if use_tensorboardx:
+                    for i, (name, param) in enumerate(self.unsupervised_model.named_parameters()):
+                        self.writer.add_histogram(name, param, epoch)
+                # minibatch train
+                train_total_losses = 0  # total cross entropy loss
+                if epoch >= 2:
+                    t0 = time.time()
                 for nf in NeighborSampler(self.g,
-                                          batch_size=self.batch_size,
-                                          expand_factor=self.g.number_of_nodes(),
-                                          neighbor_type='in',
-                                          shuffle=False, 
-                                          num_hops=self.n_layers,
-                                          add_self_loop=True,
-                                          seed_nodes=None, 
-                                          num_workers=self.num_cpu):
+                                        batch_size=self.batch_size,
+                                        expand_factor=self.num_neighbors,
+                                        neighbor_type='in',
+                                        shuffle=True,
+                                        num_hops=self.n_layers,
+                                        add_self_loop=True,
+                                        seed_nodes=None, 
+                                        num_workers=self.num_cpu):
                     # Copy the features from the original graph to the nodeflow graph
                     node_embed_names = [['node_features', 'subg_norm', 'norm']]
                     for i in range(1, self.n_layers):
@@ -136,22 +88,71 @@ class UnsupervisedMiniBatchTrainer(object):
                                         edge_embed_names=edge_embed_names,
                                         ctx=self.cuda_context)
 
-                    loss = self.unsupervised_model_infer(nf)
+                    # Forward Pass, Calculate Loss and Accuracy
+                    self.unsupervised_model.train()  # set to train mode
+                    train_loss = self.unsupervised_model(nf)
                     batch_node_ids = nf.layer_parent_nid(-1)
                     batch_size = len(batch_node_ids)
-                    total_losses += (loss.item() * batch_size)
+                    train_total_losses += (train_loss.item() * batch_size)
+
+                    # Train
+                    self.optimizer.zero_grad()
+                    train_loss.backward()
+                    self.optimizer.step()
 
                     torch.cuda.empty_cache()
-                average_loss = total_losses / self.g.number_of_nodes()
-                losses.append(average_loss)
-                logging.info("************** Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | ETputs(KTEPS) {:.2f} ***************\n".
-                             format(epoch, np.mean(dur), average_loss, self.n_edges / np.mean(dur) / 1000))
 
-                # early stopping
-                self.early_stopping(average_loss, self.unsupervised_model_infer)
-            if self.early_stopping.early_stop:
-                logging.info("Early stopping")
-                break
+                # copy parameter to the inference model
+                if epoch >= 2:
+                    dur.append(time.time() - t0)
+
+                # loss and accuracy of this epoch
+                train_average_loss = train_total_losses / self.g.number_of_nodes()
+                train_losses.append(train_average_loss)
+                logging.info("Epoch {:05d} | Time(s) {:.4f} | TrainLoss {:.4f} | ETputs(KTEPS) {:.2f}\n".
+                            format(epoch, np.mean(dur), train_average_loss, self.n_edges / np.mean(dur) / 1000))
+
+                if epoch % 10 == 0:
+                    total_losses = 0  # total cross entropy loss:
+                    self.unsupervised_model_infer.load_state_dict(
+                        self.unsupervised_model.state_dict())
+                    for nf in NeighborSampler(self.g,
+                                            batch_size=self.batch_size,
+                                            expand_factor=self.g.number_of_nodes(),
+                                            neighbor_type='in',
+                                            shuffle=False, 
+                                            num_hops=self.n_layers,
+                                            add_self_loop=True,
+                                            seed_nodes=None, 
+                                            num_workers=self.num_cpu):
+                        # Copy the features from the original graph to the nodeflow graph
+                        node_embed_names = [['node_features', 'subg_norm', 'norm']]
+                        for i in range(1, self.n_layers):
+                            node_embed_names.append(['subg_norm', 'norm'])
+                        node_embed_names.append(['subg_norm', 'norm'])
+                        edge_embed_names = [['edge_features']]
+                        for i in range(1, self.n_layers):
+                            edge_embed_names.append(['edge_features'])
+                        nf.copy_from_parent(node_embed_names=node_embed_names,
+                                            edge_embed_names=edge_embed_names,
+                                            ctx=self.cuda_context)
+
+                        loss = self.unsupervised_model_infer(nf)
+                        batch_node_ids = nf.layer_parent_nid(-1)
+                        batch_size = len(batch_node_ids)
+                        total_losses += (loss.item() * batch_size)
+
+                        torch.cuda.empty_cache()
+                    average_loss = total_losses / self.g.number_of_nodes()
+                    losses.append(average_loss)
+                    logging.info("************** Epoch {:05d} | Time(s) {:.4f} | Loss {:.4f} | ETputs(KTEPS) {:.2f} ***************\n".
+                                format(epoch, np.mean(dur), average_loss, self.n_edges / np.mean(dur) / 1000))
+
+                    # early stopping
+                    self.early_stopping(average_loss, self.unsupervised_model_infer)
+                if self.early_stopping.early_stop:
+                    logging.info("Early stopping")
+                    break
 
         # # embeddings visualization
         # if use_tensorboardx:

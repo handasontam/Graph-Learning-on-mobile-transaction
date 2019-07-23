@@ -174,9 +174,9 @@ class Dataset(object):
             train_val_test_label.index = train_val_test_label.index.map(lambda x: self.v_mapping[x])
             train_val_test_label = train_val_test_label.dropna(axis='rows')
             train_val_test_label.index = train_val_test_label.index.astype(int)
-            train_id = set(train_val_test_label[train_val_test_label['mode'] == 'train'].index.values)
-            val_id = set(train_val_test_label[train_val_test_label['mode'] == 'val'].index.values)
-            test_id = set(train_val_test_label[train_val_test_label['mode'] == 'test'].index.values)
+            train_id = np.array(list(set(train_val_test_label[train_val_test_label['mode'] == 'train'].index.values)))
+            val_id = np.array(list(set(train_val_test_label[train_val_test_label['mode'] == 'val'].index.values)))
+            test_id = np.array(list(set(train_val_test_label[train_val_test_label['mode'] == 'test'].index.values)))
         else:
             logging.info('The mask file: {} doest not exist. Performing train, val, test split'.format(self.train_val_test_mask))
             train_id, test_id, y_train, y_test = train_test_split(self.labels.index, self.labels['label'], 
