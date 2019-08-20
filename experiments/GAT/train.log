@@ -914,3 +914,321 @@
 2019-07-10 18:49:43,900:INFO: Epoch 00007 | Time(s) 0.0095 | TrainLoss 0.6332 | TrainAcc 0.6667 |ValLoss 4.8576 | ValAcc 0.0000 |  ETputs(KTEPS) 1.47
 2019-07-10 18:49:43,914:INFO: Early stopping
 2019-07-10 18:49:43,921:INFO: Test Accuracy 1.0000
+2019-08-20 13:33:48,567:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 13:33:48,568:INFO: loading data...
+2019-08-20 13:33:48,568:INFO: Loading Node Features...
+2019-08-20 13:33:48,571:INFO: Loading Labels...
+2019-08-20 13:33:48,572:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:33:48,573:INFO: Number of node features in features.txt: 7
+2019-08-20 13:33:48,573:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:33:48,573:INFO: Number of node in the intersection: 7
+2019-08-20 13:33:48,573:INFO: Node id mapping created
+2019-08-20 13:33:48,573:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:33:48,573:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:33:48,573:INFO: Preprocessing node features
+2019-08-20 13:33:48,573:INFO: Filtering nodes
+2019-08-20 13:33:48,574:INFO: Mean imputation on the missing value
+2019-08-20 13:33:48,577:INFO: features shape: (6, 6)
+2019-08-20 13:33:48,577:INFO: filtering unused nodes in the label
+2019-08-20 13:33:48,581:INFO: mapping labels node id to new node id
+2019-08-20 13:33:48,582:INFO: convert label to one-hot format
+2019-08-20 13:33:48,585:INFO: Train, validation, test split
+2019-08-20 13:33:48,585:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:33:48,586:INFO: train_mask shape: (6,)
+2019-08-20 13:33:48,586:INFO: val_mask shape: (6,)
+2019-08-20 13:33:48,586:INFO: test_mask shape: (6,)
+2019-08-20 13:33:48,586:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:33:48,587:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:33:48,587:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:33:48,587:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:33:48,589:INFO: Adding self-loop
+2019-08-20 13:33:48,593:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:33:48,595:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 13:33:48,596:INFO: [1;31;40mThe model: GAT is not supported yet.
+2019-08-20 13:40:07,052:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 13:40:07,053:INFO: loading data...
+2019-08-20 13:40:07,053:INFO: Loading Node Features...
+2019-08-20 13:40:07,056:INFO: Loading Labels...
+2019-08-20 13:40:07,057:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:40:07,057:INFO: Number of node features in features.txt: 7
+2019-08-20 13:40:07,057:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:40:07,058:INFO: Number of node in the intersection: 7
+2019-08-20 13:40:07,058:INFO: Node id mapping created
+2019-08-20 13:40:07,058:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:40:07,058:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:40:07,058:INFO: Preprocessing node features
+2019-08-20 13:40:07,058:INFO: Filtering nodes
+2019-08-20 13:40:07,059:INFO: Mean imputation on the missing value
+2019-08-20 13:40:07,061:INFO: features shape: (6, 6)
+2019-08-20 13:40:07,061:INFO: filtering unused nodes in the label
+2019-08-20 13:40:07,066:INFO: mapping labels node id to new node id
+2019-08-20 13:40:07,067:INFO: convert label to one-hot format
+2019-08-20 13:40:07,070:INFO: Train, validation, test split
+2019-08-20 13:40:07,070:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:40:07,071:INFO: train_mask shape: (6,)
+2019-08-20 13:40:07,071:INFO: val_mask shape: (6,)
+2019-08-20 13:40:07,072:INFO: test_mask shape: (6,)
+2019-08-20 13:40:07,072:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:40:07,072:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:40:07,072:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:40:07,073:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:40:07,074:INFO: Adding self-loop
+2019-08-20 13:40:07,079:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:40:07,081:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 13:40:07,081:INFO: [1;31;40mThe model: GAT is not supported yet.
+2019-08-20 13:40:51,921:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 13:40:51,922:INFO: loading data...
+2019-08-20 13:40:51,922:INFO: Loading Node Features...
+2019-08-20 13:40:51,926:INFO: Loading Labels...
+2019-08-20 13:40:51,928:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:40:51,928:INFO: Number of node features in features.txt: 7
+2019-08-20 13:40:51,928:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:40:51,928:INFO: Number of node in the intersection: 7
+2019-08-20 13:40:51,928:INFO: Node id mapping created
+2019-08-20 13:40:51,929:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:40:51,929:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:40:51,929:INFO: Preprocessing node features
+2019-08-20 13:40:51,929:INFO: Filtering nodes
+2019-08-20 13:40:51,930:INFO: Mean imputation on the missing value
+2019-08-20 13:40:51,933:INFO: features shape: (6, 6)
+2019-08-20 13:40:51,934:INFO: filtering unused nodes in the label
+2019-08-20 13:40:51,939:INFO: mapping labels node id to new node id
+2019-08-20 13:40:51,942:INFO: convert label to one-hot format
+2019-08-20 13:40:51,945:INFO: Train, validation, test split
+2019-08-20 13:40:51,945:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:40:51,947:INFO: train_mask shape: (6,)
+2019-08-20 13:40:51,947:INFO: val_mask shape: (6,)
+2019-08-20 13:40:51,947:INFO: test_mask shape: (6,)
+2019-08-20 13:40:51,947:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:40:51,948:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:40:51,948:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:40:51,949:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:40:51,952:INFO: Adding self-loop
+2019-08-20 13:40:51,960:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:40:51,962:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 13:40:51,962:INFO: [1;31;40mThe model: GAT is not supported yet.
+2019-08-20 13:57:28,139:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 13:57:28,139:INFO: loading data...
+2019-08-20 13:57:28,139:INFO: Loading Node Features...
+2019-08-20 13:57:28,143:INFO: Loading Labels...
+2019-08-20 13:57:28,145:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:57:28,145:INFO: Number of node features in features.txt: 7
+2019-08-20 13:57:28,145:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:57:28,145:INFO: Number of node in the intersection: 7
+2019-08-20 13:57:28,145:INFO: Node id mapping created
+2019-08-20 13:57:28,145:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:57:28,145:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:57:28,146:INFO: Preprocessing node features
+2019-08-20 13:57:28,146:INFO: Filtering nodes
+2019-08-20 13:57:28,146:INFO: Mean imputation on the missing value
+2019-08-20 13:57:28,149:INFO: features shape: (6, 6)
+2019-08-20 13:57:28,150:INFO: filtering unused nodes in the label
+2019-08-20 13:57:28,154:INFO: mapping labels node id to new node id
+2019-08-20 13:57:28,156:INFO: convert label to one-hot format
+2019-08-20 13:57:28,159:INFO: Train, validation, test split
+2019-08-20 13:57:28,159:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:57:28,161:INFO: train_mask shape: (6,)
+2019-08-20 13:57:28,161:INFO: val_mask shape: (6,)
+2019-08-20 13:57:28,161:INFO: test_mask shape: (6,)
+2019-08-20 13:57:28,161:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:57:28,161:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:57:28,161:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:57:28,162:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:57:28,164:INFO: Adding self-loop
+2019-08-20 13:57:28,170:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:57:28,171:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 13:57:28,172:INFO: [31mThe model: GAT is not supported yet.
+2019-08-20 13:58:20,316:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 13:58:20,317:INFO: loading data...
+2019-08-20 13:58:20,317:INFO: Loading Node Features...
+2019-08-20 13:58:20,320:INFO: Loading Labels...
+2019-08-20 13:58:20,322:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:58:20,322:INFO: Number of node features in features.txt: 7
+2019-08-20 13:58:20,322:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:58:20,322:INFO: Number of node in the intersection: 7
+2019-08-20 13:58:20,322:INFO: Node id mapping created
+2019-08-20 13:58:20,322:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:58:20,322:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:58:20,323:INFO: Preprocessing node features
+2019-08-20 13:58:20,323:INFO: Filtering nodes
+2019-08-20 13:58:20,323:INFO: Mean imputation on the missing value
+2019-08-20 13:58:20,326:INFO: features shape: (6, 6)
+2019-08-20 13:58:20,326:INFO: filtering unused nodes in the label
+2019-08-20 13:58:20,331:INFO: mapping labels node id to new node id
+2019-08-20 13:58:20,333:INFO: convert label to one-hot format
+2019-08-20 13:58:20,336:INFO: Train, validation, test split
+2019-08-20 13:58:20,336:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:58:20,338:INFO: train_mask shape: (6,)
+2019-08-20 13:58:20,338:INFO: val_mask shape: (6,)
+2019-08-20 13:58:20,338:INFO: test_mask shape: (6,)
+2019-08-20 13:58:20,338:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:58:20,338:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:58:20,338:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:58:20,339:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:58:20,341:INFO: Adding self-loop
+2019-08-20 13:58:20,347:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:58:20,348:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 13:58:20,349:INFO: [31mThe model: GAT is not supported yet.[0m
+2019-08-20 14:03:52,401:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/GAT/', preprocess=True, restore_file=None)
+2019-08-20 14:03:52,402:INFO: loading data...
+2019-08-20 14:03:52,402:INFO: Loading Node Features...
+2019-08-20 14:03:52,405:INFO: Loading Labels...
+2019-08-20 14:03:52,407:INFO: Mapping vertex id to consecutive integers
+2019-08-20 14:03:52,408:INFO: Number of node features in features.txt: 7
+2019-08-20 14:03:52,408:INFO: Number of nodes in adj.txt: 7
+2019-08-20 14:03:52,408:INFO: Number of node in the intersection: 7
+2019-08-20 14:03:52,408:INFO: Node id mapping created
+2019-08-20 14:03:52,408:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 14:03:52,408:INFO: [32mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0m
+2019-08-20 14:03:52,408:INFO: Preprocessing node features
+2019-08-20 14:03:52,408:INFO: Filtering nodes
+2019-08-20 14:03:52,409:INFO: Mean imputation on the missing value
+2019-08-20 14:03:52,412:INFO: features shape: (6, 6)
+2019-08-20 14:03:52,412:INFO: filtering unused nodes in the label
+2019-08-20 14:03:52,418:INFO: mapping labels node id to new node id
+2019-08-20 14:03:52,420:INFO: convert label to one-hot format
+2019-08-20 14:03:52,423:INFO: Train, validation, test split
+2019-08-20 14:03:52,423:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 14:03:52,425:INFO: train_mask shape: (6,)
+2019-08-20 14:03:52,425:INFO: val_mask shape: (6,)
+2019-08-20 14:03:52,425:INFO: test_mask shape: (6,)
+2019-08-20 14:03:52,425:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 14:03:52,425:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 14:03:52,425:INFO: *** Number of edges after filtering : 6
+2019-08-20 14:03:52,427:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 14:03:52,428:INFO: Adding self-loop
+2019-08-20 14:03:52,435:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 14:03:52,436:INFO: GAT(
+  (gat_layers): ModuleList(
+    (0): GraphAttention(
+      (fc): Linear(in_features=6, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+    (1): GraphAttention(
+      (fc): Linear(in_features=10, out_features=10, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=10, bias=False)
+    )
+    (2): GraphAttention(
+      (fc): Linear(in_features=10, out_features=4, bias=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (res_fc): Linear(in_features=10, out_features=4, bias=False)
+    )
+  )
+)
+2019-08-20 14:03:52,437:INFO: [31mThe model: GAT is not supported yet.[0m

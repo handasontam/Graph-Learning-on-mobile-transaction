@@ -9,7 +9,7 @@ import networkx as nx
 import torch
 import glob
 import csv
-from ..utils import graph_utils
+from ..utils import graph_utils, style
 from .nx_utils import get_graph_from_data
 import pickle
 import logging
@@ -78,7 +78,7 @@ class Dataset(object):
         # Node Features
         logging.info('Loading Node Features...')
         if self.node_features_path is None:
-            logging.info("\033[1;31;40mNo node features is given, use dummy featuers\033[0;37;40m ")
+            logging.info(style.GREEN("No node features is given, use dummy featuers"))
             features = np.ones((self.g.number_of_nodes(), 1))
         else:
             features = pd.read_csv(self.node_features_path, 
@@ -124,12 +124,12 @@ class Dataset(object):
                 writer = csv.writer(csv_file)
                 for key, value in self.v_mapping.items():
                     writer.writerow([key, value])
-            logging.info('\033[1;32;40mVertex id mapping is sucessfully saved to {}\033[0;37;40m '.format(self.vertex_map_path))
+            logging.info(style.GREEN('Vertex id mapping is sucessfully saved to {}'.format(self.vertex_map_path)))
         else:
             logging.info('Loading vertex id mapping from {}'.format(self.vertex_map_path))
             v_map = pd.read_csv(self.vertex_map_path, delimiter=',', header=None)
             self.v_mapping = pd.Series(v_map[1].values,index=v_map[0]).to_dict()
-            logging.info('\033[1;32;40mLoad vertex id mapping success\033[0;37;40m ')
+            logging.info(style.GREEN('Load vertex id mapping success'))
 
     def preprocess_node_features(self):
         logging.info('Preprocessing node features')
