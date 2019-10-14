@@ -14,8 +14,7 @@ from dmt.unsupervised_trainer import UnsupervisedTrainer
 from dmt.unsupervised_mini_batch_trainer import UnsupervisedMiniBatchTrainer
 # from dmt.data import register_data_args, load_data
 from dmt.data.data_loader import Dataset
-from dmt.data.wechat_data_loader import WeChatDataset
-from dmt.utils import Params, set_logger
+from dmt.utils import Params, set_logger, style
 
 # logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s') # include timestamp
@@ -242,7 +241,6 @@ def main(params):
         #             n_classes)
     else:
         logging.info('The model \"{}\" is not implemented'.format(params.model))
-        import sys
         sys.exit(0)
 
 
@@ -366,7 +364,8 @@ def main(params):
                         num_cpu=params.num_cpu, 
                         cuda_context=cuda_context)
     else:
-        logging.info('\033[1;31;40mThe model: {} is not supported yet.'.format(params.model))
+        logging.info(style.RED('The model: {} is not supported yet.'.format(params.model)))
+        sys.exit(0)
         # if cuda:
         #     g.edata['edge_features'] = data.g.edata['edge_features'].cuda()
         # trainer = Trainer(

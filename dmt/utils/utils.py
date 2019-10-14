@@ -1,5 +1,6 @@
 import json
 import logging
+import os, sys
 
 class Params():
     """Class that loads hyperparameters from a json file.
@@ -75,3 +76,21 @@ def set_logger(log_path):
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(logging.Formatter('%(message)s'))
         logger.addHandler(stream_handler)
+
+if sys.platform.lower() == "win32":
+    os.system('color')
+
+# Group of Different functions for different styles
+class style():
+    BLACK = lambda x: '\033[30m' + str(x) + '\033[0m'
+    RED = lambda x: '\033[31m' + str(x) + '\033[0m'
+    GREEN = lambda x: '\033[32m' + str(x) + '\033[0m'
+    YELLOW = lambda x: '\033[33m' + str(x) + '\033[0m'
+    BLUE = lambda x: '\033[34m' + str(x) + '\033[0m'
+    MAGENTA = lambda x: '\033[35m' + str(x) + '\033[0m'
+    CYAN = lambda x: '\033[36m' + str(x) + '\033[0m'
+    WHITE = lambda x: '\033[37m' + str(x) + '\033[0m'
+    UNDERLINE = lambda x: '\033[4m' + str(x) + '\033[0m'
+    RESET = lambda x: '\033[0m' + str(x)
+
+print(style.GREEN("No node features is given, use dummy featuers") + style.RESET(""))

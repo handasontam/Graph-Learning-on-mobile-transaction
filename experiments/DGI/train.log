@@ -341,3 +341,117 @@
   (discriminator): Discriminator()
   (loss): BCEWithLogitsLoss()
 )
+2019-08-20 13:06:03,293:INFO: Namespace(data_dir='../../data/drug', model_dir='./experiments/DGI/', preprocess=False, restore_file=None)
+2019-08-20 13:06:38,023:INFO: Namespace(data_dir='./dmt/data/drug/', model_dir='./experiments/DGI/', preprocess=False, restore_file=None)
+2019-08-20 13:06:56,333:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/DGI/', preprocess=False, restore_file=None)
+2019-08-20 13:06:56,334:INFO: loading data...
+2019-08-20 13:06:56,334:INFO: Loading Node Features...
+2019-08-20 13:06:56,337:INFO: Loading Labels...
+2019-08-20 13:06:56,339:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:06:56,339:INFO: Loading vertex id mapping from ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:30:59,084:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/DGI/', preprocess=True, restore_file=None)
+2019-08-20 13:30:59,085:INFO: loading data...
+2019-08-20 13:30:59,085:INFO: Loading Node Features...
+2019-08-20 13:30:59,094:INFO: Loading Labels...
+2019-08-20 13:30:59,096:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:30:59,096:INFO: Number of node features in features.txt: 7
+2019-08-20 13:30:59,096:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:30:59,096:INFO: Number of node in the intersection: 7
+2019-08-20 13:30:59,096:INFO: Node id mapping created
+2019-08-20 13:30:59,096:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:30:59,097:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:30:59,097:INFO: Preprocessing node features
+2019-08-20 13:30:59,097:INFO: Filtering nodes
+2019-08-20 13:30:59,098:INFO: Mean imputation on the missing value
+2019-08-20 13:30:59,102:INFO: features shape: (6, 6)
+2019-08-20 13:30:59,102:INFO: filtering unused nodes in the label
+2019-08-20 13:30:59,107:INFO: mapping labels node id to new node id
+2019-08-20 13:30:59,109:INFO: convert label to one-hot format
+2019-08-20 13:30:59,113:INFO: Train, validation, test split
+2019-08-20 13:30:59,113:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:30:59,116:INFO: train_mask shape: (6,)
+2019-08-20 13:30:59,116:INFO: val_mask shape: (6,)
+2019-08-20 13:30:59,116:INFO: test_mask shape: (6,)
+2019-08-20 13:30:59,116:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:30:59,116:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:30:59,116:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:30:59,123:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:30:59,144:INFO: Adding self-loop
+2019-08-20 13:30:59,159:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:30:59,198:INFO: DGI(
+  (encoder): Encoder(
+    (conv): GAT(
+      (gat_layers): ModuleList(
+        (0): GraphAttention(
+          (fc): Linear(in_features=6, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+        )
+        (1): GraphAttention(
+          (fc): Linear(in_features=512, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+          (res_fc): Linear(in_features=512, out_features=512, bias=False)
+        )
+      )
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2019-08-20 13:40:01,881:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='./experiments/DGI/', preprocess=True, restore_file=None)
+2019-08-20 13:40:01,881:INFO: loading data...
+2019-08-20 13:40:01,881:INFO: Loading Node Features...
+2019-08-20 13:40:01,884:INFO: Loading Labels...
+2019-08-20 13:40:01,885:INFO: Mapping vertex id to consecutive integers
+2019-08-20 13:40:01,886:INFO: Number of node features in features.txt: 7
+2019-08-20 13:40:01,886:INFO: Number of nodes in adj.txt: 7
+2019-08-20 13:40:01,886:INFO: Number of node in the intersection: 7
+2019-08-20 13:40:01,886:INFO: Node id mapping created
+2019-08-20 13:40:01,886:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2019-08-20 13:40:01,886:INFO: [1;32;40mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0;37;40m 
+2019-08-20 13:40:01,886:INFO: Preprocessing node features
+2019-08-20 13:40:01,886:INFO: Filtering nodes
+2019-08-20 13:40:01,887:INFO: Mean imputation on the missing value
+2019-08-20 13:40:01,890:INFO: features shape: (6, 6)
+2019-08-20 13:40:01,890:INFO: filtering unused nodes in the label
+2019-08-20 13:40:01,894:INFO: mapping labels node id to new node id
+2019-08-20 13:40:01,896:INFO: convert label to one-hot format
+2019-08-20 13:40:01,898:INFO: Train, validation, test split
+2019-08-20 13:40:01,898:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2019-08-20 13:40:01,900:INFO: train_mask shape: (6,)
+2019-08-20 13:40:01,900:INFO: val_mask shape: (6,)
+2019-08-20 13:40:01,900:INFO: test_mask shape: (6,)
+2019-08-20 13:40:01,900:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2019-08-20 13:40:01,900:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2019-08-20 13:40:01,900:INFO: *** Number of edges after filtering : 6
+2019-08-20 13:40:01,901:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2019-08-20 13:40:01,903:INFO: Adding self-loop
+2019-08-20 13:40:01,908:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2019-08-20 13:40:01,917:INFO: DGI(
+  (encoder): Encoder(
+    (conv): GAT(
+      (gat_layers): ModuleList(
+        (0): GraphAttention(
+          (fc): Linear(in_features=6, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+        )
+        (1): GraphAttention(
+          (fc): Linear(in_features=512, out_features=512, bias=False)
+          (leaky_relu): LeakyReLU(negative_slope=0.2)
+          (res_fc): Linear(in_features=512, out_features=512, bias=False)
+        )
+      )
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
