@@ -93,4 +93,4 @@ class style():
     UNDERLINE = lambda x: '\033[4m' + str(x) + '\033[0m'
     RESET = lambda x: '\033[0m' + str(x)
 
-print(style.GREEN("No node features is given, use dummy featuers") + style.RESET(""))
+# print(style.GREEN("No node features is given, use dummy featuers") + style.RESET(""))
