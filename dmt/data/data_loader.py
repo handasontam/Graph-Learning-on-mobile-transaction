@@ -241,12 +241,12 @@ class Dataset(object):
         self.preprocess_labels()
         # Load Graph
         self.load_graph()
-        print(self.features)
-        print(self.labels)
-        print(self.v_mapping)
-        print(self.train_id)
-        print(self.val_id)
-        print(self.test_id)
+        # print(self.features)
+        # print(self.labels)
+        # print(self.v_mapping)
+        # print(self.train_id)
+        # print(self.val_id)
+        # print(self.test_id)
 
         self.num_classes = len(np.unique(self.labels))
         # import sys
