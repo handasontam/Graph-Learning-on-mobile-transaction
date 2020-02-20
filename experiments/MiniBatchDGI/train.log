@@ -67184,3 +67184,1636 @@
 
 2019-07-18 14:23:13,732:INFO: Epoch 00024 | Time(s) 0.0104 | TrainLoss 1.3867 | ETputs(KTEPS) 1.15
 
+2020-02-20 11:13:59,821:INFO: Namespace(data_dir='dmt/data/test_data', model_dir='experiments/MiniBatchDGI/', preprocess=True, restore_file=None)
+2020-02-20 11:13:59,822:INFO: loading data...
+2020-02-20 11:13:59,822:INFO: Loading Node Features...
+2020-02-20 11:13:59,827:INFO: Loading Labels...
+2020-02-20 11:13:59,829:INFO: Mapping vertex id to consecutive integers
+2020-02-20 11:13:59,829:INFO: Number of node features in features.txt: 7
+2020-02-20 11:13:59,829:INFO: Number of nodes in adj.txt: 7
+2020-02-20 11:13:59,829:INFO: Number of node in the intersection: 7
+2020-02-20 11:13:59,829:INFO: Node id mapping created
+2020-02-20 11:13:59,830:INFO: Save the mapping to dmt/data/test_data/node_id_map.csv
+2020-02-20 11:13:59,830:INFO: [32mVertex id mapping is sucessfully saved to dmt/data/test_data/node_id_map.csv[0m
+2020-02-20 11:13:59,830:INFO: Preprocessing node features
+2020-02-20 11:13:59,830:INFO: Filtering nodes
+2020-02-20 11:13:59,831:INFO: Mean imputation on the missing value
+2020-02-20 11:13:59,834:INFO: features shape: (6, 6)
+2020-02-20 11:13:59,834:INFO: filtering unused nodes in the label
+2020-02-20 11:13:59,838:INFO: mapping labels node id to new node id
+2020-02-20 11:13:59,839:INFO: convert label to one-hot format
+2020-02-20 11:13:59,841:INFO: Train, validation, test split
+2020-02-20 11:13:59,841:INFO: The mask file: dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 11:13:59,842:INFO: train_mask shape: (6,)
+2020-02-20 11:13:59,842:INFO: val_mask shape: (6,)
+2020-02-20 11:13:59,842:INFO: test_mask shape: (6,)
+2020-02-20 11:13:59,842:INFO: Reading dmt/data/test_data/adj.txt into dgl graph
+2020-02-20 11:13:59,842:INFO: Number of edges found in dmt/data/test_data/adj.txt: 7
+2020-02-20 11:13:59,842:INFO: *** Number of edges after filtering : 6
+2020-02-20 11:13:59,844:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2020-02-20 11:13:59,846:INFO: Adding self-loop
+2020-02-20 11:13:59,848:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2020-02-20 11:13:59,852:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=4, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=9, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2020-02-20 11:13:59,953:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3864 | ETputs(KTEPS) nan
+
+2020-02-20 11:13:59,959:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3864 | ETputs(KTEPS) nan ***************
+
+2020-02-20 11:13:59,982:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3864 | ETputs(KTEPS) nan
+
+2020-02-20 11:13:59,996:INFO: Epoch 00002 | Time(s) 0.0136 | TrainLoss 1.3864 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:00,021:INFO: Epoch 00003 | Time(s) 0.0193 | TrainLoss 1.3864 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,040:INFO: Epoch 00004 | Time(s) 0.0192 | TrainLoss 1.3864 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,058:INFO: Epoch 00005 | Time(s) 0.0189 | TrainLoss 1.3864 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,076:INFO: Epoch 00006 | Time(s) 0.0187 | TrainLoss 1.3864 | ETputs(KTEPS) 0.64
+
+2020-02-20 11:14:00,099:INFO: Epoch 00007 | Time(s) 0.0193 | TrainLoss 1.3864 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,160:INFO: Epoch 00008 | Time(s) 0.0252 | TrainLoss 1.3864 | ETputs(KTEPS) 0.48
+
+2020-02-20 11:14:00,180:INFO: Epoch 00009 | Time(s) 0.0245 | TrainLoss 1.3864 | ETputs(KTEPS) 0.49
+
+2020-02-20 11:14:00,195:INFO: Epoch 00010 | Time(s) 0.0234 | TrainLoss 1.3864 | ETputs(KTEPS) 0.51
+
+2020-02-20 11:14:00,201:INFO: ************** Epoch 00010 | Time(s) 0.0234 | Loss 1.3864 | ETputs(KTEPS) 0.51 ***************
+
+2020-02-20 11:14:00,223:INFO: Epoch 00011 | Time(s) 0.0231 | TrainLoss 1.3864 | ETputs(KTEPS) 0.52
+
+2020-02-20 11:14:00,236:INFO: Epoch 00012 | Time(s) 0.0222 | TrainLoss 1.3864 | ETputs(KTEPS) 0.54
+
+2020-02-20 11:14:00,250:INFO: Epoch 00013 | Time(s) 0.0215 | TrainLoss 1.3864 | ETputs(KTEPS) 0.56
+
+2020-02-20 11:14:00,264:INFO: Epoch 00014 | Time(s) 0.0209 | TrainLoss 1.3864 | ETputs(KTEPS) 0.58
+
+2020-02-20 11:14:00,277:INFO: Epoch 00015 | Time(s) 0.0204 | TrainLoss 1.3864 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,291:INFO: Epoch 00016 | Time(s) 0.0199 | TrainLoss 1.3864 | ETputs(KTEPS) 0.60
+
+2020-02-20 11:14:00,300:INFO: Epoch 00017 | Time(s) 0.0192 | TrainLoss 1.3864 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,313:INFO: Epoch 00018 | Time(s) 0.0188 | TrainLoss 1.3864 | ETputs(KTEPS) 0.64
+
+2020-02-20 11:14:00,327:INFO: Epoch 00019 | Time(s) 0.0186 | TrainLoss 1.3864 | ETputs(KTEPS) 0.65
+
+2020-02-20 11:14:00,342:INFO: Epoch 00020 | Time(s) 0.0183 | TrainLoss 1.3864 | ETputs(KTEPS) 0.65
+
+2020-02-20 11:14:00,369:INFO: ************** Epoch 00020 | Time(s) 0.0183 | Loss 1.3864 | ETputs(KTEPS) 0.65 ***************
+
+2020-02-20 11:14:00,432:INFO: Epoch 00021 | Time(s) 0.0204 | TrainLoss 1.3864 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,452:INFO: Epoch 00022 | Time(s) 0.0204 | TrainLoss 1.3864 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,472:INFO: Epoch 00023 | Time(s) 0.0204 | TrainLoss 1.3864 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,491:INFO: Epoch 00024 | Time(s) 0.0203 | TrainLoss 1.3863 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,512:INFO: Epoch 00025 | Time(s) 0.0204 | TrainLoss 1.3864 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,531:INFO: Epoch 00026 | Time(s) 0.0203 | TrainLoss 1.3863 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,542:INFO: Epoch 00027 | Time(s) 0.0199 | TrainLoss 1.3863 | ETputs(KTEPS) 0.60
+
+2020-02-20 11:14:00,557:INFO: Epoch 00028 | Time(s) 0.0197 | TrainLoss 1.3863 | ETputs(KTEPS) 0.61
+
+2020-02-20 11:14:00,571:INFO: Epoch 00029 | Time(s) 0.0195 | TrainLoss 1.3863 | ETputs(KTEPS) 0.61
+
+2020-02-20 11:14:00,586:INFO: Epoch 00030 | Time(s) 0.0194 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,597:INFO: ************** Epoch 00030 | Time(s) 0.0194 | Loss 1.3863 | ETputs(KTEPS) 0.62 ***************
+
+2020-02-20 11:14:00,616:INFO: Epoch 00031 | Time(s) 0.0193 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,641:INFO: Epoch 00032 | Time(s) 0.0195 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,686:INFO: Epoch 00033 | Time(s) 0.0202 | TrainLoss 1.3863 | ETputs(KTEPS) 0.59
+
+2020-02-20 11:14:00,704:INFO: Epoch 00034 | Time(s) 0.0201 | TrainLoss 1.3863 | ETputs(KTEPS) 0.60
+
+2020-02-20 11:14:00,720:INFO: Epoch 00035 | Time(s) 0.0200 | TrainLoss 1.3863 | ETputs(KTEPS) 0.60
+
+2020-02-20 11:14:00,734:INFO: Epoch 00036 | Time(s) 0.0198 | TrainLoss 1.3863 | ETputs(KTEPS) 0.60
+
+2020-02-20 11:14:00,749:INFO: Epoch 00037 | Time(s) 0.0197 | TrainLoss 1.3863 | ETputs(KTEPS) 0.61
+
+2020-02-20 11:14:00,763:INFO: Epoch 00038 | Time(s) 0.0195 | TrainLoss 1.3863 | ETputs(KTEPS) 0.61
+
+2020-02-20 11:14:00,778:INFO: Epoch 00039 | Time(s) 0.0194 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,792:INFO: Epoch 00040 | Time(s) 0.0193 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,804:INFO: ************** Epoch 00040 | Time(s) 0.0193 | Loss 1.3863 | ETputs(KTEPS) 0.62 ***************
+
+2020-02-20 11:14:00,821:INFO: Epoch 00041 | Time(s) 0.0192 | TrainLoss 1.3863 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,835:INFO: Epoch 00042 | Time(s) 0.0191 | TrainLoss 1.3863 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,850:INFO: Epoch 00043 | Time(s) 0.0189 | TrainLoss 1.3863 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,864:INFO: Epoch 00044 | Time(s) 0.0188 | TrainLoss 1.3863 | ETputs(KTEPS) 0.64
+
+2020-02-20 11:14:00,892:INFO: Epoch 00045 | Time(s) 0.0191 | TrainLoss 1.3863 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,940:INFO: Epoch 00046 | Time(s) 0.0197 | TrainLoss 1.3863 | ETputs(KTEPS) 0.61
+
+2020-02-20 11:14:00,954:INFO: Epoch 00047 | Time(s) 0.0195 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,962:INFO: Epoch 00048 | Time(s) 0.0193 | TrainLoss 1.3863 | ETputs(KTEPS) 0.62
+
+2020-02-20 11:14:00,971:INFO: Epoch 00049 | Time(s) 0.0190 | TrainLoss 1.3863 | ETputs(KTEPS) 0.63
+
+2020-02-20 11:14:00,979:INFO: Epoch 00050 | Time(s) 0.0188 | TrainLoss 1.3863 | ETputs(KTEPS) 0.64
+
+2020-02-20 11:14:00,985:INFO: ************** Epoch 00050 | Time(s) 0.0188 | Loss 1.3863 | ETputs(KTEPS) 0.64 ***************
+
+2020-02-20 11:14:00,995:INFO: Epoch 00051 | Time(s) 0.0186 | TrainLoss 1.3863 | ETputs(KTEPS) 0.65
+
+2020-02-20 11:14:01,003:INFO: Epoch 00052 | Time(s) 0.0184 | TrainLoss 1.3863 | ETputs(KTEPS) 0.65
+
+2020-02-20 11:14:01,012:INFO: Epoch 00053 | Time(s) 0.0182 | TrainLoss 1.3863 | ETputs(KTEPS) 0.66
+
+2020-02-20 11:14:01,020:INFO: Epoch 00054 | Time(s) 0.0180 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,031:INFO: Epoch 00055 | Time(s) 0.0179 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,039:INFO: Epoch 00056 | Time(s) 0.0177 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,048:INFO: Epoch 00057 | Time(s) 0.0175 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,061:INFO: Epoch 00058 | Time(s) 0.0174 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,075:INFO: Epoch 00059 | Time(s) 0.0174 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,090:INFO: Epoch 00060 | Time(s) 0.0173 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,102:INFO: ************** Epoch 00060 | Time(s) 0.0173 | Loss 1.3863 | ETputs(KTEPS) 0.69 ***************
+
+2020-02-20 11:14:01,119:INFO: Epoch 00061 | Time(s) 0.0173 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,140:INFO: Epoch 00062 | Time(s) 0.0173 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,184:INFO: Epoch 00063 | Time(s) 0.0177 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,214:INFO: Epoch 00064 | Time(s) 0.0179 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,232:INFO: Epoch 00065 | Time(s) 0.0179 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,249:INFO: Epoch 00066 | Time(s) 0.0179 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,266:INFO: Epoch 00067 | Time(s) 0.0178 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,283:INFO: Epoch 00068 | Time(s) 0.0178 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,300:INFO: Epoch 00069 | Time(s) 0.0178 | TrainLoss 1.3863 | ETputs(KTEPS) 0.67
+
+2020-02-20 11:14:01,311:INFO: Epoch 00070 | Time(s) 0.0177 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,322:INFO: ************** Epoch 00070 | Time(s) 0.0177 | Loss 1.3863 | ETputs(KTEPS) 0.68 ***************
+
+2020-02-20 11:14:01,338:INFO: Epoch 00071 | Time(s) 0.0177 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,352:INFO: Epoch 00072 | Time(s) 0.0176 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,365:INFO: Epoch 00073 | Time(s) 0.0175 | TrainLoss 1.3863 | ETputs(KTEPS) 0.68
+
+2020-02-20 11:14:01,377:INFO: Epoch 00074 | Time(s) 0.0175 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,390:INFO: Epoch 00075 | Time(s) 0.0174 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,403:INFO: Epoch 00076 | Time(s) 0.0173 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,416:INFO: Epoch 00077 | Time(s) 0.0173 | TrainLoss 1.3863 | ETputs(KTEPS) 0.69
+
+2020-02-20 11:14:01,424:INFO: Epoch 00078 | Time(s) 0.0172 | TrainLoss 1.3863 | ETputs(KTEPS) 0.70
+
+2020-02-20 11:14:01,433:INFO: Epoch 00079 | Time(s) 0.0170 | TrainLoss 1.3863 | ETputs(KTEPS) 0.70
+
+2020-02-20 11:14:01,441:INFO: Epoch 00080 | Time(s) 0.0169 | TrainLoss 1.3863 | ETputs(KTEPS) 0.71
+
+2020-02-20 11:14:01,447:INFO: ************** Epoch 00080 | Time(s) 0.0169 | Loss 1.3863 | ETputs(KTEPS) 0.71 ***************
+
+2020-02-20 11:14:01,457:INFO: Epoch 00081 | Time(s) 0.0168 | TrainLoss 1.3863 | ETputs(KTEPS) 0.71
+
+2020-02-20 11:14:01,466:INFO: Epoch 00082 | Time(s) 0.0167 | TrainLoss 1.3863 | ETputs(KTEPS) 0.72
+
+2020-02-20 11:14:01,474:INFO: Epoch 00083 | Time(s) 0.0166 | TrainLoss 1.3863 | ETputs(KTEPS) 0.72
+
+2020-02-20 11:14:01,482:INFO: Epoch 00084 | Time(s) 0.0165 | TrainLoss 1.3863 | ETputs(KTEPS) 0.73
+
+2020-02-20 11:14:01,490:INFO: Epoch 00085 | Time(s) 0.0164 | TrainLoss 1.3863 | ETputs(KTEPS) 0.73
+
+2020-02-20 11:14:01,498:INFO: Epoch 00086 | Time(s) 0.0163 | TrainLoss 1.3863 | ETputs(KTEPS) 0.74
+
+2020-02-20 11:14:01,506:INFO: Epoch 00087 | Time(s) 0.0162 | TrainLoss 1.3863 | ETputs(KTEPS) 0.74
+
+2020-02-20 11:14:01,514:INFO: Epoch 00088 | Time(s) 0.0161 | TrainLoss 1.3863 | ETputs(KTEPS) 0.74
+
+2020-02-20 11:14:01,522:INFO: Epoch 00089 | Time(s) 0.0160 | TrainLoss 1.3863 | ETputs(KTEPS) 0.75
+
+2020-02-20 11:14:01,531:INFO: Epoch 00090 | Time(s) 0.0159 | TrainLoss 1.3863 | ETputs(KTEPS) 0.75
+
+2020-02-20 11:14:01,537:INFO: ************** Epoch 00090 | Time(s) 0.0159 | Loss 1.3863 | ETputs(KTEPS) 0.75 ***************
+
+2020-02-20 11:14:01,547:INFO: Epoch 00091 | Time(s) 0.0159 | TrainLoss 1.3863 | ETputs(KTEPS) 0.76
+
+2020-02-20 11:14:01,555:INFO: Epoch 00092 | Time(s) 0.0158 | TrainLoss 1.3863 | ETputs(KTEPS) 0.76
+
+2020-02-20 11:14:01,564:INFO: Epoch 00093 | Time(s) 0.0157 | TrainLoss 1.3863 | ETputs(KTEPS) 0.76
+
+2020-02-20 11:14:01,572:INFO: Epoch 00094 | Time(s) 0.0156 | TrainLoss 1.3863 | ETputs(KTEPS) 0.77
+
+2020-02-20 11:14:01,581:INFO: Epoch 00095 | Time(s) 0.0155 | TrainLoss 1.3863 | ETputs(KTEPS) 0.77
+
+2020-02-20 11:14:01,589:INFO: Epoch 00096 | Time(s) 0.0155 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:01,598:INFO: Epoch 00097 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:01,607:INFO: Epoch 00098 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:01,615:INFO: Epoch 00099 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:01,624:INFO: Epoch 00100 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:01,630:INFO: ************** Epoch 00100 | Time(s) 0.0152 | Loss 1.3863 | ETputs(KTEPS) 0.79 ***************
+
+2020-02-20 11:14:01,639:INFO: Epoch 00101 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:01,648:INFO: Epoch 00102 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:01,657:INFO: Epoch 00103 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:01,665:INFO: Epoch 00104 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:01,674:INFO: Epoch 00105 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:01,682:INFO: Epoch 00106 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:01,691:INFO: Epoch 00107 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:01,699:INFO: Epoch 00108 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:01,708:INFO: Epoch 00109 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:01,716:INFO: Epoch 00110 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:01,728:INFO: ************** Epoch 00110 | Time(s) 0.0146 | Loss 1.3863 | ETputs(KTEPS) 0.82 ***************
+
+2020-02-20 11:14:01,737:INFO: Epoch 00111 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:01,746:INFO: Epoch 00112 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:01,754:INFO: Epoch 00113 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:01,763:INFO: Epoch 00114 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:01,771:INFO: Epoch 00115 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:01,780:INFO: Epoch 00116 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:01,788:INFO: Epoch 00117 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:01,797:INFO: Epoch 00118 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:01,806:INFO: Epoch 00119 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:01,814:INFO: Epoch 00120 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:01,820:INFO: ************** Epoch 00120 | Time(s) 0.0140 | Loss 1.3863 | ETputs(KTEPS) 0.86 ***************
+
+2020-02-20 11:14:01,830:INFO: Epoch 00121 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:01,839:INFO: Epoch 00122 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:01,847:INFO: Epoch 00123 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:01,856:INFO: Epoch 00124 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:01,865:INFO: Epoch 00125 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:01,873:INFO: Epoch 00126 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:01,882:INFO: Epoch 00127 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:01,890:INFO: Epoch 00128 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:01,899:INFO: Epoch 00129 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:01,908:INFO: Epoch 00130 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:01,914:INFO: ************** Epoch 00130 | Time(s) 0.0136 | Loss 1.3863 | ETputs(KTEPS) 0.88 ***************
+
+2020-02-20 11:14:01,923:INFO: Epoch 00131 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:01,932:INFO: Epoch 00132 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:01,941:INFO: Epoch 00133 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:01,949:INFO: Epoch 00134 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:01,957:INFO: Epoch 00135 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:01,964:INFO: Epoch 00136 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:01,972:INFO: Epoch 00137 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:01,980:INFO: Epoch 00138 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:01,988:INFO: Epoch 00139 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:01,996:INFO: Epoch 00140 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:02,001:INFO: ************** Epoch 00140 | Time(s) 0.0132 | Loss 1.3863 | ETputs(KTEPS) 0.91 ***************
+
+2020-02-20 11:14:02,010:INFO: Epoch 00141 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:02,018:INFO: Epoch 00142 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:02,104:INFO: Epoch 00143 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:02,122:INFO: Epoch 00144 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:02,135:INFO: Epoch 00145 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:02,221:INFO: Epoch 00146 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:02,280:INFO: Epoch 00147 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:02,332:INFO: Epoch 00148 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:02,364:INFO: Epoch 00149 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:02,404:INFO: Epoch 00150 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,425:INFO: ************** Epoch 00150 | Time(s) 0.0150 | Loss 1.3863 | ETputs(KTEPS) 0.80 ***************
+
+2020-02-20 11:14:02,464:INFO: Epoch 00151 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,503:INFO: Epoch 00152 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,520:INFO: Epoch 00153 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,547:INFO: Epoch 00154 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,557:INFO: Epoch 00155 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,566:INFO: Epoch 00156 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,574:INFO: Epoch 00157 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,583:INFO: Epoch 00158 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,591:INFO: Epoch 00159 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,599:INFO: Epoch 00160 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,605:INFO: ************** Epoch 00160 | Time(s) 0.0151 | Loss 1.3863 | ETputs(KTEPS) 0.80 ***************
+
+2020-02-20 11:14:02,615:INFO: Epoch 00161 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,624:INFO: Epoch 00162 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,632:INFO: Epoch 00163 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,640:INFO: Epoch 00164 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,721:INFO: Epoch 00165 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,771:INFO: Epoch 00166 | Time(s) 0.0155 | TrainLoss 1.3863 | ETputs(KTEPS) 0.77
+
+2020-02-20 11:14:02,781:INFO: Epoch 00167 | Time(s) 0.0155 | TrainLoss 1.3863 | ETputs(KTEPS) 0.77
+
+2020-02-20 11:14:02,793:INFO: Epoch 00168 | Time(s) 0.0155 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,804:INFO: Epoch 00169 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,816:INFO: Epoch 00170 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,827:INFO: ************** Epoch 00170 | Time(s) 0.0154 | Loss 1.3863 | ETputs(KTEPS) 0.78 ***************
+
+2020-02-20 11:14:02,841:INFO: Epoch 00171 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,853:INFO: Epoch 00172 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,864:INFO: Epoch 00173 | Time(s) 0.0154 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,876:INFO: Epoch 00174 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,889:INFO: Epoch 00175 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,902:INFO: Epoch 00176 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:02,910:INFO: Epoch 00177 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,918:INFO: Epoch 00178 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,926:INFO: Epoch 00179 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,934:INFO: Epoch 00180 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,940:INFO: ************** Epoch 00180 | Time(s) 0.0151 | Loss 1.3863 | ETputs(KTEPS) 0.79 ***************
+
+2020-02-20 11:14:02,949:INFO: Epoch 00181 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:02,957:INFO: Epoch 00182 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,965:INFO: Epoch 00183 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,975:INFO: Epoch 00184 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,984:INFO: Epoch 00185 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:02,994:INFO: Epoch 00186 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:03,002:INFO: Epoch 00187 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:03,010:INFO: Epoch 00188 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:03,018:INFO: Epoch 00189 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:03,026:INFO: Epoch 00190 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:03,032:INFO: ************** Epoch 00190 | Time(s) 0.0148 | Loss 1.3863 | ETputs(KTEPS) 0.81 ***************
+
+2020-02-20 11:14:03,041:INFO: Epoch 00191 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:03,050:INFO: Epoch 00192 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,058:INFO: Epoch 00193 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,066:INFO: Epoch 00194 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,074:INFO: Epoch 00195 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,082:INFO: Epoch 00196 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,090:INFO: Epoch 00197 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:03,098:INFO: Epoch 00198 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:03,106:INFO: Epoch 00199 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:03,114:INFO: Epoch 00200 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:03,120:INFO: ************** Epoch 00200 | Time(s) 0.0144 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:03,129:INFO: Epoch 00201 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:03,140:INFO: Epoch 00202 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:03,148:INFO: Epoch 00203 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,156:INFO: Epoch 00204 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,164:INFO: Epoch 00205 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,173:INFO: Epoch 00206 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,181:INFO: Epoch 00207 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,190:INFO: Epoch 00208 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:03,198:INFO: Epoch 00209 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,207:INFO: Epoch 00210 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,213:INFO: ************** Epoch 00210 | Time(s) 0.0142 | Loss 1.3863 | ETputs(KTEPS) 0.85 ***************
+
+2020-02-20 11:14:03,223:INFO: Epoch 00211 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,232:INFO: Epoch 00212 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,240:INFO: Epoch 00213 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,249:INFO: Epoch 00214 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:03,257:INFO: Epoch 00215 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,266:INFO: Epoch 00216 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,274:INFO: Epoch 00217 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,282:INFO: Epoch 00218 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,290:INFO: Epoch 00219 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,298:INFO: Epoch 00220 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:03,304:INFO: ************** Epoch 00220 | Time(s) 0.0139 | Loss 1.3863 | ETputs(KTEPS) 0.86 ***************
+
+2020-02-20 11:14:03,312:INFO: Epoch 00221 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,321:INFO: Epoch 00222 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,329:INFO: Epoch 00223 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,343:INFO: Epoch 00224 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,351:INFO: Epoch 00225 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,359:INFO: Epoch 00226 | Time(s) 0.0138 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,368:INFO: Epoch 00227 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.87
+
+2020-02-20 11:14:03,376:INFO: Epoch 00228 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,384:INFO: Epoch 00229 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,392:INFO: Epoch 00230 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,398:INFO: ************** Epoch 00230 | Time(s) 0.0137 | Loss 1.3863 | ETputs(KTEPS) 0.88 ***************
+
+2020-02-20 11:14:03,406:INFO: Epoch 00231 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,414:INFO: Epoch 00232 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,422:INFO: Epoch 00233 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:03,431:INFO: Epoch 00234 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,439:INFO: Epoch 00235 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,447:INFO: Epoch 00236 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,455:INFO: Epoch 00237 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,463:INFO: Epoch 00238 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,471:INFO: Epoch 00239 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,479:INFO: Epoch 00240 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:03,485:INFO: ************** Epoch 00240 | Time(s) 0.0134 | Loss 1.3863 | ETputs(KTEPS) 0.89 ***************
+
+2020-02-20 11:14:03,493:INFO: Epoch 00241 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,501:INFO: Epoch 00242 | Time(s) 0.0134 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,510:INFO: Epoch 00243 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,518:INFO: Epoch 00244 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,526:INFO: Epoch 00245 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,534:INFO: Epoch 00246 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,552:INFO: Epoch 00247 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,560:INFO: Epoch 00248 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:03,568:INFO: Epoch 00249 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,576:INFO: Epoch 00250 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,582:INFO: ************** Epoch 00250 | Time(s) 0.0132 | Loss 1.3863 | ETputs(KTEPS) 0.91 ***************
+
+2020-02-20 11:14:03,591:INFO: Epoch 00251 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,599:INFO: Epoch 00252 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,607:INFO: Epoch 00253 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,616:INFO: Epoch 00254 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,624:INFO: Epoch 00255 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:03,632:INFO: Epoch 00256 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,640:INFO: Epoch 00257 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,648:INFO: Epoch 00258 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,657:INFO: Epoch 00259 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,665:INFO: Epoch 00260 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,670:INFO: ************** Epoch 00260 | Time(s) 0.0130 | Loss 1.3863 | ETputs(KTEPS) 0.92 ***************
+
+2020-02-20 11:14:03,680:INFO: Epoch 00261 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,688:INFO: Epoch 00262 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:03,696:INFO: Epoch 00263 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,704:INFO: Epoch 00264 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,713:INFO: Epoch 00265 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,721:INFO: Epoch 00266 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,729:INFO: Epoch 00267 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,737:INFO: Epoch 00268 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,745:INFO: Epoch 00269 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,753:INFO: Epoch 00270 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:03,759:INFO: ************** Epoch 00270 | Time(s) 0.0128 | Loss 1.3863 | ETputs(KTEPS) 0.93 ***************
+
+2020-02-20 11:14:03,768:INFO: Epoch 00271 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,776:INFO: Epoch 00272 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,785:INFO: Epoch 00273 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,793:INFO: Epoch 00274 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,801:INFO: Epoch 00275 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,809:INFO: Epoch 00276 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,817:INFO: Epoch 00277 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,825:INFO: Epoch 00278 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:03,833:INFO: Epoch 00279 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,842:INFO: Epoch 00280 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,847:INFO: ************** Epoch 00280 | Time(s) 0.0127 | Loss 1.3863 | ETputs(KTEPS) 0.95 ***************
+
+2020-02-20 11:14:03,856:INFO: Epoch 00281 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,864:INFO: Epoch 00282 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,872:INFO: Epoch 00283 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,880:INFO: Epoch 00284 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,888:INFO: Epoch 00285 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,897:INFO: Epoch 00286 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.95
+
+2020-02-20 11:14:03,905:INFO: Epoch 00287 | Time(s) 0.0126 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,913:INFO: Epoch 00288 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,921:INFO: Epoch 00289 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,929:INFO: Epoch 00290 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,935:INFO: ************** Epoch 00290 | Time(s) 0.0125 | Loss 1.3863 | ETputs(KTEPS) 0.96 ***************
+
+2020-02-20 11:14:03,944:INFO: Epoch 00291 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,952:INFO: Epoch 00292 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,961:INFO: Epoch 00293 | Time(s) 0.0125 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,969:INFO: Epoch 00294 | Time(s) 0.0124 | TrainLoss 1.3863 | ETputs(KTEPS) 0.96
+
+2020-02-20 11:14:03,979:INFO: Epoch 00295 | Time(s) 0.0124 | TrainLoss 1.3863 | ETputs(KTEPS) 0.97
+
+2020-02-20 11:14:03,988:INFO: Epoch 00296 | Time(s) 0.0124 | TrainLoss 1.3863 | ETputs(KTEPS) 0.97
+
+2020-02-20 11:14:04,084:INFO: Epoch 00297 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,104:INFO: Epoch 00298 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,117:INFO: Epoch 00299 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,131:INFO: Epoch 00300 | Time(s) 0.0127 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,143:INFO: ************** Epoch 00300 | Time(s) 0.0127 | Loss 1.3863 | ETputs(KTEPS) 0.94 ***************
+
+2020-02-20 11:14:04,167:INFO: Epoch 00301 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,187:INFO: Epoch 00302 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,206:INFO: Epoch 00303 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,225:INFO: Epoch 00304 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.94
+
+2020-02-20 11:14:04,244:INFO: Epoch 00305 | Time(s) 0.0128 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:04,264:INFO: Epoch 00306 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:04,283:INFO: Epoch 00307 | Time(s) 0.0129 | TrainLoss 1.3863 | ETputs(KTEPS) 0.93
+
+2020-02-20 11:14:04,341:INFO: Epoch 00308 | Time(s) 0.0130 | TrainLoss 1.3863 | ETputs(KTEPS) 0.92
+
+2020-02-20 11:14:04,392:INFO: Epoch 00309 | Time(s) 0.0131 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,412:INFO: Epoch 00310 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,427:INFO: ************** Epoch 00310 | Time(s) 0.0132 | Loss 1.3863 | ETputs(KTEPS) 0.91 ***************
+
+2020-02-20 11:14:04,449:INFO: Epoch 00311 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,469:INFO: Epoch 00312 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,490:INFO: Epoch 00313 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,507:INFO: Epoch 00314 | Time(s) 0.0132 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,524:INFO: Epoch 00315 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.91
+
+2020-02-20 11:14:04,542:INFO: Epoch 00316 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:04,559:INFO: Epoch 00317 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:04,581:INFO: Epoch 00318 | Time(s) 0.0133 | TrainLoss 1.3863 | ETputs(KTEPS) 0.90
+
+2020-02-20 11:14:04,664:INFO: Epoch 00319 | Time(s) 0.0135 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:04,694:INFO: Epoch 00320 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.89
+
+2020-02-20 11:14:04,706:INFO: ************** Epoch 00320 | Time(s) 0.0136 | Loss 1.3863 | ETputs(KTEPS) 0.89 ***************
+
+2020-02-20 11:14:04,728:INFO: Epoch 00321 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,747:INFO: Epoch 00322 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,767:INFO: Epoch 00323 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,786:INFO: Epoch 00324 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,805:INFO: Epoch 00325 | Time(s) 0.0136 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,824:INFO: Epoch 00326 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,844:INFO: Epoch 00327 | Time(s) 0.0137 | TrainLoss 1.3863 | ETputs(KTEPS) 0.88
+
+2020-02-20 11:14:04,927:INFO: Epoch 00328 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:04,951:INFO: Epoch 00329 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:04,972:INFO: Epoch 00330 | Time(s) 0.0139 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:04,986:INFO: ************** Epoch 00330 | Time(s) 0.0139 | Loss 1.3863 | ETputs(KTEPS) 0.86 ***************
+
+2020-02-20 11:14:05,012:INFO: Epoch 00331 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:05,032:INFO: Epoch 00332 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:05,051:INFO: Epoch 00333 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:05,070:INFO: Epoch 00334 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:05,089:INFO: Epoch 00335 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:05,109:INFO: Epoch 00336 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:05,184:INFO: Epoch 00337 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,217:INFO: Epoch 00338 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,239:INFO: Epoch 00339 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,261:INFO: Epoch 00340 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,274:INFO: ************** Epoch 00340 | Time(s) 0.0143 | Loss 1.3863 | ETputs(KTEPS) 0.84 ***************
+
+2020-02-20 11:14:05,299:INFO: Epoch 00341 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,322:INFO: Epoch 00342 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:05,340:INFO: Epoch 00343 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:05,358:INFO: Epoch 00344 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:05,376:INFO: Epoch 00345 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:05,452:INFO: Epoch 00346 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,475:INFO: Epoch 00347 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,500:INFO: Epoch 00348 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,520:INFO: Epoch 00349 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,538:INFO: Epoch 00350 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,551:INFO: ************** Epoch 00350 | Time(s) 0.0146 | Loss 1.3863 | ETputs(KTEPS) 0.82 ***************
+
+2020-02-20 11:14:05,568:INFO: Epoch 00351 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,586:INFO: Epoch 00352 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,604:INFO: Epoch 00353 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,623:INFO: Epoch 00354 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,641:INFO: Epoch 00355 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:05,709:INFO: Epoch 00356 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,743:INFO: Epoch 00357 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,761:INFO: Epoch 00358 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,779:INFO: Epoch 00359 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,798:INFO: Epoch 00360 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,810:INFO: ************** Epoch 00360 | Time(s) 0.0149 | Loss 1.3863 | ETputs(KTEPS) 0.81 ***************
+
+2020-02-20 11:14:05,829:INFO: Epoch 00361 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,847:INFO: Epoch 00362 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,863:INFO: Epoch 00363 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,887:INFO: Epoch 00364 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,912:INFO: Epoch 00365 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,931:INFO: Epoch 00366 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,940:INFO: Epoch 00367 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,948:INFO: Epoch 00368 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,957:INFO: Epoch 00369 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:05,966:INFO: Epoch 00370 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,972:INFO: ************** Epoch 00370 | Time(s) 0.0149 | Loss 1.3863 | ETputs(KTEPS) 0.81 ***************
+
+2020-02-20 11:14:05,981:INFO: Epoch 00371 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,990:INFO: Epoch 00372 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:05,998:INFO: Epoch 00373 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,006:INFO: Epoch 00374 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,014:INFO: Epoch 00375 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,023:INFO: Epoch 00376 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,031:INFO: Epoch 00377 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,039:INFO: Epoch 00378 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,046:INFO: Epoch 00379 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:06,052:INFO: Epoch 00380 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,057:INFO: ************** Epoch 00380 | Time(s) 0.0147 | Loss 1.3863 | ETputs(KTEPS) 0.82 ***************
+
+2020-02-20 11:14:06,064:INFO: Epoch 00381 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,073:INFO: Epoch 00382 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,082:INFO: Epoch 00383 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,090:INFO: Epoch 00384 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,098:INFO: Epoch 00385 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,106:INFO: Epoch 00386 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,115:INFO: Epoch 00387 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,123:INFO: Epoch 00388 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,132:INFO: Epoch 00389 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,141:INFO: Epoch 00390 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,147:INFO: ************** Epoch 00390 | Time(s) 0.0145 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:06,167:INFO: Epoch 00391 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,177:INFO: Epoch 00392 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,186:INFO: Epoch 00393 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,194:INFO: Epoch 00394 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,202:INFO: Epoch 00395 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,209:INFO: Epoch 00396 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,217:INFO: Epoch 00397 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,226:INFO: Epoch 00398 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,235:INFO: Epoch 00399 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,244:INFO: Epoch 00400 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,250:INFO: ************** Epoch 00400 | Time(s) 0.0144 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:06,259:INFO: Epoch 00401 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,268:INFO: Epoch 00402 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:06,276:INFO: Epoch 00403 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,285:INFO: Epoch 00404 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,294:INFO: Epoch 00405 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,302:INFO: Epoch 00406 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,311:INFO: Epoch 00407 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,319:INFO: Epoch 00408 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,328:INFO: Epoch 00409 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,336:INFO: Epoch 00410 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,342:INFO: ************** Epoch 00410 | Time(s) 0.0143 | Loss 1.3863 | ETputs(KTEPS) 0.84 ***************
+
+2020-02-20 11:14:06,350:INFO: Epoch 00411 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,358:INFO: Epoch 00412 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,366:INFO: Epoch 00413 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,374:INFO: Epoch 00414 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,382:INFO: Epoch 00415 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,390:INFO: Epoch 00416 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,398:INFO: Epoch 00417 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,406:INFO: Epoch 00418 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,414:INFO: Epoch 00419 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,422:INFO: Epoch 00420 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,428:INFO: ************** Epoch 00420 | Time(s) 0.0141 | Loss 1.3863 | ETputs(KTEPS) 0.85 ***************
+
+2020-02-20 11:14:06,437:INFO: Epoch 00421 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,445:INFO: Epoch 00422 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,489:INFO: Epoch 00423 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:06,575:INFO: Epoch 00424 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:06,735:INFO: Epoch 00425 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:06,885:INFO: Epoch 00426 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:06,902:INFO: Epoch 00427 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:06,922:INFO: Epoch 00428 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:06,940:INFO: Epoch 00429 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:06,958:INFO: Epoch 00430 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:06,969:INFO: ************** Epoch 00430 | Time(s) 0.0150 | Loss 1.3863 | ETputs(KTEPS) 0.80 ***************
+
+2020-02-20 11:14:06,991:INFO: Epoch 00431 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,010:INFO: Epoch 00432 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,133:INFO: Epoch 00433 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,150:INFO: Epoch 00434 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,168:INFO: Epoch 00435 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,186:INFO: Epoch 00436 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,204:INFO: Epoch 00437 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,222:INFO: Epoch 00438 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,240:INFO: Epoch 00439 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,258:INFO: Epoch 00440 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,269:INFO: ************** Epoch 00440 | Time(s) 0.0153 | Loss 1.3863 | ETputs(KTEPS) 0.78 ***************
+
+2020-02-20 11:14:07,290:INFO: Epoch 00441 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,308:INFO: Epoch 00442 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,319:INFO: Epoch 00443 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,327:INFO: Epoch 00444 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.78
+
+2020-02-20 11:14:07,335:INFO: Epoch 00445 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,343:INFO: Epoch 00446 | Time(s) 0.0153 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,354:INFO: Epoch 00447 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,370:INFO: Epoch 00448 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,379:INFO: Epoch 00449 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,388:INFO: Epoch 00450 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,395:INFO: ************** Epoch 00450 | Time(s) 0.0152 | Loss 1.3863 | ETputs(KTEPS) 0.79 ***************
+
+2020-02-20 11:14:07,404:INFO: Epoch 00451 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,414:INFO: Epoch 00452 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,423:INFO: Epoch 00453 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,431:INFO: Epoch 00454 | Time(s) 0.0152 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,439:INFO: Epoch 00455 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,447:INFO: Epoch 00456 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,456:INFO: Epoch 00457 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,464:INFO: Epoch 00458 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.79
+
+2020-02-20 11:14:07,472:INFO: Epoch 00459 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,481:INFO: Epoch 00460 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,487:INFO: ************** Epoch 00460 | Time(s) 0.0151 | Loss 1.3863 | ETputs(KTEPS) 0.80 ***************
+
+2020-02-20 11:14:07,496:INFO: Epoch 00461 | Time(s) 0.0151 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,505:INFO: Epoch 00462 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,514:INFO: Epoch 00463 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,523:INFO: Epoch 00464 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,532:INFO: Epoch 00465 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,540:INFO: Epoch 00466 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,549:INFO: Epoch 00467 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,558:INFO: Epoch 00468 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,567:INFO: Epoch 00469 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,576:INFO: Epoch 00470 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,582:INFO: ************** Epoch 00470 | Time(s) 0.0149 | Loss 1.3863 | ETputs(KTEPS) 0.80 ***************
+
+2020-02-20 11:14:07,592:INFO: Epoch 00471 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:07,601:INFO: Epoch 00472 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,610:INFO: Epoch 00473 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,619:INFO: Epoch 00474 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,628:INFO: Epoch 00475 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,637:INFO: Epoch 00476 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,646:INFO: Epoch 00477 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,654:INFO: Epoch 00478 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,663:INFO: Epoch 00479 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,672:INFO: Epoch 00480 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,679:INFO: ************** Epoch 00480 | Time(s) 0.0148 | Loss 1.3863 | ETputs(KTEPS) 0.81 ***************
+
+2020-02-20 11:14:07,688:INFO: Epoch 00481 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,697:INFO: Epoch 00482 | Time(s) 0.0148 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,706:INFO: Epoch 00483 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,715:INFO: Epoch 00484 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:07,724:INFO: Epoch 00485 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,733:INFO: Epoch 00486 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,742:INFO: Epoch 00487 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,750:INFO: Epoch 00488 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,759:INFO: Epoch 00489 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,768:INFO: Epoch 00490 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,774:INFO: ************** Epoch 00490 | Time(s) 0.0147 | Loss 1.3863 | ETputs(KTEPS) 0.82 ***************
+
+2020-02-20 11:14:07,782:INFO: Epoch 00491 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,791:INFO: Epoch 00492 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,800:INFO: Epoch 00493 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,809:INFO: Epoch 00494 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,817:INFO: Epoch 00495 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,826:INFO: Epoch 00496 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,835:INFO: Epoch 00497 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,843:INFO: Epoch 00498 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,852:INFO: Epoch 00499 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:07,861:INFO: Epoch 00500 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,867:INFO: ************** Epoch 00500 | Time(s) 0.0145 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:07,876:INFO: Epoch 00501 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,884:INFO: Epoch 00502 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,893:INFO: Epoch 00503 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,902:INFO: Epoch 00504 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,910:INFO: Epoch 00505 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,919:INFO: Epoch 00506 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,928:INFO: Epoch 00507 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,936:INFO: Epoch 00508 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,946:INFO: Epoch 00509 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,955:INFO: Epoch 00510 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,961:INFO: ************** Epoch 00510 | Time(s) 0.0144 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:07,978:INFO: Epoch 00511 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,988:INFO: Epoch 00512 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:07,997:INFO: Epoch 00513 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:08,006:INFO: Epoch 00514 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:08,015:INFO: Epoch 00515 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:08,024:INFO: Epoch 00516 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,032:INFO: Epoch 00517 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,041:INFO: Epoch 00518 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,050:INFO: Epoch 00519 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,058:INFO: Epoch 00520 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,065:INFO: ************** Epoch 00520 | Time(s) 0.0143 | Loss 1.3863 | ETputs(KTEPS) 0.84 ***************
+
+2020-02-20 11:14:08,073:INFO: Epoch 00521 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,082:INFO: Epoch 00522 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,091:INFO: Epoch 00523 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,100:INFO: Epoch 00524 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,109:INFO: Epoch 00525 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,117:INFO: Epoch 00526 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,126:INFO: Epoch 00527 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,135:INFO: Epoch 00528 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,143:INFO: Epoch 00529 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,152:INFO: Epoch 00530 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,158:INFO: ************** Epoch 00530 | Time(s) 0.0142 | Loss 1.3863 | ETputs(KTEPS) 0.84 ***************
+
+2020-02-20 11:14:08,167:INFO: Epoch 00531 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,176:INFO: Epoch 00532 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,184:INFO: Epoch 00533 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,193:INFO: Epoch 00534 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,202:INFO: Epoch 00535 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,210:INFO: Epoch 00536 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,219:INFO: Epoch 00537 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,227:INFO: Epoch 00538 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,237:INFO: Epoch 00539 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,246:INFO: Epoch 00540 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,253:INFO: ************** Epoch 00540 | Time(s) 0.0141 | Loss 1.3863 | ETputs(KTEPS) 0.85 ***************
+
+2020-02-20 11:14:08,261:INFO: Epoch 00541 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,270:INFO: Epoch 00542 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,279:INFO: Epoch 00543 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,288:INFO: Epoch 00544 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,297:INFO: Epoch 00545 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,306:INFO: Epoch 00546 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,314:INFO: Epoch 00547 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:08,323:INFO: Epoch 00548 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:08,331:INFO: Epoch 00549 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:08,340:INFO: Epoch 00550 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:08,346:INFO: ************** Epoch 00550 | Time(s) 0.0140 | Loss 1.3863 | ETputs(KTEPS) 0.86 ***************
+
+2020-02-20 11:14:08,355:INFO: Epoch 00551 | Time(s) 0.0140 | TrainLoss 1.3863 | ETputs(KTEPS) 0.86
+
+2020-02-20 11:14:08,451:INFO: Epoch 00552 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,474:INFO: Epoch 00553 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,487:INFO: Epoch 00554 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,499:INFO: Epoch 00555 | Time(s) 0.0142 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,512:INFO: Epoch 00556 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,524:INFO: Epoch 00557 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,536:INFO: Epoch 00558 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,549:INFO: Epoch 00559 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,561:INFO: Epoch 00560 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,572:INFO: ************** Epoch 00560 | Time(s) 0.0141 | Loss 1.3863 | ETputs(KTEPS) 0.85 ***************
+
+2020-02-20 11:14:08,587:INFO: Epoch 00561 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,599:INFO: Epoch 00562 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,612:INFO: Epoch 00563 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,624:INFO: Epoch 00564 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,637:INFO: Epoch 00565 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,657:INFO: Epoch 00566 | Time(s) 0.0141 | TrainLoss 1.3863 | ETputs(KTEPS) 0.85
+
+2020-02-20 11:14:08,744:INFO: Epoch 00567 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,765:INFO: Epoch 00568 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,784:INFO: Epoch 00569 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,803:INFO: Epoch 00570 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,814:INFO: ************** Epoch 00570 | Time(s) 0.0143 | Loss 1.3863 | ETputs(KTEPS) 0.84 ***************
+
+2020-02-20 11:14:08,836:INFO: Epoch 00571 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,855:INFO: Epoch 00572 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,873:INFO: Epoch 00573 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,892:INFO: Epoch 00574 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,911:INFO: Epoch 00575 | Time(s) 0.0143 | TrainLoss 1.3863 | ETputs(KTEPS) 0.84
+
+2020-02-20 11:14:08,961:INFO: Epoch 00576 | Time(s) 0.0144 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,021:INFO: Epoch 00577 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,041:INFO: Epoch 00578 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,060:INFO: Epoch 00579 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,079:INFO: Epoch 00580 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,090:INFO: ************** Epoch 00580 | Time(s) 0.0145 | Loss 1.3863 | ETputs(KTEPS) 0.83 ***************
+
+2020-02-20 11:14:09,114:INFO: Epoch 00581 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,133:INFO: Epoch 00582 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,152:INFO: Epoch 00583 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,171:INFO: Epoch 00584 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,201:INFO: Epoch 00585 | Time(s) 0.0145 | TrainLoss 1.3863 | ETputs(KTEPS) 0.83
+
+2020-02-20 11:14:09,281:INFO: Epoch 00586 | Time(s) 0.0146 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:09,303:INFO: Epoch 00587 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:09,323:INFO: Epoch 00588 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:09,346:INFO: Epoch 00589 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:09,381:INFO: Epoch 00590 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.82
+
+2020-02-20 11:14:09,395:INFO: ************** Epoch 00590 | Time(s) 0.0147 | Loss 1.3863 | ETputs(KTEPS) 0.82 ***************
+
+2020-02-20 11:14:09,423:INFO: Epoch 00591 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,438:INFO: Epoch 00592 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,458:INFO: Epoch 00593 | Time(s) 0.0147 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,551:INFO: Epoch 00594 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,573:INFO: Epoch 00595 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,604:INFO: Epoch 00596 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.81
+
+2020-02-20 11:14:09,629:INFO: Epoch 00597 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:09,657:INFO: Epoch 00598 | Time(s) 0.0149 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:09,683:INFO: Epoch 00599 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 11:14:09,713:INFO: Epoch 00600 | Time(s) 0.0150 | TrainLoss 1.3863 | ETputs(KTEPS) 0.80
+
+2020-02-20 19:44:47,542:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 19:45:35,758:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 19:45:35,758:INFO: loading data...
+2020-02-20 19:45:35,758:INFO: Loading Node Features...
+2020-02-20 19:45:38,242:INFO: Loading Labels...
+2020-02-20 19:45:38,244:INFO: Mapping vertex id to consecutive integers
+2020-02-20 20:35:19,964:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 20:36:06,967:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 20:36:06,967:INFO: loading data...
+2020-02-20 20:36:06,967:INFO: Loading Node Features...
+2020-02-20 20:36:11,971:INFO: Loading Labels...
+2020-02-20 20:36:11,973:INFO: Mapping vertex id to consecutive integers
+2020-02-20 20:36:46,353:INFO: Number of node features in features.txt: 960570
+2020-02-20 20:36:46,354:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 20:36:46,354:INFO: Number of node in the intersection: 960570
+2020-02-20 20:36:46,354:INFO: Node id mapping created
+2020-02-20 20:36:46,354:INFO: Save the mapping to /home/handason/data/eth-node-classification/node_id_map.csv
+2020-02-20 20:36:46,373:INFO: [32mVertex id mapping is sucessfully saved to /home/handason/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 20:36:47,155:INFO: Preprocessing node features
+2020-02-20 20:36:47,156:INFO: Filtering nodes
+2020-02-20 20:36:47,815:INFO: Mean imputation on the missing value
+2020-02-20 20:36:48,991:INFO: features shape: (449403, 22)
+2020-02-20 20:36:48,991:INFO: filtering unused nodes in the label
+2020-02-20 20:36:48,994:INFO: mapping labels node id to new node id
+2020-02-20 20:36:48,997:INFO: convert label to one-hot format
+2020-02-20 20:36:49,000:INFO: Train, validation, test split
+2020-02-20 20:36:49,001:INFO: The mask file: /home/handason/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 20:37:50,674:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 20:37:50,674:INFO: loading data...
+2020-02-20 20:37:50,674:INFO: Loading Node Features...
+2020-02-20 20:37:52,657:INFO: Loading Labels...
+2020-02-20 20:37:52,658:INFO: Mapping vertex id to consecutive integers
+2020-02-20 20:38:34,696:INFO: Number of node features in features.txt: 960570
+2020-02-20 20:38:34,696:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 20:38:34,696:INFO: Number of node in the intersection: 960570
+2020-02-20 20:38:34,696:INFO: Node id mapping created
+2020-02-20 20:38:34,697:INFO: Save the mapping to /home/handason/data/eth-node-classification/node_id_map.csv
+2020-02-20 20:38:34,697:INFO: [32mVertex id mapping is sucessfully saved to /home/handason/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 20:38:35,116:INFO: Preprocessing node features
+2020-02-20 20:38:35,116:INFO: Filtering nodes
+2020-02-20 20:38:35,508:INFO: Mean imputation on the missing value
+2020-02-20 20:38:36,012:INFO: features shape: (449403, 22)
+2020-02-20 20:38:36,013:INFO: filtering unused nodes in the label
+2020-02-20 20:38:36,014:INFO: mapping labels node id to new node id
+2020-02-20 20:38:36,015:INFO: convert label to one-hot format
+2020-02-20 20:38:36,017:INFO: Train, validation, test split
+2020-02-20 20:38:36,017:INFO: The mask file: /home/handason/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 20:48:39,377:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 20:48:39,377:INFO: loading data...
+2020-02-20 20:48:39,378:INFO: Loading Node Features...
+2020-02-20 20:48:45,424:INFO: Loading Labels...
+2020-02-20 20:48:45,427:INFO: Mapping vertex id to consecutive integers
+2020-02-20 20:49:20,427:INFO: Number of node features in features.txt: 960570
+2020-02-20 20:49:20,428:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 20:49:20,428:INFO: Number of node in the intersection: 960570
+2020-02-20 20:49:20,428:INFO: Node id mapping created
+2020-02-20 20:49:20,428:INFO: Save the mapping to /home/handason/data/eth-node-classification/node_id_map.csv
+2020-02-20 20:49:20,428:INFO: [32mVertex id mapping is sucessfully saved to /home/handason/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 20:49:21,119:INFO: Preprocessing node features
+2020-02-20 20:49:21,119:INFO: Filtering nodes
+2020-02-20 20:49:21,706:INFO: Mean imputation on the missing value
+2020-02-20 20:49:22,700:INFO: features shape: (449403, 22)
+2020-02-20 20:49:22,701:INFO: filtering unused nodes in the label
+2020-02-20 20:49:22,704:INFO: mapping labels node id to new node id
+2020-02-20 20:49:22,706:INFO: convert label to one-hot format
+2020-02-20 20:49:22,709:INFO: Train, validation, test split
+2020-02-20 20:49:22,709:INFO: The mask file: /home/handason/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 20:51:02,041:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 20:51:02,042:INFO: loading data...
+2020-02-20 20:51:02,042:INFO: Loading Node Features...
+2020-02-20 20:51:07,371:INFO: Loading Labels...
+2020-02-20 20:51:07,373:INFO: Mapping vertex id to consecutive integers
+2020-02-20 20:51:39,336:INFO: Number of node features in features.txt: 960570
+2020-02-20 20:51:39,337:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 20:51:39,337:INFO: Number of node in the intersection: 126
+2020-02-20 20:51:39,337:INFO: Node id mapping created
+2020-02-20 20:51:39,337:INFO: Save the mapping to /home/handason/data/eth-node-classification/node_id_map.csv
+2020-02-20 20:51:39,338:INFO: [32mVertex id mapping is sucessfully saved to /home/handason/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 20:51:39,876:INFO: Preprocessing node features
+2020-02-20 20:51:39,876:INFO: Filtering nodes
+2020-02-20 20:51:40,332:INFO: Mean imputation on the missing value
+2020-02-20 20:51:40,964:INFO: features shape: (449403, 22)
+2020-02-20 20:51:40,964:INFO: filtering unused nodes in the label
+2020-02-20 20:51:40,966:INFO: mapping labels node id to new node id
+2020-02-20 20:51:40,968:INFO: convert label to one-hot format
+2020-02-20 20:51:40,970:INFO: Train, validation, test split
+2020-02-20 20:51:40,971:INFO: The mask file: /home/handason/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 21:00:01,588:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 21:00:01,589:INFO: loading data...
+2020-02-20 21:00:01,589:INFO: Loading Node Features...
+2020-02-20 21:00:03,922:INFO: Loading Labels...
+2020-02-20 21:00:03,923:INFO: Mapping vertex id to consecutive integers
+2020-02-20 21:00:39,174:INFO: Number of node features in features.txt: 2180689
+2020-02-20 21:00:39,175:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 21:00:39,175:INFO: Number of node in the intersection: 2180689
+2020-02-20 21:00:39,696:INFO: Node id mapping created
+2020-02-20 21:00:39,696:INFO: Save the mapping to /home/handason/data/eth-node-classification/node_id_map.csv
+2020-02-20 21:00:42,169:INFO: [32mVertex id mapping is sucessfully saved to /home/handason/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 21:00:42,376:INFO: Preprocessing node features
+2020-02-20 21:00:42,376:INFO: Filtering nodes
+2020-02-20 21:00:47,011:INFO: Mean imputation on the missing value
+2020-02-20 21:00:50,895:INFO: features shape: (2180689, 23)
+2020-02-20 21:00:50,895:INFO: filtering unused nodes in the label
+2020-02-20 21:00:50,900:INFO: mapping labels node id to new node id
+2020-02-20 21:00:50,902:INFO: convert label to one-hot format
+2020-02-20 21:00:51,046:INFO: Train, validation, test split
+2020-02-20 21:00:51,046:INFO: The mask file: /home/handason/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 21:00:51,063:INFO: train_mask shape: (2180689,)
+2020-02-20 21:00:51,063:INFO: val_mask shape: (2180689,)
+2020-02-20 21:00:51,063:INFO: test_mask shape: (2180689,)
+2020-02-20 21:00:51,063:INFO: Reading /home/handason/data/eth-node-classification/adj.txt into dgl graph
+2020-02-20 21:00:51,063:INFO: Number of edges found in /home/handason/data/eth-node-classification/adj.txt: 3639705
+2020-02-20 21:00:53,757:INFO: *** Number of edges after filtering : 3639705
+2020-02-20 21:00:58,815:INFO: {'edge_features': Scheme(shape=(7,), dtype=torch.float32)}
+2020-02-20 21:00:59,111:INFO: Adding self-loop
+2020-02-20 21:01:00,181:INFO: ----Data statistics------'
+      #Edges 5820394
+      #Classes 7
+      #Train samples 284
+      #Val samples 72
+      #Test samples 89
+2020-02-20 21:01:00,186:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=7, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=26, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2020-02-20 21:01:27,488:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3888 | ETputs(KTEPS) nan
+
+2020-02-20 21:05:41,227:INFO: ************** Epoch 00000 | Time(s) nan | Loss 1.3871 | ETputs(KTEPS) nan ***************
+
+2020-02-20 21:06:09,402:INFO: Epoch 00001 | Time(s) nan | TrainLoss 1.3867 | ETputs(KTEPS) nan
+
+2020-02-20 21:06:37,500:INFO: Epoch 00002 | Time(s) 28.0983 | TrainLoss 1.3864 | ETputs(KTEPS) 207.14
+
+2020-02-20 13:08:45,253:INFO: Namespace(data_dir='/home/handason/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 13:09:02,207:INFO: Namespace(data_dir='/home/data/eth-node-classification/', model_dir='./experiments/MiniBatchDGI', preprocess=True, restore_file=None)
+2020-02-20 13:09:02,208:INFO: loading data...
+2020-02-20 13:09:02,208:INFO: Loading Node Features...
+2020-02-20 13:09:04,811:INFO: Loading Labels...
+2020-02-20 13:09:04,812:INFO: Mapping vertex id to consecutive integers
+2020-02-20 13:09:39,249:INFO: Number of node features in features.txt: 2180689
+2020-02-20 13:09:39,249:INFO: Number of nodes in adj.txt: 2180689
+2020-02-20 13:09:39,249:INFO: Number of node in the intersection: 2180689
+2020-02-20 13:09:39,961:INFO: Node id mapping created
+2020-02-20 13:09:39,961:INFO: Save the mapping to /home/data/eth-node-classification/node_id_map.csv
+2020-02-20 13:09:42,458:INFO: [32mVertex id mapping is sucessfully saved to /home/data/eth-node-classification/node_id_map.csv[0m
+2020-02-20 13:09:42,501:INFO: Preprocessing node features
+2020-02-20 13:09:42,501:INFO: Filtering nodes
+2020-02-20 13:09:47,134:INFO: Mean imputation on the missing value
+2020-02-20 13:09:50,807:INFO: features shape: (2180689, 23)
+2020-02-20 13:09:50,807:INFO: filtering unused nodes in the label
+2020-02-20 13:09:50,812:INFO: mapping labels node id to new node id
+2020-02-20 13:09:50,814:INFO: convert label to one-hot format
+2020-02-20 13:09:50,930:INFO: Train, validation, test split
+2020-02-20 13:09:50,931:INFO: The mask file: /home/data/eth-node-classification/mask.txt doest not exist. Performing train, val, test split
+2020-02-20 13:09:50,946:INFO: train_mask shape: (2180689,)
+2020-02-20 13:09:50,947:INFO: val_mask shape: (2180689,)
+2020-02-20 13:09:50,947:INFO: test_mask shape: (2180689,)
+2020-02-20 13:09:50,947:INFO: Reading /home/data/eth-node-classification/adj.txt into dgl graph
+2020-02-20 13:09:50,947:INFO: Number of edges found in /home/data/eth-node-classification/adj.txt: 3639705
+2020-02-20 13:09:53,753:INFO: *** Number of edges after filtering : 3639705
+2020-02-20 13:09:59,101:INFO: {'edge_features': Scheme(shape=(7,), dtype=torch.float32)}
+2020-02-20 13:09:59,335:INFO: Adding self-loop
+2020-02-20 13:10:00,917:INFO: ----Data statistics------'
+      #Edges 5820394
+      #Classes 7
+      #Train samples 284
+      #Val samples 72
+      #Test samples 89
+2020-02-20 13:10:02,756:INFO: DGI(
+  (encoder): Encoder(
+    (conv): MiniBatchEdgeProp(
+      (input_layer_e): OneLayerNN(
+        (fc): Linear(in_features=7, out_features=3, bias=True)
+        (fc2): Linear(in_features=3, out_features=3, bias=True)
+      )
+      (node_layers): ModuleList(
+        (0): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+        (1): NodeUpdate(
+          (layer): OneLayerNN(
+            (fc): Linear(in_features=6, out_features=3, bias=True)
+            (fc2): Linear(in_features=3, out_features=3, bias=True)
+          )
+        )
+      )
+      (phi): ModuleList(
+        (0): OneLayerNN(
+          (fc): Linear(in_features=26, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+        (1): OneLayerNN(
+          (fc): Linear(in_features=6, out_features=3, bias=True)
+          (fc2): Linear(in_features=3, out_features=3, bias=True)
+        )
+      )
+      (fc): Linear(in_features=3, out_features=3, bias=True)
+    )
+  )
+  (discriminator): Discriminator()
+  (loss): BCEWithLogitsLoss()
+)
+2020-02-20 13:10:13,145:INFO: Epoch 00000 | Time(s) nan | TrainLoss 1.3863 | ETputs(KTEPS) nan
+

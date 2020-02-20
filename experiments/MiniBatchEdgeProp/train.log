@@ -10370,3 +10370,559 @@ ValLoss 0.5019   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   
 ETputs(KTEPS) 1.82
 
 2019-07-18 14:22:34,246:INFO: Early stopping
+2020-01-23 05:02:26,000:INFO: Namespace(data_dir='./dmt/data/test_data', model_dir='experiments/MiniBatchEdgeProp', preprocess=True, restore_file=None)
+2020-01-23 05:02:26,000:INFO: loading data...
+2020-01-23 05:02:26,000:INFO: Loading Node Features...
+2020-01-23 05:02:26,004:INFO: Loading Labels...
+2020-01-23 05:02:26,005:INFO: Mapping vertex id to consecutive integers
+2020-01-23 05:02:26,005:INFO: Number of node features in features.txt: 7
+2020-01-23 05:02:26,005:INFO: Number of nodes in adj.txt: 7
+2020-01-23 05:02:26,005:INFO: Number of node in the intersection: 7
+2020-01-23 05:02:26,005:INFO: Node id mapping created
+2020-01-23 05:02:26,005:INFO: Save the mapping to ./dmt/data/test_data/node_id_map.csv
+2020-01-23 05:02:26,005:INFO: [32mVertex id mapping is sucessfully saved to ./dmt/data/test_data/node_id_map.csv[0m
+2020-01-23 05:02:26,006:INFO: Preprocessing node features
+2020-01-23 05:02:26,006:INFO: Filtering nodes
+2020-01-23 05:02:26,006:INFO: Mean imputation on the missing value
+2020-01-23 05:02:26,009:INFO: features shape: (6, 6)
+2020-01-23 05:02:26,009:INFO: filtering unused nodes in the label
+2020-01-23 05:02:26,014:INFO: mapping labels node id to new node id
+2020-01-23 05:02:26,015:INFO: convert label to one-hot format
+2020-01-23 05:02:26,017:INFO: Train, validation, test split
+2020-01-23 05:02:26,017:INFO: The mask file: ./dmt/data/test_data/mask.txt doest not exist. Performing train, val, test split
+2020-01-23 05:02:26,018:INFO: train_mask shape: (6,)
+2020-01-23 05:02:26,018:INFO: val_mask shape: (6,)
+2020-01-23 05:02:26,018:INFO: test_mask shape: (6,)
+2020-01-23 05:02:26,019:INFO: Reading ./dmt/data/test_data/adj.txt into dgl graph
+2020-01-23 05:02:26,019:INFO: Number of edges found in ./dmt/data/test_data/adj.txt: 7
+2020-01-23 05:02:26,019:INFO: *** Number of edges after filtering : 6
+2020-01-23 05:02:26,019:INFO: {'edge_features': Scheme(shape=(4,), dtype=torch.float32)}
+2020-01-23 05:02:26,022:INFO: Adding self-loop
+2020-01-23 05:02:26,023:INFO: ----Data statistics------'
+      #Edges 12
+      #Classes 2
+      #Train samples 3
+      #Val samples 1
+      #Test samples 1
+2020-01-23 05:02:28,380:INFO: MiniBatchEdgeProp(
+  (input_layer_e): OneLayerNN(
+    (fc): Linear(in_features=4, out_features=5, bias=True)
+    (fc2): Linear(in_features=5, out_features=5, bias=True)
+  )
+  (node_layers): ModuleList(
+    (0): NodeUpdate(
+      (layer): OneLayerNN(
+        (fc): Linear(in_features=10, out_features=5, bias=True)
+        (fc2): Linear(in_features=5, out_features=5, bias=True)
+      )
+    )
+  )
+  (phi): ModuleList(
+    (0): OneLayerNN(
+      (fc): Linear(in_features=11, out_features=5, bias=True)
+      (fc2): Linear(in_features=5, out_features=5, bias=True)
+    )
+  )
+  (fc): Linear(in_features=5, out_features=2, bias=True)
+)
+2020-01-23 05:02:28,494:INFO: Epoch 00000 | Time(s) nan | 
+TrainLoss 0.7643 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5345   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) nan
+
+2020-01-23 05:02:28,511:INFO: Epoch 00001 | Time(s) nan | 
+TrainLoss 0.7640 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5348   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) nan
+
+2020-01-23 05:02:28,529:INFO: Epoch 00002 | Time(s) 0.0105 | 
+TrainLoss 0.7637 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5352   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,546:INFO: Epoch 00003 | Time(s) 0.0105 | 
+TrainLoss 0.7635 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5356   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,562:INFO: Epoch 00004 | Time(s) 0.0105 | 
+TrainLoss 0.7632 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5360   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,579:INFO: Epoch 00005 | Time(s) 0.0105 | 
+TrainLoss 0.7629 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5364   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,596:INFO: Epoch 00006 | Time(s) 0.0105 | 
+TrainLoss 0.7627 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5368   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.15
+
+2020-01-23 05:02:28,613:INFO: Epoch 00007 | Time(s) 0.0105 | 
+TrainLoss 0.7624 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5372   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.15
+
+2020-01-23 05:02:28,631:INFO: Epoch 00008 | Time(s) 0.0105 | 
+TrainLoss 0.7621 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5375   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,648:INFO: Epoch 00009 | Time(s) 0.0105 | 
+TrainLoss 0.7619 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5379   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,665:INFO: Epoch 00010 | Time(s) 0.0106 | 
+TrainLoss 0.7616 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5383   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,682:INFO: Epoch 00011 | Time(s) 0.0106 | 
+TrainLoss 0.7613 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5387   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.13
+
+2020-01-23 05:02:28,699:INFO: Epoch 00012 | Time(s) 0.0106 | 
+TrainLoss 0.7611 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5391   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.13
+
+2020-01-23 05:02:28,716:INFO: Epoch 00013 | Time(s) 0.0105 | 
+TrainLoss 0.7608 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5395   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,732:INFO: Epoch 00014 | Time(s) 0.0105 | 
+TrainLoss 0.7605 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5399   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.14
+
+2020-01-23 05:02:28,749:INFO: Epoch 00015 | Time(s) 0.0105 | 
+TrainLoss 0.7603 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5403   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.15
+
+2020-01-23 05:02:28,766:INFO: Epoch 00016 | Time(s) 0.0104 | 
+TrainLoss 0.7600 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5407   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.15
+
+2020-01-23 05:02:28,781:INFO: Epoch 00017 | Time(s) 0.0104 | 
+TrainLoss 0.7597 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5411   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.16
+
+2020-01-23 05:02:28,795:INFO: Epoch 00018 | Time(s) 0.0103 | 
+TrainLoss 0.7595 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5415   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.16
+
+2020-01-23 05:02:28,810:INFO: Epoch 00019 | Time(s) 0.0102 | 
+TrainLoss 0.7592 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5418   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.17
+
+2020-01-23 05:02:28,825:INFO: Epoch 00020 | Time(s) 0.0102 | 
+TrainLoss 0.7589 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5422   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.18
+
+2020-01-23 05:02:28,839:INFO: Epoch 00021 | Time(s) 0.0101 | 
+TrainLoss 0.7587 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5426   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.19
+
+2020-01-23 05:02:28,854:INFO: Epoch 00022 | Time(s) 0.0100 | 
+TrainLoss 0.7584 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5430   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.20
+
+2020-01-23 05:02:28,868:INFO: Epoch 00023 | Time(s) 0.0100 | 
+TrainLoss 0.7581 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5434   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.20
+
+2020-01-23 05:02:28,883:INFO: Epoch 00024 | Time(s) 0.0099 | 
+TrainLoss 0.7579 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5438   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.21
+
+2020-01-23 05:02:28,898:INFO: Epoch 00025 | Time(s) 0.0099 | 
+TrainLoss 0.7576 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5442   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.21
+
+2020-01-23 05:02:28,912:INFO: Epoch 00026 | Time(s) 0.0098 | 
+TrainLoss 0.7574 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5446   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.22
+
+2020-01-23 05:02:28,927:INFO: Epoch 00027 | Time(s) 0.0098 | 
+TrainLoss 0.7571 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5450   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.22
+
+2020-01-23 05:02:28,941:INFO: Epoch 00028 | Time(s) 0.0098 | 
+TrainLoss 0.7569 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5454   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.23
+
+2020-01-23 05:02:28,956:INFO: Epoch 00029 | Time(s) 0.0097 | 
+TrainLoss 0.7566 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5458   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.23
+
+2020-01-23 05:02:28,970:INFO: Epoch 00030 | Time(s) 0.0097 | 
+TrainLoss 0.7563 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5462   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.24
+
+2020-01-23 05:02:28,985:INFO: Epoch 00031 | Time(s) 0.0097 | 
+TrainLoss 0.7561 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5466   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.24
+
+2020-01-23 05:02:29,000:INFO: Epoch 00032 | Time(s) 0.0096 | 
+TrainLoss 0.7558 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5470   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.25
+
+2020-01-23 05:02:29,015:INFO: Epoch 00033 | Time(s) 0.0096 | 
+TrainLoss 0.7556 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5474   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.25
+
+2020-01-23 05:02:29,029:INFO: Epoch 00034 | Time(s) 0.0096 | 
+TrainLoss 0.7553 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5478   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.25
+
+2020-01-23 05:02:29,044:INFO: Epoch 00035 | Time(s) 0.0096 | 
+TrainLoss 0.7550 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5483   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.26
+
+2020-01-23 05:02:29,058:INFO: Epoch 00036 | Time(s) 0.0095 | 
+TrainLoss 0.7548 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5487   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.26
+
+2020-01-23 05:02:29,073:INFO: Epoch 00037 | Time(s) 0.0095 | 
+TrainLoss 0.7545 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5491   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.26
+
+2020-01-23 05:02:29,087:INFO: Epoch 00038 | Time(s) 0.0095 | 
+TrainLoss 0.7543 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5495   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.26
+
+2020-01-23 05:02:29,102:INFO: Epoch 00039 | Time(s) 0.0095 | 
+TrainLoss 0.7540 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5499   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.27
+
+2020-01-23 05:02:29,116:INFO: Epoch 00040 | Time(s) 0.0095 | 
+TrainLoss 0.7538 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5503   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.27
+
+2020-01-23 05:02:29,131:INFO: Epoch 00041 | Time(s) 0.0094 | 
+TrainLoss 0.7535 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5507   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.27
+
+2020-01-23 05:02:29,145:INFO: Epoch 00042 | Time(s) 0.0094 | 
+TrainLoss 0.7532 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5511   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.27
+
+2020-01-23 05:02:29,160:INFO: Epoch 00043 | Time(s) 0.0094 | 
+TrainLoss 0.7530 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5515   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.27
+
+2020-01-23 05:02:29,175:INFO: Epoch 00044 | Time(s) 0.0094 | 
+TrainLoss 0.7527 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5519   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,189:INFO: Epoch 00045 | Time(s) 0.0094 | 
+TrainLoss 0.7525 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5523   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,204:INFO: Epoch 00046 | Time(s) 0.0094 | 
+TrainLoss 0.7522 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5527   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,219:INFO: Epoch 00047 | Time(s) 0.0094 | 
+TrainLoss 0.7519 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5531   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,233:INFO: Epoch 00048 | Time(s) 0.0094 | 
+TrainLoss 0.7517 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5535   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,248:INFO: Epoch 00049 | Time(s) 0.0093 | 
+TrainLoss 0.7514 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5540   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,263:INFO: Epoch 00050 | Time(s) 0.0093 | 
+TrainLoss 0.7511 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5544   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.28
+
+2020-01-23 05:02:29,278:INFO: Epoch 00051 | Time(s) 0.0093 | 
+TrainLoss 0.7509 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5548   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,292:INFO: Epoch 00052 | Time(s) 0.0093 | 
+TrainLoss 0.7506 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5552   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,307:INFO: Epoch 00053 | Time(s) 0.0093 | 
+TrainLoss 0.7503 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5556   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,322:INFO: Epoch 00054 | Time(s) 0.0093 | 
+TrainLoss 0.7501 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5560   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,336:INFO: Epoch 00055 | Time(s) 0.0093 | 
+TrainLoss 0.7498 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5565   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,351:INFO: Epoch 00056 | Time(s) 0.0093 | 
+TrainLoss 0.7496 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5569   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,366:INFO: Epoch 00057 | Time(s) 0.0093 | 
+TrainLoss 0.7493 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5573   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,381:INFO: Epoch 00058 | Time(s) 0.0093 | 
+TrainLoss 0.7490 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5577   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,395:INFO: Epoch 00059 | Time(s) 0.0093 | 
+TrainLoss 0.7488 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5581   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,410:INFO: Epoch 00060 | Time(s) 0.0093 | 
+TrainLoss 0.7485 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5586   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,425:INFO: Epoch 00061 | Time(s) 0.0093 | 
+TrainLoss 0.7482 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5590   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,440:INFO: Epoch 00062 | Time(s) 0.0093 | 
+TrainLoss 0.7480 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5594   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.29
+
+2020-01-23 05:02:29,455:INFO: Epoch 00063 | Time(s) 0.0093 | 
+TrainLoss 0.7477 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5598   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,469:INFO: Epoch 00064 | Time(s) 0.0093 | 
+TrainLoss 0.7474 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5603   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,484:INFO: Epoch 00065 | Time(s) 0.0093 | 
+TrainLoss 0.7472 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5607   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,499:INFO: Epoch 00066 | Time(s) 0.0093 | 
+TrainLoss 0.7469 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5611   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,513:INFO: Epoch 00067 | Time(s) 0.0092 | 
+TrainLoss 0.7466 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5615   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,528:INFO: Epoch 00068 | Time(s) 0.0092 | 
+TrainLoss 0.7464 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5620   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,543:INFO: Epoch 00069 | Time(s) 0.0092 | 
+TrainLoss 0.7461 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5624   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,558:INFO: Epoch 00070 | Time(s) 0.0092 | 
+TrainLoss 0.7458 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5628   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,573:INFO: Epoch 00071 | Time(s) 0.0092 | 
+TrainLoss 0.7455 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5632   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,587:INFO: Epoch 00072 | Time(s) 0.0092 | 
+TrainLoss 0.7453 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5636   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,602:INFO: Epoch 00073 | Time(s) 0.0092 | 
+TrainLoss 0.7450 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5641   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,617:INFO: Epoch 00074 | Time(s) 0.0092 | 
+TrainLoss 0.7447 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5645   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,631:INFO: Epoch 00075 | Time(s) 0.0092 | 
+TrainLoss 0.7445 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5649   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,646:INFO: Epoch 00076 | Time(s) 0.0092 | 
+TrainLoss 0.7442 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5653   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,661:INFO: Epoch 00077 | Time(s) 0.0092 | 
+TrainLoss 0.7439 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5657   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,676:INFO: Epoch 00078 | Time(s) 0.0092 | 
+TrainLoss 0.7436 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5662   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,691:INFO: Epoch 00079 | Time(s) 0.0092 | 
+TrainLoss 0.7434 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5666   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,706:INFO: Epoch 00080 | Time(s) 0.0092 | 
+TrainLoss 0.7431 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5670   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,721:INFO: Epoch 00081 | Time(s) 0.0092 | 
+TrainLoss 0.7428 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5675   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,736:INFO: Epoch 00082 | Time(s) 0.0092 | 
+TrainLoss 0.7426 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5679   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,750:INFO: Epoch 00083 | Time(s) 0.0092 | 
+TrainLoss 0.7423 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5683   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,766:INFO: Epoch 00084 | Time(s) 0.0092 | 
+TrainLoss 0.7420 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5688   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,781:INFO: Epoch 00085 | Time(s) 0.0092 | 
+TrainLoss 0.7417 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5692   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,796:INFO: Epoch 00086 | Time(s) 0.0092 | 
+TrainLoss 0.7415 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5697   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,810:INFO: Epoch 00087 | Time(s) 0.0092 | 
+TrainLoss 0.7412 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5701   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.30
+
+2020-01-23 05:02:29,825:INFO: Epoch 00088 | Time(s) 0.0092 | 
+TrainLoss 0.7409 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5705   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,840:INFO: Epoch 00089 | Time(s) 0.0092 | 
+TrainLoss 0.7406 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5710   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,855:INFO: Epoch 00090 | Time(s) 0.0092 | 
+TrainLoss 0.7404 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5714   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,869:INFO: Epoch 00091 | Time(s) 0.0092 | 
+TrainLoss 0.7401 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5719   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,884:INFO: Epoch 00092 | Time(s) 0.0092 | 
+TrainLoss 0.7398 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5723   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,899:INFO: Epoch 00093 | Time(s) 0.0092 | 
+TrainLoss 0.7395 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5727   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,914:INFO: Epoch 00094 | Time(s) 0.0092 | 
+TrainLoss 0.7393 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5732   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,928:INFO: Epoch 00095 | Time(s) 0.0092 | 
+TrainLoss 0.7390 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5736   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,943:INFO: Epoch 00096 | Time(s) 0.0092 | 
+TrainLoss 0.7387 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5741   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,958:INFO: Epoch 00097 | Time(s) 0.0092 | 
+TrainLoss 0.7384 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5745   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,973:INFO: Epoch 00098 | Time(s) 0.0092 | 
+TrainLoss 0.7381 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5750   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:29,988:INFO: Epoch 00099 | Time(s) 0.0092 | 
+TrainLoss 0.7379 | TrainAcc 0.3333 | TrainPrecision 0.1667 | TrainRecall 0.5000 | TrainMacroF1 0.2500 | TrainMicroF1 0.3333
+ValLoss 0.5754   | ValAcc 1.0000   | ValPrecision1.0000    | ValRecall 1.0000   | ValMacroF1 1.0000   | ValMicroF1 1.0000
+ETputs(KTEPS) 1.31
+
+2020-01-23 05:02:30,002:INFO: Early stopping

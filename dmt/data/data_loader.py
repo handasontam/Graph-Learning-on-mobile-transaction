@@ -113,7 +113,7 @@ class Dataset(object):
             self.feat_graph_intersec_set = features_set.intersection(nodes_set)
             logging.info('Number of node features in features.txt: {}'.format(len(features_set)))
             logging.info('Number of nodes in adj.txt: {}'.format(len(nodes_set)))
-            logging.info('Number of node in the intersection: {}'.format(len(features_set)))
+            logging.info('Number of node in the intersection: {}'.format(len(self.feat_graph_intersec_set)))
             
             self.number_of_nodes = len(self.feat_graph_intersec_set)
             self.v_mapping = dict(zip(list(self.feat_graph_intersec_set), range(self.number_of_nodes)))  # key is vertex id, value is new vertex id

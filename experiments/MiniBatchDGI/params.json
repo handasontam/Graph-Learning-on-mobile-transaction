@@ -1,6 +1,6 @@
 {
     "model": "MiniBatchDGI", 
-    "gpu": -1,
+    "gpu": 0,
     "conv_model": "EdgeProp", 
     "epochs": 10000, 
     "num_layers": 2, 
